@@ -3,6 +3,7 @@
     "summary": "Numeric computation: arithmetic (add, sub, mul, div, pow, modulo, min, max, floor, ceil), trigonometry, logarithms, comparisons (greater, less), rounding, random numbers, complex and quaternion numbers, matrices (make, inverse, determinant, concat, split, rotation), BIT transforms, time, day and moon readings, factorial and running sums, symbolic expressions (substitute, equals, piecewise, matrix).",
     "use_cases": [
       "Any numeric calculation, including modulo and rounding",
+    "Adding two vectors (e.g. offsetting a position by a vector, or adding a relative offset to the caster's position)",
       "Comparisons and min or max",
       "Matrix or quaternion operations",
       "Reading time, day, moon or media values as numbers"

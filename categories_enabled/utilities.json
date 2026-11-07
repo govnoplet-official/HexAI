@@ -1,12 +1,15 @@
 {
   "_description": {
-    "summary": "Booleans, constants and general utilities: and, or, not, xor, equality and type comparisons, if, print and reveal, null, true and false constants, complex and quaternion constants, structure mirror and rotate, library and visitor keys, dictionaries, JSON and HTTP requests, coalescing, Mind Stack operations, phiangle links, many item and block helpers.",
+    "summary": "Booleans, constants and general utilities: and, or, not, xor, equality and type comparisons, if, print and reveal, null, true and false constants, complex and quaternion constants, structure mirror and rotate, library and visitor keys, dictionaries, JSON and HTTP requests, coalescing, Mind Stack operations, phiangle links, many item and block helpers, conjuring blocks and items in the world (conjure gummy, hexburst, hextito, mage blocks, firework, dust), spawning effects and particles (sparkle, confetti, light, flower), and dispensing or smelting blocks.",
     "use_cases": [
       "Boolean logic and conditional values",
       "Comparing iotas for equality or type",
       "Building dictionaries, JSON or HTTP requests",
       "Printing or revealing values to the caster",
-      "Transforming stored structures"
+      "Transforming stored structures",
+      "Conjuring blocks or items at a position (e.g. conjure hextito, conjure hexburst, conjure gummy)",
+      "Spawning visual effects, particles or fireworks",
+      "Dispensing, smelting, or otherwise processing blocks in the world"
     ]
   },
   "and": {

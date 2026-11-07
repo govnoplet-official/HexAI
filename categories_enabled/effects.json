@@ -4,7 +4,8 @@
     "use_cases": [
       "Applying, removing or reading potion effects",
       "Checking what effects an entity has",
-      "Changing or reading gender and body properties"
+      "Changing or reading gender and body properties",
+      "Transitioning the caster to female, male or non-binary (female_transition, male_transition, other_transition)"
     ]
   },
   "potion/weakness": {

@@ -66,22 +66,30 @@ TASK_TEXT = """\
 координаты, например позиция или сдвиг, включай vectors.json.
 
 ФОРМАТ ОТВЕТА
-- Только JSON-массив строк: имена файлов из списка, без повторов.
-- Никакого текста до или после массива, никаких пояснений, никаких блоков кода с тремя обратными кавычками.
-- Порядок элементов не важен.
+- Только JSON-объект с двумя полями: {"categories": ["имя_файла.json", ...], "keywords": ["word", ...]}
+- categories: имена файлов из списка, без повторов. Порядок не важен.
+- keywords: английские слова, по которым в каталоге находятся нужные паттерны. Названия и описания \
+паттернов написаны по-английски, поэтому переводи на английский. ОБЯЗАТЕЛЬНО: для каждого шага запроса \
+(что создать, что произойдёт при действии, что изменить, что вывести) дай хотя бы одно ключевое слово. \
+Например, для запроса про gummy, которая меняет пол при поедании, нужны слова: gummy (создание), \
+female или transition (смена пола), eat или consume (поедание). Если паттерн принимает список паттернов (например, conjure_hextito), добавь \
+introspection и retrospection (скобки списка). Для позиции рядом с игроком добавь caster и entity pos. \
+Не пропускай ни один шаг. \
+Не используй русские слова в keywords. Не больше 8 слов.
+- Никакого текста до или после объекта, никаких пояснений, никаких блоков кода с тремя обратными кавычками.
 
 ПРИМЕРЫ
 Запрос: «Сложить два числа и вывести результат».
-Ответ: ["math.json", "utilities.json"]
+Ответ: {"categories": ["math.json", "utilities.json"], "keywords": ["add", "print"]}
 
 Запрос: «Получить позицию глаз ближайшей сущности и сдвинуть её на один блок вверх».
-Ответ: ["entities.json", "vectors.json"]
+Ответ: {"categories": ["entities.json", "vectors.json"], "keywords": ["entity", "eye", "vector", "add"]}
 
 Запрос: «На блоке, на который я смотрю, построить стену 4 на 4 блока».
-Ответ: ["blocks.json", "entities.json", "vectors.json", "math.json"]
+Ответ: {"categories": ["blocks.json", "entities.json", "vectors.json", "math.json"], "keywords": ["raycast", "place", "block", "vector", "add"]}
 
 Запрос: «Напиши стихотворение про кота».
-Ответ: []\
+Ответ: {"categories": [], "keywords": []}\
 """
 
 
@@ -164,17 +172,26 @@ def call_api(messages, base_url, api_keys, model):
     sys.exit(f"Запрос к API не удался. {last_error}")
 
 
-def parse_categories(answer, valid_names):
-    """Достаёт JSON-массив из ответа модели и оставляет только существующие файлы."""
-    match = re.search(r"\[.*\]", answer, re.DOTALL)
+def parse_selection(answer, valid_names):
+    """Достаёт JSON-объект {"categories": [...], "keywords": [...]} из ответа модели.
+
+    Возвращает (категории, ключевые слова). Категории оставляются только из valid_names,
+    ключевые слова приводятся к нижнему регистру.
+    """
+    match = re.search(r"\{.*\}", answer, re.DOTALL)
     if not match:
-        sys.exit(f"Модель не вернула JSON-массив. Ответ:\n{answer}")
+        sys.exit(f"Модель не вернула JSON-объект. Ответ:\n{answer}")
     try:
-        items = json.loads(match.group(0))
+        data = json.loads(match.group(0))
     except json.JSONDecodeError:
         sys.exit(f"Не удалось разобрать JSON из ответа модели:\n{answer}")
-    if not isinstance(items, list):
-        sys.exit(f"Ответ модели не является JSON-массивом:\n{answer}")
+    if not isinstance(data, dict):
+        sys.exit(f"Ответ модели не является JSON-объектом:\n{answer}")
+
+    items = data.get("categories", [])
+    keywords = data.get("keywords", [])
+    if not isinstance(items, list) or not isinstance(keywords, list):
+        sys.exit(f"Поля categories и keywords должны быть массивами:\n{answer}")
 
     chosen = []
     unknown = []
@@ -187,7 +204,58 @@ def parse_categories(answer, valid_names):
             unknown.append(item)
     if unknown:
         print(f"Предупреждение: модель вернула неизвестные категории, пропущены: {unknown}", file=sys.stderr)
-    return chosen
+
+    clean_keywords = []
+    for kw in keywords:
+        if isinstance(kw, str) and kw.strip() and kw.strip().lower() not in clean_keywords:
+            clean_keywords.append(kw.strip().lower())
+    return chosen, clean_keywords
+
+
+def parse_categories(answer, valid_names):
+    """Возвращает только список категорий из ответа модели."""
+    return parse_selection(answer, valid_names)[0]
+
+
+def _words(text):
+    """Разбивает текст на слова в нижнем регистре (id вида conjure_gummy или raycast/entity дают отдельные слова)."""
+    return {w for w in re.split(r"[^a-z0-9]+", text.lower()) if w}
+
+
+def find_categories_by_keywords(keywords):
+    """Возвращает файлы категорий, где id или название паттерна содержит все слова одного ключевого слова.
+
+    Совпадение по целым словам: ключевое слово «gum» не находит «gummy».
+    """
+    keyword_sets = [_words(kw) for kw in keywords if _words(kw)]
+    found = []
+    for name in sorted(os.listdir(CATEGORIES_DIR)):
+        if not name.endswith(".json"):
+            continue
+        with open(os.path.join(CATEGORIES_DIR, name), "r", encoding="utf-8") as f:
+            raw = json.load(f)
+        for key, entry in raw.items():
+            if key.startswith("_") or not isinstance(entry, dict):
+                continue
+            entry_words = _words(f"{key} {entry.get('n', '')}")
+            if any(kw_set <= entry_words for kw_set in keyword_sets):
+                found.append(name)
+                break
+    return found
+
+
+def build_supplement_messages(user_request, descriptions, missing_keywords, chosen):
+    """Сообщение для повторного вызова ИИ1: ИИ2 не нашёл паттерны, нужны только дополнительные категории."""
+    messages = build_messages(user_request, descriptions)
+    extra = (
+        "\n\nДОПОЛНЕНИЕ\n"
+        f"Категории, которые уже выбраны: {', '.join(chosen)}.\n"
+        f"Сборщик заклинаний не нашёл в них паттерны для: {', '.join(missing_keywords)}.\n"
+        "Верни JSON-объект так же, как раньше, но в categories укажи только ДОПОЛНИТЕЛЬНЫЕ файлы "
+        "из списка, которых нет в уже выбранных. Если подходящих нет, верни пустой массив."
+    )
+    messages[1]["content"] += extra
+    return messages
 
 
 def main():

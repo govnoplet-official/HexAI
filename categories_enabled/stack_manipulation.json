@@ -3,8 +3,10 @@
     "summary": "Stack manipulation: swap, rotate, duplicate, over, tuck, 2dup, swizzle, bubbling, capsizing and dredging, copy and reorder operations, drawing parentheses (Introspection, Retrospection, Consideration, Meditation), Evanition (undo), clear stack, Jester's and Reflecting gambits, Quantum Swap.",
     "use_cases": [
       "Reordering or copying iotas on the stack",
-      "Grouping drawn patterns with Introspection",
-      "Clearing or undoing stack changes"
+      "Grouping drawn patterns with Introspection (open_paren, patterns, close_paren) into a list of patterns, e.g. for conjure_hextito or any pattern that takes a list",
+      "Clearing or undoing stack changes",
+      "Saving a sequence of patterns as data to run later (e.g. a spell stored in an item or gummy, or cast when triggered)",
+      "Delaying the execution of patterns through Introspection and Retrospection parentheses"
     ]
   },
   "swap": {
