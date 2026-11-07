@@ -109,6 +109,14 @@ def stage_render(expanded):
     return output_path
 
 
+def open_image(path):
+    """Открывает PNG в программе по умолчанию (Windows). На других системах только выводит путь."""
+    if sys.platform == "win32":
+        os.startfile(path)
+    else:
+        print(f"Откройте файл вручную: {path}")
+
+
 def main():
     user_request = read_request()
     cfg = load_api_config()
@@ -126,6 +134,7 @@ def main():
     print("\n[4/4] Рендер...")
     output_path = stage_render(expanded)
     print(f"Готово: {output_path}")
+    open_image(output_path)
 
 
 if __name__ == "__main__":
