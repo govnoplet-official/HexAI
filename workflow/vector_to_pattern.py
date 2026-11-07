@@ -4,7 +4,7 @@
 Оси и их фиксированные направления и базовые буквы:
 - x: направление SOUTH_WEST, базовая буква "a"
 - y: направление EAST, базовая буква "w"
-- z: направление NORTH_EAST, базовая буква "d"
+- z: направление NORTH_WEST, базовая буква "d"
 
 Для каждого значения вызывается n_to_p(значение) -> (направление, код).
 Направление из n_to_p отбрасывается. Если оно SOUTH_EAST, к коду спереди добавляется "e",
@@ -33,7 +33,7 @@ from n_to_p import n_to_p
 AXES = (
     ("x", "SOUTH_WEST", "a"),
     ("y", "EAST", "w"),
-    ("z", "NORTH_EAST", "d"),
+    ("z", "NORTH_WEST", "d"),
 )
 PREFIX_BY_DIRECTION = {"SOUTH_EAST": "e", "NORTH_EAST": "q"}
 ADD = "NORTH_EAST waaw"

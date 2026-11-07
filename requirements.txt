@@ -1,0 +1,2 @@
+hexnumgen==0.4.0
+hex-renderer-py==0.1.10
