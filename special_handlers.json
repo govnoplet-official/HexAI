@@ -1,0 +1,218 @@
+{
+  "hexcasting:number": {
+    "id": "hexcasting:number",
+    "raw_name": "Numerical Reflection: %s",
+    "base_name": "Numerical Reflection",
+    "operator": {
+      "description": "Irritatingly, there is no easy way to draw numbers. Here is the method Nature deigned to give us.",
+      "inputs": null,
+      "outputs": "number",
+      "book_url": "https://hexcasting.hexxy.media/v/0.11.4/1.0/en_us#patterns/numbers@Numbers",
+      "mod_id": "hexcasting"
+    }
+  },
+  "hexcasting:mask": {
+    "id": "hexcasting:mask",
+    "raw_name": "Bookkeeper's Gambit: %s",
+    "base_name": "Bookkeeper's Gambit",
+    "operator": {
+      "description": "An infinite family of actions that keep or remove elements at the top of the stack based on the sequence of dips and lines.",
+      "inputs": "many",
+      "outputs": "many",
+      "book_url": "https://hexcasting.hexxy.media/v/0.11.4/1.0/en_us#patterns/stackmanip@hexcasting:mask",
+      "mod_id": "hexcasting"
+    }
+  },
+  "overevaluate:nephthys": {
+    "id": "overevaluate:nephthys",
+    "raw_name": "Nephthys' Gambit: %s",
+    "base_name": "Nephthys' Gambit",
+    "operator": {
+      "description": "Pops a pattern or pattern list and dives down an amount corresponding to the tail length to cast the pattern list. Useful for surgery-like operations.",
+      "inputs": "pattern/list",
+      "outputs": "varies",
+      "book_url": "https://miyucomics.github.io/overevaluate/v/latest/main/en_us#metaevals@overevaluate:nephthys",
+      "mod_id": "overevaluate"
+    }
+  },
+  "overevaluate:sekhmet": {
+    "id": "overevaluate:sekhmet",
+    "raw_name": "Sekhmet' Gambit: %s",
+    "base_name": "Sekhmet' Gambit",
+    "operator": {
+      "description": "Voids the entire stack except for the top n iota, determined by tail length. In the examples above, zero, one, and two iota are left untouched respectively.",
+      "inputs": null,
+      "outputs": "varies",
+      "book_url": "https://miyucomics.github.io/overevaluate/v/latest/main/en_us#extra_stack@overevaluate:sekhmet",
+      "mod_id": "overevaluate"
+    }
+  },
+  "overevaluate:geb": {
+    "id": "overevaluate:geb",
+    "raw_name": "Geb's Gambit: %s",
+    "base_name": "Geb's Gambit",
+    "operator": {
+      "description": "Yanks the iota n from the top up to the top, determined by tail length. In the examples above, the iota second, third, and fourth from the top are yanked respectively.",
+      "inputs": "many",
+      "outputs": "many",
+      "book_url": "https://miyucomics.github.io/overevaluate/v/latest/main/en_us#extra_stack@overevaluate:geb",
+      "mod_id": "overevaluate"
+    }
+  },
+  "overevaluate:nut": {
+    "id": "overevaluate:nut",
+    "raw_name": "Nut's Gambit: %s",
+    "base_name": "Nut's Gambit",
+    "operator": {
+      "description": "Sinks the top iota n from the top, determined by tail length. In the examples above, the iota is moved to the second, third, and fourth place from the top respectively.",
+      "inputs": "many",
+      "outputs": "many",
+      "book_url": "https://miyucomics.github.io/overevaluate/v/latest/main/en_us#extra_stack@overevaluate:nut",
+      "mod_id": "overevaluate"
+    }
+  },
+  "complexhex:long": {
+    "id": "complexhex:long",
+    "raw_name": "Long Reflection",
+    "base_name": "Long Reflection",
+    "operator": {
+      "description": "Just like with normal numbers, Nature is not so generous as to make this easy for us.\n(Details on next page)",
+      "inputs": null,
+      "outputs": "long",
+      "book_url": "http://complexhex.hexxy.media/v/latest/0.1.x/en_us#patterns/maths/longs@complexhex:long",
+      "mod_id": "complexhex"
+    }
+  },
+  "hexflow:noob_num": {
+    "id": "hexflow:noob_num",
+    "raw_name": "Noob Num Reflection: %s",
+    "base_name": "Noob Num Reflection",
+    "operator": {
+      "description": "The starting cumulative number is 0; putting the initial direction to →, all ↗ makes the result **\\* 2 + 1**, all → makes it **\\* 2**, and all ↘ for **/ 10**. Starting with the patterns on the right negates the result.",
+      "inputs": null,
+      "outputs": "number",
+      "book_url": "http://hexflow.hexxy.media/v/0.6.0/1.0.1/en_us#hexflow@hexflow:noob_num",
+      "mod_id": "hexflow"
+    }
+  },
+  "hexflow:copy_mask": {
+    "id": "hexflow:copy_mask",
+    "raw_name": "Electric Fisherman: %s",
+    "base_name": "Electric Fisherman",
+    "operator": {
+      "description": "Each \"n\" on the fisherman pattern's bottom fishing line makes a copy of correspond iota to stack top, following the same targeting rules as [Bookkeeper's Gambit](https://hexcasting.hexxy.media/v/0.11.4/1.0/en_us#patterns/stackmanip@hexcasting:mask).",
+      "inputs": null,
+      "outputs": "many",
+      "book_url": "http://hexflow.hexxy.media/v/0.6.0/1.0.1/en_us#hexflow@hexflow:copy_mask",
+      "mod_id": "hexflow"
+    }
+  },
+  "hextrace:trace": {
+    "id": "hextrace:trace",
+    "raw_name": "Apply Trace",
+    "base_name": "Apply Trace",
+    "operator": {
+      "description": "Applies the given trace to the top Iota.",
+      "inputs": null,
+      "outputs": null,
+      "book_url": "https://ducklingvivi.github.io/HexTrace/v/0.1.0+1.20.1/1.0/en_us#patterns/traces@hextrace:trace",
+      "mod_id": "hextrace"
+    }
+  },
+  "hexthings:noop": {
+    "id": "hexthings:noop",
+    "raw_name": "Patience",
+    "base_name": "Patience",
+    "operator": {
+      "description": "Does nothing, but the tail can be any shape. Useful as a placeholder to be replaced later",
+      "inputs": null,
+      "outputs": null,
+      "book_url": "https://real-septicake.github.io/HexThings/v/0.1.8+1.20.1/1.2/en_us#patterns/hexutils@hexthings:noop",
+      "mod_id": "hexthings"
+    }
+  },
+  "hextrapats:vec/x": {
+    "id": "hextrapats:vec/x",
+    "raw_name": "Vector Reflection: (%s, 0, 0)",
+    "base_name": "Vector Reflection +X/-X II",
+    "operator": {
+      "description": "A head that sharply bends to the left will output a vector along the [X axis](https://hexcasting.hexxy.media/v/0.11.4/1.0/en_us#patterns/consts@hexcasting:const/vec/x).",
+      "inputs": null,
+      "outputs": "vector",
+      "book_url": "https://meepoffaith.github.io/hextra-patterns/v/1.9.1+1.20.1/1.1/en_us#patterns/hextrapats_vec_literals@hextrapats:vec/x",
+      "mod_id": "hextrapats"
+    }
+  },
+  "hextrapats:vec/y": {
+    "id": "hextrapats:vec/y",
+    "raw_name": "Vector Reflection: (0, %s, 0)",
+    "base_name": "Vector Reflection +Y/-Y II",
+    "operator": {
+      "description": "A head that doesn't bend will output a vector along the [Y axis](https://hexcasting.hexxy.media/v/0.11.4/1.0/en_us#patterns/consts@hexcasting:const/vec/y).",
+      "inputs": null,
+      "outputs": "vector",
+      "book_url": "https://meepoffaith.github.io/hextra-patterns/v/1.9.1+1.20.1/1.1/en_us#patterns/hextrapats_vec_literals@hextrapats:vec/y",
+      "mod_id": "hextrapats"
+    }
+  },
+  "hextrapats:vec/z": {
+    "id": "hextrapats:vec/z",
+    "raw_name": "Vector Reflection: (0, 0, %s)",
+    "base_name": "Vector Reflection +Z/-Z II",
+    "operator": {
+      "description": "A head that sharply bends to the right will output a vector along the [Z axis](https://hexcasting.hexxy.media/v/0.11.4/1.0/en_us#patterns/consts@hexcasting:const/vec/z).",
+      "inputs": null,
+      "outputs": "vector",
+      "book_url": "https://meepoffaith.github.io/hextra-patterns/v/1.9.1+1.20.1/1.1/en_us#patterns/hextrapats_vec_literals@hextrapats:vec/z",
+      "mod_id": "hextrapats"
+    }
+  },
+  "hextrapats:vec/1": {
+    "id": "hextrapats:vec/1",
+    "raw_name": "Vector Reflection: (%s, %s, %s)",
+    "base_name": "Vector Reflection +1/-1 II",
+    "operator": {
+      "description": "A head that slightly bends to the left will output a vector where [all 3 components are the same](https://meepoffaith.github.io/hextra-patterns/v/1.9.1+1.20.1/1.1/en_us#patterns/hextrapats_consts@hextrapats:haha_ha_one).",
+      "inputs": null,
+      "outputs": "vector",
+      "book_url": "https://meepoffaith.github.io/hextra-patterns/v/1.9.1+1.20.1/1.1/en_us#patterns/hextrapats_vec_literals@hextrapats:vec/1",
+      "mod_id": "hextrapats"
+    }
+  },
+  "hextrapats:vec/swizzle": {
+    "id": "hextrapats:vec/swizzle",
+    "raw_name": "Swizzling Purification: %s%s%s",
+    "base_name": "Swizzling Purification",
+    "operator": {
+      "description": "A family of patterns that \"swizzles\" a vector's components based on the 3 sections of its tail.",
+      "inputs": "vec",
+      "outputs": "vec",
+      "book_url": "https://meepoffaith.github.io/hextra-patterns/v/1.9.1+1.20.1/1.1/en_us#patterns/hextrapats_vecmanip@hextrapats:vec/swizzle",
+      "mod_id": "hextrapats"
+    }
+  },
+  "hextrapats:scientific_exp": {
+    "id": "hextrapats:scientific_exp",
+    "raw_name": "Scientific Purification: 10^%s",
+    "base_name": "Scientific Purification",
+    "operator": {
+      "description": "Multiplies the input by 10^n or 10^-n, where n is the length of the tail, depending on whether the start is similar to [Mult. Dstl.](https://hexcasting.hexxy.media/v/0.11.4/1.0/en_us#patterns/math@hexcasting:mul) or [Div. Dstl.](https://hexcasting.hexxy.media/v/0.11.4/1.0/en_us#patterns/math@hexcasting:div). The top 3 patterns are x10^1, x10^2, and x10^3. The bottom 3 are x10^-1, x10^-2, and x10^-3.",
+      "inputs": "num/vec",
+      "outputs": "num/vec",
+      "book_url": "https://meepoffaith.github.io/hextra-patterns/v/1.9.1+1.20.1/1.1/en_us#patterns/hextrapats_math@hextrapats:scientific_exp",
+      "mod_id": "hextrapats"
+    }
+  },
+  "hextrapats:duplicate_at": {
+    "id": "hextrapats:duplicate_at",
+    "raw_name": "Angler's Gambit: %s",
+    "base_name": "Angler's Gambit",
+    "operator": {
+      "description": "A family of patterns that takes the Nth iota from the top of the stack, determined by the length of the head, and duplicates it in place. The copy will be created right above the original iota.",
+      "inputs": "many",
+      "outputs": "many",
+      "book_url": "https://meepoffaith.github.io/hextra-patterns/v/1.9.1+1.20.1/1.1/en_us#patterns/hextrapats_stackmanip@hextrapats:duplicate_at",
+      "mod_id": "hextrapats"
+    }
+  }
+}

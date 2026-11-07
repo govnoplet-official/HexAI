@@ -1,0 +1,178 @@
+{
+  "_description": {
+    "summary": "Text and strings: ASCII conversion, symbols, text formatting (bold, italic, underline, strikethrough, obfuscated, color), string building (empty, space, comma, newline), chat reading and prefix filters, glyph split and combine, iota-to-string and pattern-to-string conversions, sign and lectern reading.",
+    "use_cases": [
+      "Building or formatting text messages",
+      "Converting between strings, iotas and patterns",
+      "Reading chat or signs"
+    ]
+  },
+  "ascii": {
+    "n": "UTF Purification",
+    "c": "strings",
+    "d": "Swaps between a string of a *single character* and an integer representing that character.\nUses the UTF-16 character map.",
+    "i": "num/string",
+    "o": "string/num"
+  },
+  "new_symbol": {
+    "n": "Symbolic Purification",
+    "c": "strings",
+    "d": "Creates a new symbol with the given (single character) label",
+    "i": "str",
+    "o": "expression"
+  },
+  "create_text": {
+    "n": "Reading Purification (text)",
+    "c": "strings",
+    "d": "Takes an iota and returns a text iota representing it. If taking a text iota, strips all the styles of it.",
+    "i": "any",
+    "o": "text"
+  },
+  "text_bold": {
+    "n": "Gothic Gambit",
+    "c": "strings",
+    "d": "Takes a text iota and sets whether it is **bold**.",
+    "i": "text, boolean",
+    "o": "text"
+  },
+  "text_italics": {
+    "n": "Manutius' Gambit",
+    "c": "strings",
+    "d": "Takes a text iota and sets whether it is in *italics*.",
+    "i": "text, boolean",
+    "o": "text"
+  },
+  "text_underline": {
+    "n": "Notetaker's Gambit",
+    "c": "strings",
+    "d": "Takes a text iota and sets whether it is __underlined__.",
+    "i": "text, boolean",
+    "o": "text"
+  },
+  "text_strikethrough": {
+    "n": "Editor's Gambit",
+    "c": "strings",
+    "d": "Takes a text iota and sets whether it has been ~~struck through~~.",
+    "i": "text, boolean",
+    "o": "text"
+  },
+  "text_obfuscated": {
+    "n": "Censor's Gambit",
+    "c": "strings",
+    "d": "Takes a text iota and sets whether it is obfusca||ted||.",
+    "i": "text, boolean",
+    "o": "text"
+  },
+  "string/empty": {
+    "n": "Blank Reflection",
+    "c": "strings",
+    "d": "Add an empty string to the stack, useful for combining with other strings.",
+    "i": "-",
+    "o": "str"
+  },
+  "string/space": {
+    "n": "Spacing Reflection",
+    "c": "strings",
+    "d": "Add a blank space string to the stack, useful for combining with other strings.",
+    "i": "-",
+    "o": "str"
+  },
+  "string/comma": {
+    "n": "Comma Reflection",
+    "c": "strings",
+    "d": "Add a comma string to the stack, useful for combining with other strings.",
+    "i": "-",
+    "o": "str"
+  },
+  "string/newline": {
+    "n": "Breaking Reflection",
+    "c": "strings",
+    "d": "Add a string to the stack representing a break between lines, useful for combining with other strings.",
+    "i": "-",
+    "o": "str"
+  },
+  "string/block/get": {
+    "n": "Reader's Purification",
+    "c": "strings",
+    "d": "Removes a vector from the stack. If that vector is pointing at a sign or lectern, it returns that sign or lectern's text to the stack. Otherwise, it returns null.",
+    "i": "vec",
+    "o": "str | [str]"
+  },
+  "string/chat/caster": {
+    "n": "Whisper Reflection",
+    "c": "strings",
+    "d": "Adds the last message the caster sent to the stack as a string.",
+    "i": "-",
+    "o": "str"
+  },
+  "string/chat/all": {
+    "n": "Listener's Reflection",
+    "c": "strings",
+    "d": "Adds the last message anyone sent to the stack as a string.",
+    "i": "-",
+    "o": "str"
+  },
+  "string/chat/prefix/get": {
+    "n": "Sifter's Reflection",
+    "c": "strings",
+    "d": "Returns the last string you passed to Sifter's Gambit.",
+    "i": "-",
+    "o": "str | null"
+  },
+  "string/chat/prefix/set": {
+    "n": "Sifter's Gambit",
+    "c": "strings",
+    "d": "Accepts a string; All future chat messages starting with that string won't be seen by others, and only messages prefixed with that string can be read by Whisper Reflection.",
+    "i": "str | null",
+    "o": "-"
+  },
+  "string/iota": {
+    "n": "Scrivener's Purification",
+    "c": "strings",
+    "d": "Converts the iota on top of the stack into a string.",
+    "i": "any",
+    "o": "str"
+  },
+  "string/action": {
+    "n": "Patternmaster's Purification",
+    "c": "strings",
+    "d": "Converts the pattern on top of the stack into the string for that pattern's name. If there is no action associated with that pattern, or if the associated pattern is a Great Spell, it returns null.",
+    "i": "pattern",
+    "o": "str | null"
+  },
+  "string/name/get": {
+    "n": "Moniker Purification",
+    "c": "strings",
+    "d": "Takes an entity and returns that entity's name. If it is an item entity, return the item's name. | Takes a Ship and returns that Ship's slug.",
+    "i": "entity | ship",
+    "o": "str | string"
+  },
+  "string/name/set": {
+    "n": "Name",
+    "c": "strings",
+    "d": "Takes a string and an entity, and sets that entities name to the given string. If the entity is an item entity, also set the item's name. Costs a hundredth of an Amethyst Dust.",
+    "i": "str, entity",
+    "o": "-"
+  },
+  "string/split": {
+    "n": "Separation Distillation",
+    "c": "strings",
+    "d": "Removes the top two strings from the stack and splits the first string, using the second string as the delimiter and returning as a list.",
+    "i": "str, str",
+    "o": "[str]"
+  },
+  "string/parse": {
+    "n": "Input Purification",
+    "c": "strings",
+    "d": "Removes a string from the top of the stack and returns the number that string parses as (or null if it doesn't parse).",
+    "i": "str",
+    "o": "num | null"
+  },
+  "string/case": {
+    "n": "Case Distillation",
+    "c": "strings",
+    "d": "Removes a string and a bool or null. If it was true, return the string in upper case. If false, lowercase. If null, toggle each character's case.",
+    "i": "str, bool | null",
+    "o": "str"
+  }
+}

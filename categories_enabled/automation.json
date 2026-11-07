@@ -1,0 +1,452 @@
+{
+  "_description": {
+    "summary": "Autonomous and device-driven casting: Reverberation Rod loop control (delay, halt, reset, read/write rod memory), engines and gearboxes, Patterned Assembler and Spell Imprinter, Vessels, Pocket Simulator, Iotic Doors, dimension and spatial imprint queries, idea storage by key, Mediaweave collar, cellular automata and circles.",
+    "use_cases": [
+      "Setting up or controlling rods, engines, assemblers, vessels or imprinters",
+      "Storing and retrieving values by key across casts (ideas, rod memory)",
+      "Querying dimensions, dimension height and scale, spatial imprints",
+      "Putting on or taking off Mediaweave"
+    ]
+  },
+  "blind": {
+    "n": "Hidden Sun's Nadir",
+    "c": "automation",
+    "d": "-",
+    "i": "-",
+    "o": "-"
+  },
+  "collar": {
+    "n": "Tie Mediaweave",
+    "c": "automation",
+    "d": "Ties the mediaweave I am currently wearing. Costs a shard if it succeeds, or nothing if it didn't (I am either not wearing a mediaweave, or it is already tied).",
+    "i": "-",
+    "o": "-"
+  },
+  "conceptavailable": {
+    "n": "Debit Purification",
+    "c": "automation",
+    "d": "-",
+    "i": "-",
+    "o": "-"
+  },
+  "conceptremaining": {
+    "n": "Credit Purification",
+    "c": "automation",
+    "d": "-",
+    "i": "-",
+    "o": "-"
+  },
+  "connect": {
+    "n": "Moses's Gambit",
+    "c": "automation",
+    "d": "Casts the supplied Hex between each pair of elements in the given list, and splits the list at locations that return False.",
+    "i": "[a], (a, a → bool)",
+    "o": "[[a]]"
+  },
+  "decollar": {
+    "n": "Untie Mediaweave",
+    "c": "automation",
+    "d": "Unties the mediaweave I am currently wearing. Costs a shard if it succeeds, or nothing if it didn't (I am either not wearing a mediaweave, or it is not tied).",
+    "i": "-",
+    "o": "-"
+  },
+  "dye_offpaw": {
+    "n": "Apply Pigment",
+    "c": "automation",
+    "d": "Imbues the item held in my offhand (e.g. a casting item) with the given pigment.",
+    "i": "pigment",
+    "o": "-"
+  },
+  "engine/pos": {
+    "n": "Gearbox Reflection",
+    "c": "automation",
+    "d": "Returns the position of the engine casting the current Hex. If any of these patterns are used outside a casting engine, mishaps rather spectacularly.",
+    "i": "-",
+    "o": "vector"
+  },
+  "engine/sleep": {
+    "n": "Engineer's Distraction",
+    "c": "automation",
+    "d": "Sleeps for at least the given number of seconds. Nature seems to round this to the next twentieth of a second.",
+    "i": "number",
+    "o": "-"
+  },
+  "engine/suspend": {
+    "n": "Engineer's Departure",
+    "c": "automation",
+    "d": "Suspends the current cast, as if I walked away from the engine (or stopped the rotor).",
+    "i": "-",
+    "o": "-"
+  },
+  "engine/terminate": {
+    "n": "Engineer's Resignation",
+    "c": "automation",
+    "d": "Destroys the current cast, as if I stopped the rotor while sneaking. Any following patterns will never be cast.",
+    "i": "-",
+    "o": "..."
+  },
+  "hexic:erase": {
+    "n": "Erase Block",
+    "c": "automation",
+    "d": "Erases the Hex or iota contained within a dropped item or block. Costs one dust per item.",
+    "i": "vec | entity",
+    "o": "-"
+  },
+  "extract": {
+    "n": "Excisor's Gambit",
+    "c": "automation",
+    "d": "Extracts an iota from the given list, and breaks the list apart around it. Returns all items before the iota, all items after the iota, and finally the iota itself.",
+    "i": "[a], int",
+    "o": "[a], [a], a"
+  },
+  "fox": {
+    "n": "Vulpine Gambit",
+    "c": "automation",
+    "d": "-",
+    "i": "-",
+    "o": "-"
+  },
+  "get_other_caster": {
+    "n": "Dual's Reflection",
+    "c": "automation",
+    "d": "Adds the closest sentient being, excluding me, to the stack.",
+    "i": "-",
+    "o": "entity | null"
+  },
+  "grep": {
+    "n": "Refinement Distillation",
+    "c": "automation",
+    "d": "Discards iotas from the given list unless they satisfy the given predicate. Using Charon's Gambit discards the current and all remaining iotas.",
+    "i": "[a], [a → bool]",
+    "o": "[a]"
+  },
+  "make_cme": {
+    "n": "Thoth's Pseudogambit",
+    "c": "automation",
+    "d": "-",
+    "i": "-",
+    "o": "-"
+  },
+  "mkmacro": {
+    "n": "Etch Pattern",
+    "c": "automation",
+    "d": "Etches a macro into the given item entity with the given name (optional); removes a macro if the hex (topmost argument) is null. New macros cost 5 dust; replacing/removing macros is free.",
+    "i": "pattern, str?, entity, iota",
+    "o": "-"
+  },
+  "mktunnel": {
+    "n": "Weave Tunnel",
+    "c": "automation",
+    "d": "-",
+    "i": "-",
+    "o": "-"
+  },
+  "hexic:modulo": {
+    "n": "Modulus Distillation II",
+    "c": "automation",
+    "d": "Similar to Modulus, but differs for negative numbers: -8 %₁ 3 = -2, but -8 %₂ 3 = 1.",
+    "i": "num, num",
+    "o": "num"
+  },
+  "moveconcept": {
+    "n": "Transfer Substance",
+    "c": "automation",
+    "d": "-",
+    "i": "-",
+    "o": "-"
+  },
+  "murmur": {
+    "n": "Murmur Reflection",
+    "c": "automation",
+    "d": "Adds the phrase on the *tip of my tongue* to the stack, regardless of whether I intend to say it.",
+    "i": "-",
+    "o": "str"
+  },
+  "prop_fi": {
+    "n": "hexcasting.action.hexic:prop_fi",
+    "c": "automation",
+    "d": "-",
+    "i": "-",
+    "o": "-"
+  },
+  "prop_fo": {
+    "n": "hexcasting.action.hexic:prop_fo",
+    "c": "automation",
+    "d": "-",
+    "i": "-",
+    "o": "-"
+  },
+  "prop_li": {
+    "n": "hexcasting.action.hexic:prop_li",
+    "c": "automation",
+    "d": "-",
+    "i": "-",
+    "o": "-"
+  },
+  "prop_lo": {
+    "n": "hexcasting.action.hexic:prop_lo",
+    "c": "automation",
+    "d": "-",
+    "i": "-",
+    "o": "-"
+  },
+  "reveal": {
+    "n": "Greater Reveal",
+    "c": "automation",
+    "d": "Takes a list of iotas (or a single non-iota, which is treated as a list with one element) and embeds them in my mind persistently. Displayed iotas survive all methods that would clear a normal Reveal, and can only be cleared by another casting of Greater Reveal or my untimely demise.",
+    "i": "[iota] | iota",
+    "o": "-"
+  },
+  "scrytunnel": {
+    "n": "Scrying Purification",
+    "c": "automation",
+    "d": "-",
+    "i": "-",
+    "o": "-"
+  },
+  "staffcast_factory": {
+    "n": "Lani's Gambit",
+    "c": "automation",
+    "d": "Casts the given Hex as if from my staff, using its stack, etc. The Ravenmind (and perhaps other information) is carried across the boundary.",
+    "i": "[… → …]",
+    "o": "-"
+  },
+  "thinkaboutit": {
+    "n": "Inquiry Purification",
+    "c": "automation",
+    "d": "-",
+    "i": "-",
+    "o": "-"
+  },
+  "unfox": {
+    "n": "Vulpine Expulsion",
+    "c": "automation",
+    "d": "-",
+    "i": "-",
+    "o": "-"
+  },
+  "getdim1": {
+    "n": "Spatial Reflection",
+    "c": "automation",
+    "d": "Returns a Spatial Imprint representing the dimension I am currently in. Costs a negligible amount of media.",
+    "i": "-",
+    "o": "Imprint"
+  },
+  "getdim2": {
+    "n": "Spatial Reflection II",
+    "c": "automation",
+    "d": "Returns a Spatial Imprint representing the dimension my sentinel is currently in. Costs one-tenth of an amethyst dust.",
+    "i": "-",
+    "o": "Imprint | NULL"
+  },
+  "getdim/overworld": {
+    "n": "Homeland Reflection",
+    "c": "automation",
+    "d": "Returns a Spatial Imprint representing the overworld. Costs one-tenth of an amethyst dust.",
+    "i": "-",
+    "o": "Imprint"
+  },
+  "getdim/nether": {
+    "n": "Inferno Reflection",
+    "c": "automation",
+    "d": "Returns a Spatial Imprint representing the nether. Costs one-tenth of an amethyst dust.\nThere seems to be some resistance when I cast this. Perhaps I'll be able to overcome it with greater skill...",
+    "i": "-",
+    "o": "Imprint"
+  },
+  "getdimheight": {
+    "n": "Atlas' Decomposition",
+    "c": "automation",
+    "d": "Accepts a Spatial Imprint, and returns the lowest and highest altitudes at which blocks can exist in the corresponding dimension.",
+    "i": "Imprint",
+    "o": "num, num"
+  },
+  "getdimscale": {
+    "n": "Ratio Purification",
+    "c": "automation",
+    "d": "Accepts a Spatial Imprint, and returns how many blocks you'd have to travel in the overworld to travel the equivalent of one block in the input dimension.",
+    "i": "Imprint",
+    "o": "num"
+  },
+  "getrodlook": {
+    "n": "Baton Reflection",
+    "c": "automation",
+    "d": "When cast with a Reverberation Rod, returns my look vector from when I started the current cast loop.",
+    "i": "-",
+    "o": "vector"
+  },
+  "getrodpos": {
+    "n": "Baton Reflection II",
+    "c": "automation",
+    "d": "When cast with a Reverberation Rod, returns my eye position from when I started the current cast loop.",
+    "i": "-",
+    "o": "vector"
+  },
+  "getrodstamp": {
+    "n": "Metronome Reflection",
+    "c": "automation",
+    "d": "When cast with a Reverberation Rod, returns the timestamp from when I started the current cast loop.",
+    "i": "-",
+    "o": "number"
+  },
+  "readrodram": {
+    "n": "Williams' Reflection",
+    "c": "automation",
+    "d": "Returns the iota stored in the current cast loop. Defaults to NULL.",
+    "i": "-",
+    "o": "non-list"
+  },
+  "writerodram": {
+    "n": "Williams' Gambit",
+    "c": "automation",
+    "d": "Accepts a non-list iota, and stores it inside the current cast loop. It will be lost when the cast loop ends.",
+    "i": "non-list",
+    "o": "-"
+  },
+  "readrodramremote": {
+    "n": "Williams' Reflection II",
+    "c": "automation",
+    "d": "As Williams' Reflection, but can be cast from non-rod sources while a rod is in use.",
+    "i": "-",
+    "o": "non-list"
+  },
+  "writerodramremote": {
+    "n": "Williams' Gambit II",
+    "c": "automation",
+    "d": "As Williams' Gambit, but can be cast from non-rod sources while a rod is in use.",
+    "i": "non-list",
+    "o": "-"
+  },
+  "readidea": {
+    "n": "Retrieve Idea",
+    "c": "automation",
+    "d": "Accepts a valid key, and returns the corresponding iota. Costs one-eigth of an amethyst dust.",
+    "i": "key",
+    "o": "any"
+  },
+  "readideatime": {
+    "n": "Metadata Purification",
+    "c": "automation",
+    "d": "Accepts a valid key, and returns when the corresponding iota was inscribed, or -1. Costs no media.",
+    "i": "key",
+    "o": "number"
+  },
+  "readideawriter": {
+    "n": "Metadata Distillation",
+    "c": "automation",
+    "d": "Accepts a valid key and a player, and returns whether the corresponding iota was inscribed by that player. Costs no media.",
+    "i": "key, player",
+    "o": "bool"
+  },
+  "readsentinel": {
+    "n": "Scrutinize Sentinel",
+    "c": "automation",
+    "d": "Accepts a vector and a player, and returns either the distance from the vector to the target player's sentinel or NULL. Costs a negligible amount of media.",
+    "i": "vec, player",
+    "o": "num | NULL"
+  },
+  "detectshroud": {
+    "n": "Discern Shroud",
+    "c": "automation",
+    "d": "Accepts a vector and a number, and returns a list of unit vectors pointing from the initial vector to shrouded entities within a radius defined by the number.",
+    "i": "vector, number",
+    "o": "[vector]"
+  },
+  "delayrod": {
+    "n": "Metronome Gambit",
+    "c": "automation",
+    "d": "Accepts a positive integer. When cast with a Reverberation Rod, delays the current cast loop's next cast until that many twentieths of a second have passed.",
+    "i": "number",
+    "o": "-"
+  },
+  "haltrod": {
+    "n": "Finale",
+    "c": "automation",
+    "d": "When cast with a Reverberation Rod, forcibly halts the current cast loop.",
+    "i": "-",
+    "o": "-"
+  },
+  "resetrod": {
+    "n": "Encore",
+    "c": "automation",
+    "d": "Accepts a positive integer. Halts the current cast loop but also reduces the cooldown period from 1 second to ((1/20) \\* number) seconds. Cooldown due to mishap is unaffected.",
+    "i": "number",
+    "o": "-"
+  },
+  "queryrod": {
+    "n": "Conductor's Reflection",
+    "c": "automation",
+    "d": "Returns a boolean corresponding to whether the current cast is making use of a rod.",
+    "i": "-",
+    "o": "bool"
+  },
+  "rodloopactive": {
+    "n": "Conductor's Reflection II",
+    "c": "automation",
+    "d": "Returns whether the caster is currently using a rod, regardless of the current cast is from that rod.",
+    "i": "-",
+    "o": "bool"
+  },
+  "writeidea": {
+    "n": "Inscribe Idea",
+    "c": "automation",
+    "d": "Accepts a valid key and any iota, and stores it in the corresponding location. Costs a quarter of an amethyst dust.",
+    "i": "key, any",
+    "o": "-"
+  },
+  "getsoulprint": {
+    "n": "Soulprint Reflection",
+    "c": "automation",
+    "d": "-",
+    "i": "-",
+    "o": "-"
+  },
+  "signitem": {
+    "n": "Sign Item",
+    "c": "automation",
+    "d": "-",
+    "i": "-",
+    "o": "-"
+  },
+  "checksignature": {
+    "n": "Signature Purification",
+    "c": "automation",
+    "d": "-",
+    "i": "-",
+    "o": "-"
+  },
+  "circle": {
+    "n": "Circle",
+    "c": "automation",
+    "d": "-",
+    "i": "-",
+    "o": "-"
+  },
+  "advanceautomaton": {
+    "n": "Cellular Generation",
+    "c": "automation",
+    "d": "-",
+    "i": "-",
+    "o": "-"
+  },
+  "craftrod": {
+    "n": "Conduct Rod",
+    "c": "automation",
+    "d": "Acts just like the spells used to program conventional casting items. Costs 10 Charged Amethyst.",
+    "i": "entity, list of patterns",
+    "o": "-"
+  },
+  "craftbottomlesstrinket": {
+    "n": "Craft Bottomless Trinket",
+    "c": "automation",
+    "d": "Writes a hex to the bottomless trinket in my other hand. Costs ten charged amethyst.",
+    "i": "list of patterns",
+    "o": "-"
+  },
+  "shiftsentinel": {
+    "n": "Shift Sentinel",
+    "c": "automation",
+    "d": "Accepts a spatial imprint, and moves my sentinel to its scaled coordinates in the corresponding dimension. Costs one amethyst shard. Mishaps if I do not currently have a sentinel.",
+    "i": "Imprint",
+    "o": "-"
+  }
+}

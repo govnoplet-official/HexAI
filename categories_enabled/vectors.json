@@ -1,0 +1,844 @@
+{
+  "_description": {
+    "summary": "Vectors and geometry: construct and deconstruct vectors, get and set coordinates, normalize, distance, rotations and polar angles, range and approach, entity eye, foot, look and velocity, circle and sentinel positions, bounds, ship positions, quaternion and axis-angle conversions, length comparisons, block comparisons.",
+    "use_cases": [
+      "Working with positions, directions and distances",
+      "Rotating vectors or converting angles",
+      "Getting entity eye, foot or look positions",
+      "Comparing block states at positions"
+    ]
+  },
+  "entity_pos/eye": {
+    "n": "Compass' Purification",
+    "c": "vectors",
+    "d": "Transforms an entity on the stack into the position of its eyes. I should probably use this on myself.",
+    "i": "entity",
+    "o": "vector"
+  },
+  "entity_pos/foot": {
+    "n": "Compass' Purification II",
+    "c": "vectors",
+    "d": "Transforms an entity on the stack into the position it is standing. I should probably use this on other entities.",
+    "i": "entity",
+    "o": "vector"
+  },
+  "get_entity_look": {
+    "n": "Alidade's Purification",
+    "c": "vectors",
+    "d": "Transforms an entity on the stack into the direction it's looking in, as a unit vector.",
+    "i": "entity",
+    "o": "vector"
+  },
+  "get_entity_velocity": {
+    "n": "Pace Purification",
+    "c": "vectors",
+    "d": "Transforms an entity on the stack into the direction in which it's moving, with the speed of that movement as that direction's magnitude.",
+    "i": "entity",
+    "o": "vector"
+  },
+  "circle/impetus_pos": {
+    "n": "Waystone Reflection",
+    "c": "vectors",
+    "d": "Returns the position of the Impetus of this spell circle.",
+    "i": "-",
+    "o": "vector"
+  },
+  "circle/impetus_dir": {
+    "n": "Lodestone Reflection",
+    "c": "vectors",
+    "d": "Returns the direction the Impetus of this spell circle is facing as a unit vector.",
+    "i": "-",
+    "o": "vector"
+  },
+  "circle/bounds/min": {
+    "n": "Lesser Fold Reflection",
+    "c": "vectors",
+    "d": "Returns the position of the lower-north-west corner of the bounds of this spell circle.",
+    "i": "-",
+    "o": "vector"
+  },
+  "circle/bounds/max": {
+    "n": "Greater Fold Reflection",
+    "c": "vectors",
+    "d": "Returns the position of the upper-south-east corner of the bounds of this spell circle.",
+    "i": "-",
+    "o": "vector"
+  },
+  "construct_vec": {
+    "n": "Vector Exaltation",
+    "c": "vectors",
+    "d": "Combine three numbers at the top of the stack into a vector's X, Y, and Z components (bottom to top).",
+    "i": "num, num, num",
+    "o": "vector"
+  },
+  "deconstruct_vec": {
+    "n": "Vector Disintegration",
+    "c": "vectors",
+    "d": "Split a vector into its X, Y, and Z components (bottom to top).",
+    "i": "vector",
+    "o": "num, num, num"
+  },
+  "coerce_axial": {
+    "n": "Axial Purification",
+    "c": "vectors",
+    "d": "For a vector, coerce it to its nearest axial direction, a unit vector. For a number, return the sign of the number; 1 if positive, -1 if negative. In both cases, zero is unaffected.",
+    "i": "vec|num",
+    "o": "vec|num"
+  },
+  "greater_eq": {
+    "n": "Maximus Distillation II",
+    "c": "vectors",
+    "d": "If the first argument is greater than or equal to the second, return True. Otherwise, return False. | If the first vector is longer or the same length as the second, return True. Otherwise, return False.",
+    "i": "number, number | vec, vec",
+    "o": "bool | bool"
+  },
+  "less_eq": {
+    "n": "Minimus Distillation II",
+    "c": "vectors",
+    "d": "If the first argument is less than or equal to the second, return True. Otherwise, return False. | If the first vector is shorter or the same length as the second, return True. Otherwise, return False.",
+    "i": "number, number | vec, vec",
+    "o": "bool | bool"
+  },
+  "blink": {
+    "n": "Blink",
+    "c": "vectors",
+    "d": "Remove an entity and length from the stack, then teleport the given entity along its look vector by the given length.\nCosts about one Amethyst Shard per two blocks travelled.",
+    "i": "entity, number",
+    "o": "-"
+  },
+  "place_block": {
+    "n": "Place Block",
+    "c": "vectors",
+    "d": "Remove a location from the stack, then pick a block item and place it at the given location.\nCosts about an eighth of one Amethyst Dust.",
+    "i": "vector",
+    "o": "-"
+  },
+  "create_water": {
+    "n": "Create Water",
+    "c": "vectors",
+    "d": "Summon a block of water (or insert up to a bucket's worth) into a block at the given position. Costs about one Amethyst Dust.",
+    "i": "vector",
+    "o": "-"
+  },
+  "destroy_water": {
+    "n": "Destroy Liquid",
+    "c": "vectors",
+    "d": "Drains either a liquid container at, or a body of liquid around, the given position. Costs about two Charged Amethyst.",
+    "i": "vector",
+    "o": "-"
+  },
+  "ignite": {
+    "n": "Ignite",
+    "c": "vectors",
+    "d": "Start a fire on top of the given location, as if a Fire Charge was applied, or set fire to an entity. Costs about one Amethyst Dust.",
+    "i": "entity | vector",
+    "o": "-"
+  },
+  "extinguish": {
+    "n": "Extinguish Area",
+    "c": "vectors",
+    "d": "Extinguish blocks in a large area. Costs about six Amethyst Dust.",
+    "i": "vector",
+    "o": "-"
+  },
+  "conjure_block": {
+    "n": "Conjure Block",
+    "c": "vectors",
+    "d": "Conjure an ethereal, but solid, block that sparkles with my pigment at the given position. Costs about one Amethyst Dust.",
+    "i": "vector",
+    "o": "-"
+  },
+  "conjure_light": {
+    "n": "Conjure Light",
+    "c": "vectors",
+    "d": "Conjure a magical light that softly glows with my pigment at the given position. Costs about one Amethyst Dust.",
+    "i": "vector",
+    "o": "-"
+  },
+  "bonemeal": {
+    "n": "Overgrow",
+    "c": "vectors",
+    "d": "Encourage a plant or sapling at the target position to grow, as if Bonemeal was applied. Costs a bit more than one Amethyst Dust.",
+    "i": "vector",
+    "o": "-"
+  },
+  "edify": {
+    "n": "Edify Sapling",
+    "c": "vectors",
+    "d": "Forcibly infuse media into the sapling at the target position, causing it to grow into an Edified Tree. Costs about one Charged Amethyst.",
+    "i": "vector",
+    "o": "-"
+  },
+  "beep": {
+    "n": "Make Note",
+    "c": "vectors",
+    "d": "Remove a vector and two numbers from the stack. Plays an instrument defined by the first number at the given location, with a note defined by the second number. Costs a negligible amount of media.",
+    "i": "vector, number, number",
+    "o": "-"
+  },
+  "sentinel/create": {
+    "n": "Summon Sentinel",
+    "c": "vectors",
+    "d": "Summons my sentinel at the given position. Costs about one Amethyst Dust.",
+    "i": "vector",
+    "o": "-"
+  },
+  "sentinel/get_pos": {
+    "n": "Locate Sentinel",
+    "c": "vectors",
+    "d": "Add the position of my sentinel to the stack, or Null if it isn't summoned. Costs a negligible amount of media.",
+    "i": "-",
+    "o": "vector"
+  },
+  "sentinel/wayfind": {
+    "n": "Wayfind Sentinel",
+    "c": "vectors",
+    "d": "Transform the position vector on the top of the stack into a unit vector pointing from that position to my sentinel, or Null if it isn't summoned. Costs a negligible amount of media.",
+    "i": "vector",
+    "o": "vector"
+  },
+  "akashic/read": {
+    "n": "Akasha's Distillation",
+    "c": "vectors",
+    "d": "Read the iota associated with the given pattern out of the Akashic Library with its Record at the given position. This has no range limit. Costs about one Amethyst Dust.",
+    "i": "vector, pattern",
+    "o": "any"
+  },
+  "akashic/write": {
+    "n": "Akasha's Gambit",
+    "c": "vectors",
+    "d": "Associate the iota with the given pattern in the Akashic Library with its Record at the given position. This *does* have a range limit. Costs about one Amethyst Dust.",
+    "i": "vector, pattern, any",
+    "o": "-"
+  },
+  "const/vec/px": {
+    "n": "Vector Reflection +X",
+    "c": "vectors",
+    "d": "The left-hand counter-clockwise pattern adds (1, 0, 0) to the stack; the right-hand clockwise pattern adds (-1, 0, 0).",
+    "i": "-",
+    "o": "vector"
+  },
+  "const/vec/py": {
+    "n": "Vector Reflection +Y",
+    "c": "vectors",
+    "d": "The left-hand counter-clockwise pattern adds (0, 1, 0) to the stack; the right-hand clockwise pattern adds (0, -1, 0).",
+    "i": "-",
+    "o": "vector"
+  },
+  "const/vec/pz": {
+    "n": "Vector Reflection +Z",
+    "c": "vectors",
+    "d": "The left-hand counter-clockwise pattern adds (0, 0, 1); the right-hand clockwise pattern adds (0, 0, -1).",
+    "i": "-",
+    "o": "vector"
+  },
+  "const/vec/nx": {
+    "n": "Vector Reflection -X",
+    "c": "vectors",
+    "d": "The left-hand counter-clockwise pattern adds (1, 0, 0) to the stack; the right-hand clockwise pattern adds (-1, 0, 0).",
+    "i": "-",
+    "o": "vector"
+  },
+  "const/vec/ny": {
+    "n": "Vector Reflection -Y",
+    "c": "vectors",
+    "d": "The left-hand counter-clockwise pattern adds (0, 1, 0) to the stack; the right-hand clockwise pattern adds (0, -1, 0).",
+    "i": "-",
+    "o": "vector"
+  },
+  "const/vec/nz": {
+    "n": "Vector Reflection -Z",
+    "c": "vectors",
+    "d": "The left-hand counter-clockwise pattern adds (0, 0, 1); the right-hand clockwise pattern adds (0, 0, -1).",
+    "i": "-",
+    "o": "vector"
+  },
+  "const/vec/0": {
+    "n": "Vector Reflection Zero",
+    "c": "vectors",
+    "d": "Adds (0, 0, 0) to the stack.",
+    "i": "-",
+    "o": "vector"
+  },
+  "compare_block/lenient": {
+    "n": "Surveyor's Distillation",
+    "c": "vectors",
+    "d": "Compare the blocks specified by the given vectors and push whether they are of the same type. Two Edified Stairs will always compare as equal regardless of their shape or if they are waterlogged.",
+    "i": "vec, vec",
+    "o": "bool"
+  },
+  "compare_block/strict": {
+    "n": "Inspector's Distillation",
+    "c": "vectors",
+    "d": "Compare the blocks specified by the given vectors and push whether they appear to be identical. Two placed Edified Stairs will only compare as equal if they appear exactly the same.",
+    "i": "vec, vec",
+    "o": "bool"
+  },
+  "qmake": {
+    "n": "Quaternionic Exal.",
+    "c": "vectors",
+    "d": "Pushes a Quaternion with num as the real coefficient and the vector's x, y, & z as the coefficients of i, j & k respectively.",
+    "i": "num, vec",
+    "o": "quaternion"
+  },
+  "qunmake": {
+    "n": "Quaternionic Dntg.",
+    "c": "vectors",
+    "d": "Pushes the real coefficient and a vector where the x, y, & z components are the coefficients of i, j, & k respectively.",
+    "i": "quaternion",
+    "o": "num, vec"
+  },
+  "axisangle": {
+    "n": "Axis Angle Distillation",
+    "c": "vectors",
+    "d": "Pushes a quaternion that reperesents a rotation by the given angle num radias around the given vector.",
+    "i": "vec, num",
+    "o": "quaternion"
+  },
+  "translatebit": {
+    "n": "Translate BIT",
+    "c": "vectors",
+    "d": "Translates the BIT to the given offset.",
+    "i": "BIT, vec",
+    "o": "-"
+  },
+  "scalebit": {
+    "n": "Scale BIT",
+    "c": "vectors",
+    "d": "Scales the BIT to the given vector.",
+    "i": "BIT, vec",
+    "o": "-"
+  },
+  "summon/line": {
+    "n": "Parametric Line",
+    "c": "vectors",
+    "d": "Summons a parametric line at the given position. The expression given will have a t-value (0-1), x/y/z position, and time (w) substituted in and must resolve to a vector on the line.",
+    "i": "vec, expr",
+    "o": "entity"
+  },
+  "summon/surface": {
+    "n": "Parametric Surface",
+    "c": "vectors",
+    "d": "Summons a parametric surface at the given position. The expression given will have a u&v-value (0-1), x/y/z position, and time (w) substituted in and must resolve to a vector on the surface",
+    "i": "vec, expr",
+    "o": "entity"
+  },
+  "save_structure": {
+    "n": "Devour Structure",
+    "c": "vectors",
+    "d": "Removes the locations of two corners from the stack, then consumes a region of space defined by those two corners, storing the result in a Structure iota.\nCosts about an eighth of one Amethyst Dust for every block consumed.",
+    "i": "vec, vec",
+    "o": "structure"
+  },
+  "load_structure": {
+    "n": "Actualize Structure",
+    "c": "vectors",
+    "d": "Removes the location of the structure's origin and a structure from the stack, then attempts to place the structure at the origin, erasing the structure from all memory. Mishaps if any part of the structure overlaps with another block.\nCosts about an eighth of one Amethyst Dust for every block placed.",
+    "i": "vec, structure",
+    "o": "-"
+  },
+  "display_structure": {
+    "n": "Visualize Structure",
+    "c": "vectors",
+    "d": "Removes the location of the structure's origin and a structure from the stack, followed by a duration between 0 and 72000.",
+    "i": "vec, structure, num",
+    "o": "-"
+  },
+  "everbook/read": {
+    "n": "Mnemosyne's Gambit",
+    "c": "vectors",
+    "d": "Takes the position of an Akashic Record, as well as a Pattern as a key, and retrieves the iota at that key from your Everbook, storing it in the given Akashic Record if able.",
+    "i": "vector, pattern",
+    "o": "-"
+  },
+  "everbook/write": {
+    "n": "Elysium's Gambit",
+    "c": "vectors",
+    "d": "Takes the position of an Akashic Record, as well as a Pattern as a key, and stores the iota in that record at that key to your Everbook at the same key.",
+    "i": "vector, pattern",
+    "o": "-"
+  },
+  "freeze": {
+    "n": "Freeze",
+    "c": "vectors",
+    "d": "Freezes the block at a block location. For example, turns water into ice, and ice into packed ice. Costs one Amethyst Dust.",
+    "i": "vec",
+    "o": "-"
+  },
+  "falling_block": {
+    "n": "Falling Block",
+    "c": "vectors",
+    "d": "Remove a location from the stack, and force the block there to fall as if it were sand or gravel. Costs one and a half Amethyst Dust.",
+    "i": "vec",
+    "o": "-"
+  },
+  "place_type": {
+    "n": "Place Block II",
+    "c": "vectors",
+    "d": "Accepts an item type or mote and a location, and attempts to place a block of that item type at that location. If a mote was passed it will instead place from the record referenced by that mote. Costs an eighth of an Amethyst Dust.",
+    "i": "(itemtype | mote), vec",
+    "o": "-"
+  },
+  "particles": {
+    "n": "Particles",
+    "c": "vectors",
+    "d": "Accepts a location or a list of locations, and either creates a particle at the location, or creates lines of particles between the locations in the list. Costs two thousandths of an Amethyst Dust per location.",
+    "i": "vec | [vec]",
+    "o": "-"
+  },
+  "gate/close": {
+    "n": "Gate's Closing",
+    "c": "vectors",
+    "d": "Consumes a non-drifing gate iota, or a drifting gate iota and a position. Transports all the entities marked with the passed gate to the stored or given position, as relevant. Costs half an Amethyst Shard, plus an Amethyst Dust per metre transported per entity, if the gate was drifting.",
+    "i": "gate | gate, vec",
+    "o": "-"
+  },
+  "mote/storage/bind": {
+    "n": "Bind Storage",
+    "c": "vectors",
+    "d": "Target a Mote Nexus block in the world and bind yourself to it, meaning all items you mediafy will be added to that nexus' capacity. Targeting any other block will unbind you from your currently bound nexus. Costs 32 Amethyst Dust.",
+    "i": "vec",
+    "o": "-"
+  },
+  "mote/storage/bind/temp": {
+    "n": "Bind Storage - Temporary",
+    "c": "vectors",
+    "d": "Target a Mote Nexus block in the world and bind to it for the remainder of this cast, temporarily overriding your primary binding. Costs one thousandth of an Amethyst Dust.",
+    "i": "vec",
+    "o": "-"
+  },
+  "mote/storage/contains": {
+    "n": "Containment Distillation",
+    "c": "vectors",
+    "d": "Returns true if the Mote Nexus at the given position contains a mote of the given type, or that would stack with the given mote, and false otherwise.",
+    "i": "vec, (itemtype | mote)",
+    "o": "bool"
+  },
+  "mote/storage/get": {
+    "n": "Depot Purification",
+    "c": "vectors",
+    "d": "Get the position of the Mote Nexus that contains the passed mote.",
+    "i": "mote",
+    "o": "vec"
+  },
+  "mote/storage/set": {
+    "n": "Depot Gambit",
+    "c": "vectors",
+    "d": "Move the record referenced by the passed mote to the Mote Nexus at the passed position. This returns a new mote pointing to that record, and invalidates all previous motes pointing to that record.",
+    "i": "mote, vec",
+    "o": "mote"
+  },
+  "mote/use_on": {
+    "n": "Use Item On",
+    "c": "vectors",
+    "d": "Accepts a mote, and either an entity, or a target block and a normal vector. Uses the item on the entity/block. The mote must either only have one item in it, or the items contained must be extremely simple (no NBT data).",
+    "i": "mote, (entity | vec, vec)",
+    "o": "-"
+  },
+  "interop/fabric_only/phase_block": {
+    "n": "Phase Block",
+    "c": "vectors",
+    "d": "Takes a position and a number, and phases the block at that position out for that many seconds. Costs one ten-thousandth of an Amethyst Dust times the square of the time to phase out for.",
+    "i": "vec, num",
+    "o": "-"
+  },
+  "alter_ballast": {
+    "n": "Alter Ballast",
+    "c": "vectors",
+    "d": "Commands a Ballast on my person to fall in a given direction with a given strength strength. Free.",
+    "i": "vector, number",
+    "o": "-"
+  },
+  "get_direction": {
+    "n": "Falling Purification",
+    "c": "vectors",
+    "d": "Pushes the direction that Gravitate is attempting to drag an entity, or Null if the entity is not under the effects of Gravitate. | Pushes the direction that Gravitate is attempting to drag a Ship, or Null if the Ship is not under the effects of Gravitate.",
+    "i": "entity | ship",
+    "o": "vector | vec"
+  },
+  "get_true_direction": {
+    "n": "Falling Purification II",
+    "c": "vectors",
+    "d": "Pushes the direction of Gravity acting on an entity. | Pushes the direction of Gravity acting on a Ship.",
+    "i": "entity | ship",
+    "o": "vector | vec"
+  },
+  "text_color": {
+    "n": "Lumière Gambit",
+    "c": "vectors",
+    "d": "Takes a text iota and a color encoded as a vector whose components range from 0 to 1, and produces a text iota of that color.",
+    "i": "text, vector",
+    "o": "text"
+  },
+  "fluid_raycast": {
+    "n": "Dousing Distillation",
+    "c": "vectors",
+    "d": "Works similar to Archer's Distillation but targets only liquids, piercing through all other blocks.",
+    "i": "vector, vector",
+    "o": "vector/null"
+  },
+  "fluid_surface_raycast": {
+    "n": "Lilypad Distillation",
+    "c": "vectors",
+    "d": "Works similar to Architect's Distillation but targets only liquids, piercing through all other blocks.",
+    "i": "vector, vector",
+    "o": "vector/null"
+  },
+  "theodolite": {
+    "n": "Theodolite's Purification",
+    "c": "vectors",
+    "d": "Similar to Alidade's Purification but pushes the vector that points upwards from their head rather than the entity's facing vector.",
+    "i": "entity",
+    "o": "vector"
+  },
+  "get_light": {
+    "n": "Luminance Purification",
+    "c": "vectors",
+    "d": "Pushes the light level at the position as a number 0 to 15. If inside a nontransparent block, it returns zero.",
+    "i": "vector",
+    "o": "number"
+  },
+  "get_power": {
+    "n": "Battery Purification",
+    "c": "vectors",
+    "d": "Pushes the Redstone power that a position receives.",
+    "i": "vector",
+    "o": "number"
+  },
+  "get_comparator": {
+    "n": "Peripheral Purification",
+    "c": "vectors",
+    "d": "Pushes the power level a Comparator would output if pressed against a position.",
+    "i": "vector",
+    "o": "number/null"
+  },
+  "get_biome": {
+    "n": "Geographical Purification",
+    "c": "vectors",
+    "d": "Pushes the identifier of the type of biome the vector is within.",
+    "i": "-",
+    "o": "identifier"
+  },
+  "rot_about/x": {
+    "n": "Pitch Distillation",
+    "c": "vectors",
+    "d": "Rotates the vector by the given angle in radians around the X axis.",
+    "i": "vec, num",
+    "o": "vec"
+  },
+  "rot_about/y": {
+    "n": "Yaw Distillation",
+    "c": "vectors",
+    "d": "Rotates the vector by the given angle in radians around the Y axis.",
+    "i": "vec, num",
+    "o": "vec"
+  },
+  "rot_about/z": {
+    "n": "Roll Distillation",
+    "c": "vectors",
+    "d": "Rotates the vector by the given angle in radians around the Z axis.",
+    "i": "vec, num",
+    "o": "vec"
+  },
+  "cons_about/x": {
+    "n": "Pitch Purification",
+    "c": "vectors",
+    "d": "Converts an angle in radians to a unit vector where X=0. +Z at 0 radians and +Y at pi/4 radians.",
+    "i": "num",
+    "o": "vec"
+  },
+  "cons_about/y": {
+    "n": "Yaw Purification",
+    "c": "vectors",
+    "d": "Converts an angle in radians to a unit vector where Y=0. +Z at 0 radians and -X at pi/4 radians. I've seen some texts related to this pattern mentioning something called F3, but I couldn't figure out what that means.",
+    "i": "num",
+    "o": "vec"
+  },
+  "cons_about/z": {
+    "n": "Roll Purification",
+    "c": "vectors",
+    "d": "Converts an angle in radians to a unit vector where Z=0. -X at 0 radians and +Y at pi/4 radians.",
+    "i": "num",
+    "o": "vec"
+  },
+  "normalize": {
+    "n": "Norm Purification",
+    "c": "vectors",
+    "d": "Sets the length of the vector to one.",
+    "i": "vec",
+    "o": "vec"
+  },
+  "len_eq": {
+    "n": "Length Equality Distillation",
+    "c": "vectors",
+    "d": "If the two vectors are the same length (within small tolerance), return True. Otherwise, return False.",
+    "i": "vec, vec",
+    "o": "bool"
+  },
+  "len_neq": {
+    "n": "Length Inequality Distillation",
+    "c": "vectors",
+    "d": "If the two vectors are not the same length (outside small tolerance), return True. Otherwise, return False.",
+    "i": "vec, vec",
+    "o": "bool"
+  },
+  "in_range": {
+    "n": "Range Exaltation",
+    "c": "vectors",
+    "d": "If the first number is between the second and third, return True. Otherwise, return False. If the first value is a vector, compare its length instead.",
+    "i": "num/vec, num, num, num",
+    "o": "bool"
+  },
+  "out_range": {
+    "n": "Range Exaltation II",
+    "c": "vectors",
+    "d": "If the first number is not between the second and third, return True. Otherwise, return False. If the first value is a vector, compare its length instead.",
+    "i": "num/vec, num, num, num",
+    "o": "bool"
+  },
+  "invert": {
+    "n": "Reflection Purification",
+    "c": "vectors",
+    "d": "Multiplies the number/vector by -1.",
+    "i": "num/vec",
+    "o": "num/vec"
+  },
+  "increment": {
+    "n": "Incrementation Purification",
+    "c": "vectors",
+    "d": "Adds 1. | Increases length by 1. Does nothing if the vector is (0, 0, 0).",
+    "i": "num | vec",
+    "o": "num | vec"
+  },
+  "decrement": {
+    "n": "Decrementation Purification",
+    "c": "vectors",
+    "d": "Subtracts by 1. | Decreases length by 1. Does nothing if the vector is (0, 0, 0).",
+    "i": "num | vec",
+    "o": "num | vec"
+  },
+  "approach": {
+    "n": "Approach Exaltation",
+    "c": "vectors",
+    "d": "Moves the first value closer to the second by the given amount. Will not overshoot. | Moves the first vector towards the second by a given distance. Will not overshoot.",
+    "i": "num, num, num | vec, vec, num",
+    "o": "num | vec"
+  },
+  "angle_dist": {
+    "n": "Theta Distillation",
+    "c": "vectors",
+    "d": "Returns the shortest angular distance between two angles in radians. | Returns the shortest angular distance on a sphere between two vectors in radians",
+    "i": "num, num | vec, vec",
+    "o": "num | num"
+  },
+  "angle_approach": {
+    "n": "Turning Exaltation",
+    "c": "vectors",
+    "d": "Turns the first angle towards the second by the given number of radians, picking whichever direction is shorter. | Rotates the first vector towards the direction of the second vector by the given number of radians. Mishaps if the two directions are directly opposite to each other.",
+    "i": "num, num, num | vec, vec, num",
+    "o": "num | vec"
+  },
+  "vec/get/x": {
+    "n": "Coordinate Purification: X",
+    "c": "vectors",
+    "d": "Returns the X, Y, or Z component of a vector.",
+    "i": "vec",
+    "o": "num"
+  },
+  "vec/get/y": {
+    "n": "Coordinate Purification: Y",
+    "c": "vectors",
+    "d": "Returns the X, Y, or Z component of a vector.",
+    "i": "vec",
+    "o": "num"
+  },
+  "vec/get/z": {
+    "n": "Coordinate Purification: Z",
+    "c": "vectors",
+    "d": "Returns the X, Y, or Z component of a vector.",
+    "i": "vec",
+    "o": "num"
+  },
+  "vec/set/x": {
+    "n": "Coordinate Distillation: X",
+    "c": "vectors",
+    "d": "Overrides a vector's X, Y, or Z component.",
+    "i": "vec, num",
+    "o": "vec"
+  },
+  "vec/set/y": {
+    "n": "Coordinate Distillation: Y",
+    "c": "vectors",
+    "d": "Overrides a vector's X, Y, or Z component.",
+    "i": "vec, num",
+    "o": "vec"
+  },
+  "vec/set/z": {
+    "n": "Coordinate Distillation: Z",
+    "c": "vectors",
+    "d": "Overrides a vector's X, Y, or Z component.",
+    "i": "vec, num",
+    "o": "vec"
+  },
+  "round/int": {
+    "n": "Rounding Purification",
+    "c": "vectors",
+    "d": "Rounds a number to the nearest integer. If passed a vector, rounds each of its components instead.",
+    "i": "num/vec",
+    "o": "num/vec"
+  },
+  "round/exact": {
+    "n": "Rounding Distillation",
+    "c": "vectors",
+    "d": "Rounds a number to the nearest multiple of the second number. If passed a vector, rounds each of its components instead.",
+    "i": "num/vec, num",
+    "o": "num/vec"
+  },
+  "rand_vec": {
+    "n": "Chaos Reflection",
+    "c": "vectors",
+    "d": "Returns a unit vector facing a random direction.",
+    "i": "-",
+    "o": "vec"
+  },
+  "vec_dist": {
+    "n": "Distance Distillation",
+    "c": "vectors",
+    "d": "Returns the distance between two vectors.",
+    "i": "vec, vec",
+    "o": "num"
+  },
+  "from_polar": {
+    "n": "Polar Distillation",
+    "c": "vectors",
+    "d": "Creates a unit vector from two polar angles, pitch and yaw, in radians. +Y is up. 0 yaw is +Z, pi/2 yaw is -X. Yet again, mentions of F3 turn up.",
+    "i": "num, num",
+    "o": "vec"
+  },
+  "to_polar": {
+    "n": "Polar Decomposition",
+    "c": "vectors",
+    "d": "Converts a vector's direction into two polar angles, pitch and yaw, in radians. +Y is up. 0 yaw is +Z, pi/2 yaw is -X. Yet again, mentions of F3 turn up.",
+    "i": "vec",
+    "o": "num, num"
+  },
+  "swap_vec_list": {
+    "n": "Vector Purification",
+    "c": "vectors",
+    "d": "Converts a list of 3 numbers to a vector, or a vector into a list of 3 numbers.",
+    "i": "[num] | vec",
+    "o": "vec | [num]"
+  },
+  "haha_ha_one": {
+    "n": "Vector Reflection +1",
+    "c": "vectors",
+    "d": "The left-hand counter-clockwise pattern adds (1, 1, 1) to the stack; the right-hand clockwise pattern adds (-1, -1, -1).",
+    "i": "-",
+    "o": "vector"
+  },
+  "eno_ah_ahah": {
+    "n": "Vector Reflection -1",
+    "c": "vectors",
+    "d": "The left-hand counter-clockwise pattern adds (1, 1, 1) to the stack; the right-hand clockwise pattern adds (-1, -1, -1).",
+    "i": "-",
+    "o": "vector"
+  },
+  "empty_set/vec": {
+    "n": "Vacant Reflection: Vector Set",
+    "c": "vectors",
+    "d": "Push an empty set that can hold vectors to the top of the stack.",
+    "i": "-",
+    "o": "vec set"
+  },
+  "plane_pos": {
+    "n": "Planar Purification",
+    "c": "vectors",
+    "d": "Gets the spawn position within this plane as a vector.",
+    "i": "plane",
+    "o": "vector"
+  },
+  "plane_exit": {
+    "n": "Planar Marking",
+    "c": "vectors",
+    "d": "Marks the target location as my exit for the hexplane, or resets it to be my spawn location if passed null, causing me to be sent there upon using Planar Expulsion on myself.",
+    "i": "vector | null",
+    "o": "-"
+  },
+  "exit_deconstruct": {
+    "n": "Marker's Gambit",
+    "c": "vectors",
+    "d": "Puts the dimension and the coordinates of my hexplane exit onto the stack.",
+    "i": "-",
+    "o": "imprint, vec"
+  },
+  "make_velocity_trigger": {
+    "n": "Trigger Purification: Velocity",
+    "c": "vectors",
+    "d": "Creates a trigger that activates when my velocity (measured in blocks per tick) exceeds the specified value.",
+    "i": "num",
+    "o": "trigger"
+  },
+  "invert_trigger": {
+    "n": "Inversion Purification",
+    "c": "vectors",
+    "d": "Inverts the threshold on a numerical trigger. For example, 'When velocity exceeds 5.0' will become 'When velocity drops below 5.0'. Has no effect on other types of triggers.",
+    "i": "trigger",
+    "o": "trigger"
+  },
+  "create": {
+    "n": "Summon Creature",
+    "c": "vectors",
+    "d": "Bids the creature to the given location. Costs a charged amethyst.",
+    "i": "vec",
+    "o": "-"
+  },
+  "move/look": {
+    "n": "Bid: Looking",
+    "c": "vectors",
+    "d": "Instructs the creature to look in a direction. The vector can be of any length. Seems to work on myself in the eyes of Nature, even though I don't feel or see the change.",
+    "i": "player, vec",
+    "o": "-"
+  },
+  "play_sound": {
+    "n": "Play Sound",
+    "c": "vectors",
+    "d": "Plays a sound at a particular location, volume, and pitch. Costs about a sixteenth of an Amethyst Dust.",
+    "i": "id, vec, num, num",
+    "o": "-"
+  },
+  "play_particle": {
+    "n": "Conjure Particle",
+    "c": "vectors",
+    "d": "Conjures a particular particle with a specified position and velocity (blocks per twentieth of a second). Costs about 1/32th of an Amethyst Dust.",
+    "i": "identifier, vector, vector",
+    "o": "-"
+  },
+  "play_dust_particle": {
+    "n": "Conjure Dust",
+    "c": "vectors",
+    "d": "Conjures a small mote of dust of a given color. The number relates vaguely to scale and lifespan.",
+    "i": "..., vector, number",
+    "o": "-"
+  },
+  "play_hex_particle": {
+    "n": "Conjure Media",
+    "c": "vectors",
+    "d": "Conjures a blob of visible media, not unlike the waste product of my Hexes. Takes in a color.",
+    "i": "..., vector",
+    "o": "-"
+  },
+  "play_potion_effect": {
+    "n": "Conjure Fume",
+    "c": "vectors",
+    "d": "Conjures a swirling particle like the ones that emanate from me when I am under the effects of a potion. Takes in a color.",
+    "i": "..., vector",
+    "o": "-"
+  },
+  "play_item_pickup": {
+    "n": "Conjure Supply",
+    "c": "vectors",
+    "d": "Conjures an illusion of the given item iota at the location and makes it fly into the given entity before disappearing, as though the entity had picked it up.",
+    "i": "item, vector, entity",
+    "o": "-"
+  }
+}

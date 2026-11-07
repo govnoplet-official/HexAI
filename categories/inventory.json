@@ -1,0 +1,291 @@
+{
+  "_description": {
+    "summary": "Items, inventories and motes: item properties (stack size, damage, rarity, edibility, hunger, saturation), item naming and lore, crafting cyphers, trinkets and artifacts, mote crafting, merchant trades and villager levels, rigging and reading item hexes, hopper and inventory indexing.",
+    "use_cases": [
+      "Reading or changing item name, lore or durability",
+      "Crafting with motes or charged amethyst items",
+      "Trading with villagers",
+      "Checking whether an item is edible or how it stacks"
+    ]
+  },
+  "hexcasting:craft/cypher": {
+    "n": "Craft Cypher",
+    "c": "inventory",
+    "d": "Costs about one Charged Amethyst.",
+    "i": "entity, list",
+    "o": "-"
+  },
+  "hexcasting:craft/trinket": {
+    "n": "Craft Trinket",
+    "c": "inventory",
+    "d": "Costs about five Charged Amethysts.",
+    "i": "entity, list",
+    "o": "-"
+  },
+  "hexcasting:craft/artifact": {
+    "n": "Craft Artifact",
+    "c": "inventory",
+    "d": "Costs about ten Charged Amethysts.",
+    "i": "entity, list",
+    "o": "-"
+  },
+  "focalworks:rig_read": {
+    "n": "Rig Read",
+    "c": "inventory",
+    "d": "Takes in an item entity and a hex, and rigs the item's read to that hex.",
+    "i": "item, hex",
+    "o": "-"
+  },
+  "focalworks:rig_write": {
+    "n": "Rig Write",
+    "c": "inventory",
+    "d": "Takes in an item entity and a hex, and rigs the item's write to that hex.",
+    "i": "item, hex",
+    "o": "-"
+  },
+  "focalworks:crack_rig": {
+    "n": "Crack Focus",
+    "c": "inventory",
+    "d": "Takes in an item entity and cracks the focus.",
+    "i": "item",
+    "o": "-"
+  },
+  "focalworks:rig_read_index": {
+    "n": "Rig Read Index",
+    "c": "inventory",
+    "d": "Rigs the read from Tachygrapher's Distillation with the given hex.",
+    "i": "item, hex",
+    "o": "-"
+  },
+  "hexal:mote/contained_type/get": {
+    "n": "Stocktake Reflection",
+    "c": "inventory",
+    "d": "Gets all the types of motes contained in the currently bound Mote Nexus.",
+    "i": "-",
+    "o": "[itemtype]"
+  },
+  "hexal:mote/contained/get": {
+    "n": "Stocktake Purification",
+    "c": "inventory",
+    "d": "Gets all the mote records from the currently bound Mote Nexus that match the passed item type or could be combined with the passed mote.",
+    "i": "mote | itemtype",
+    "o": "[mote]"
+  },
+  "hexal:mote/combinable": {
+    "n": "Stacking Distillation II",
+    "c": "inventory",
+    "d": "Returns true if the first mote can be combined with the items in the second argument (which can be a mote, item stack, item entity, or item frame), and false otherwise.",
+    "i": "mote, (mote | item)",
+    "o": "bool"
+  },
+  "hexal:mote/craft": {
+    "n": "Craft",
+    "c": "inventory",
+    "d": "Takes a mote, list of motes, or list of list of motes. returns a list containing the results of crafting with those items. For example, the input Stone x128 would return [Stone Button x128].",
+    "i": "mote | [mote] | [[mote]]",
+    "o": "[mote]"
+  },
+  "hexal:mote/craft/preview": {
+    "n": "Preview Craft",
+    "c": "inventory",
+    "d": "Takes the same input as Craft, except it can take Item Stack Iotas as well as motes. Returns a list of Item Stack Iotas representing what the results of Craft would have been with motes containing those inputs.",
+    "i": "item | [item] | [[item]]",
+    "o": "[item]"
+  },
+  "hexal:mote/villager/level/get": {
+    "n": "Seniority Purification",
+    "c": "inventory",
+    "d": "Accepts a villager, returns a number representing that villager's seniority and skill at their craft.",
+    "i": "villager",
+    "o": "int"
+  },
+  "hexal:mote/trade/get": {
+    "n": "Offering Purification",
+    "c": "inventory",
+    "d": "Accepts a villager and returns all of the trades that villager is offering. This is a list of lists of lists. Each trade comprises two lists, the cost, and the returned items. The returned items is a list containing the type of item, and the number of items.",
+    "i": "villager",
+    "o": "[complicated!]"
+  },
+  "hexal:mote/trade": {
+    "n": "Trade",
+    "c": "inventory",
+    "d": "Accepts a villager, a list of motes to trade with to villager, and optionally an int for which of that villager's trades to attempt. (int? above means that you can pass 2 or 3 arguments, the optional 3rd being an int).",
+    "i": "villager, [mote], int?",
+    "o": "item"
+  },
+  "hexical:item_name": {
+    "n": "Name Item",
+    "c": "inventory",
+    "d": "Takes an item and renames it to the text given. Resets name if given Null. Free.",
+    "i": "entity, text/null",
+    "o": "-"
+  },
+  "hexical:item_lore": {
+    "n": "Describe Item",
+    "c": "inventory",
+    "d": "Takes an item and a list of text to append as a description. Clears if given Null. Free.",
+    "i": "entity, list of text/null",
+    "o": "-"
+  },
+  "hexical:index_hopper": {
+    "n": "Hopper Purification",
+    "c": "inventory",
+    "d": "Applies to sources that support slots; inventories. Returns a list of the item stacks contained within them, with their index in the list being their slot number.",
+    "i": "source",
+    "o": "list"
+  },
+  "hexpose:edible": {
+    "n": "Edibility Purification",
+    "c": "inventory",
+    "d": "Takes in an item identifier and pushes whether I can eat it.",
+    "i": "identifier",
+    "o": "boolean"
+  },
+  "hexpose:get_hunger": {
+    "n": "Calorie Purification",
+    "c": "inventory",
+    "d": "Takes in an item identifier and pushes the amount it will fill me.",
+    "i": "identifier",
+    "o": "number"
+  },
+  "hexpose:get_saturation": {
+    "n": "Satiation Purification",
+    "c": "inventory",
+    "d": "Takes in an item identifier and pushes the saturation value, which roughly affects how long it will fill me.",
+    "i": "identifier",
+    "o": "number"
+  },
+  "hexpose:is_meat": {
+    "n": "Flesh Purification",
+    "c": "inventory",
+    "d": "Takes in an item identifier and pushes whether it's considered a meat. Wolves can eat meats.",
+    "i": "identifier",
+    "o": "boolean"
+  },
+  "hexpose:is_snack": {
+    "n": "Dessert Purification",
+    "c": "inventory",
+    "d": "Takes in an item identifier and pushes whether it's a snack.",
+    "i": "identifier",
+    "o": "boolean"
+  },
+  "hexpose:get_stack": {
+    "n": "Item Purification",
+    "c": "inventory",
+    "d": "Pushes the item that an Item in the world is.",
+    "i": "entity",
+    "o": "item"
+  },
+  "hexpose:create_stack": {
+    "n": "Offer Purification",
+    "c": "inventory",
+    "d": "Creates an item iota from an item identifier and the number of items in the stack.",
+    "i": "identifier, number",
+    "o": "item"
+  },
+  "hexpose:count_stack": {
+    "n": "Storage Purification",
+    "c": "inventory",
+    "d": "Takes in an item and pushes how many items are in it.",
+    "i": "item",
+    "o": "number"
+  },
+  "hexpose:count_max_stack": {
+    "n": "Warehouse Purification",
+    "c": "inventory",
+    "d": "Takes in an item and pushes how many items that can stack in it.",
+    "i": "identifier",
+    "o": "number"
+  },
+  "hexpose:damage_stack": {
+    "n": "Deterioration Purification",
+    "c": "inventory",
+    "d": "Takes in an item and pushes how much damage the item has sustained.",
+    "i": "item",
+    "o": "number"
+  },
+  "hexpose:damage_max_stack": {
+    "n": "Fragility Purification",
+    "c": "inventory",
+    "d": "Takes in an item and pushes how much durability the item can have at its peak.",
+    "i": "identifier",
+    "o": "number"
+  },
+  "hexpose:item_variant": {
+    "n": "Glamour Purification",
+    "c": "inventory",
+    "d": "If this item is subceptible to Caster's Glamour, pushes the index of the current form it's taking on. Otherwise pushes Null.",
+    "i": "item",
+    "o": "number"
+  },
+  "hexpose:item_variant_max": {
+    "n": "Glamour Purification II",
+    "c": "inventory",
+    "d": "If this item is subceptible to Caster's Glamour, pushes the number of forms it's capable of. Otherwise pushes Null.",
+    "i": "item",
+    "o": "number"
+  },
+  "hexpose:item_name": {
+    "n": "Appellation Purification",
+    "c": "inventory",
+    "d": "Gets the name given to this item.",
+    "i": "item",
+    "o": "text"
+  },
+  "hexpose:item_lore": {
+    "n": "Legacy Purification",
+    "c": "inventory",
+    "d": "Gets the lore written into this item.",
+    "i": "item",
+    "o": "list of text"
+  },
+  "hexpose:item_rarity": {
+    "n": "Collector Purification",
+    "c": "inventory",
+    "d": "Gauges the rarity of an item as a number, with greater values corresponding to a rarer item. Certain aspects such as enchantments can also elevate an item's rarity.",
+    "i": "item",
+    "o": "number"
+  },
+  "moreiotas:item/main_hand": {
+    "n": "Duelist's Purification",
+    "c": "inventory",
+    "d": "Transforms the entity at the top of the stack into the Item Stack in its main hand. Also works on Item Frames and dropped items.",
+    "i": "entity",
+    "o": "item stack"
+  },
+  "moreiotas:item/off_hand": {
+    "n": "Shieldbearer's Purification",
+    "c": "inventory",
+    "d": "Transforms the entity at the top of the stack into the Item Stack in its off hand.",
+    "i": "entity",
+    "o": "item stack"
+  },
+  "moreiotas:item/inventory/stacks": {
+    "n": "Hoarder's Distillation",
+    "c": "inventory",
+    "d": "Removes two vectors from the stack representing position and side. Returns a list of Item Stacks in the block at the given position accessible from the given side (or all if second vector is zero).",
+    "i": "vector, vector",
+    "o": "list"
+  },
+  "moreiotas:item/inventory/items": {
+    "n": "Collector's Distillation",
+    "c": "inventory",
+    "d": "Removes two vectors from the stack representing position and side. Returns a list of Items in the block at the given position accessible from the given side (or all if second vector is zero).",
+    "i": "vector, vector",
+    "o": "list"
+  },
+  "moreiotas:item/make": {
+    "n": "Treasurer's Distillation",
+    "c": "inventory",
+    "d": "Removes a number and either an itemtype or an Item Stack from the stack, then creates a new Item Stack with the specified item and size.",
+    "i": "itemtype|item stack, int",
+    "o": "item stack"
+  },
+  "movesthemind:move/use": {
+    "n": "Bid: Use Item",
+    "c": "inventory",
+    "d": "Now, an interesting pair of instructions. Begin to use or attack with the held item at an interval, in twentieths of a second. \nBoth work on myself, though the former strangely.",
+    "i": "player, num",
+    "o": "-"
+  }
+}

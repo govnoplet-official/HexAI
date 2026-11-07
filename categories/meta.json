@@ -1,0 +1,480 @@
+{
+  "_description": {
+    "summary": "Control flow and program structure: evaluation and iteration (Hermes', Thoth's, Thetis', Arke's, Prometheus' gambits, map and reduce, for-range, Sisyphus, Aleph, FSM), conditionals (Helios', Selene's, Coalescing), call stacks (Hanoi), splinters, wisps (projectile and cyclic), gates, portals, casting cassettes, callbacks, wish, staff casting stack.",
+    "use_cases": [
+      "Writing loops, conditionals or sub-programs",
+      "Executing lists of patterns, including with jumps",
+      "Creating and controlling wisps, splinters, gates or portals",
+      "Scheduling delayed or asynchronous execution"
+    ]
+  },
+  "hexcasting:colorize": {
+    "n": "Internalize Pigment",
+    "c": "meta",
+    "d": "I must be holding a Pigment in my other hand to cast this spell. When I do, it will consume the dye and permanently change my mind's coloration (at least, until I cast the spell again). Costs about one Amethyst Dust.",
+    "i": "-",
+    "o": "-"
+  },
+  "hexcasting:cycle_variant": {
+    "n": "Caster's Glamour",
+    "c": "meta",
+    "d": "Certain items I create seem oddly receptive to the influence of media. By holding a Cypher, Trinket, Artifact, Focus, or Spellbook in my other hand, I can use this spell to change the appearance of the item. Costs a negligible amount of media.",
+    "i": "-",
+    "o": "-"
+  },
+  "hexcasting:eval": {
+    "n": "Hermes' Gambit",
+    "c": "meta",
+    "d": "Remove something evaluatable (usually a pattern or an entire Hex) from the stack, then cast it as if I had drawn the relevant patterns with my Staff.",
+    "i": "evaluatable",
+    "o": "many"
+  },
+  "hexcasting:eval/cc": {
+    "n": "Iris' Gambit",
+    "c": "meta",
+    "d": "Cast something evaluatable from the stack exactly like Hermes' Gambit, except that a unique \"Jump\" iota is pushed to the stack beforehand.",
+    "i": "evaluatable",
+    "o": "many"
+  },
+  "hexcasting:for_each": {
+    "n": "Thoth's Gambit",
+    "c": "meta",
+    "d": "Remove something evaluatable and a list from the stack, then cast the evaluatable over each element of the list.",
+    "i": "evaluatable, list",
+    "o": "list"
+  },
+  "caduceus:eval/prompt": {
+    "n": "Thetis' Gambit",
+    "c": "meta",
+    "d": "Cast a pattern or list of patterns from the stack exactly like Hermes' Gambit, except that anything outside of this cast will not be captured by an Arke's Gambit within it.",
+    "i": "[pattern] | pattern",
+    "o": "many"
+  },
+  "caduceus:eval/prompt_at": {
+    "n": "Thetis' Gambit II",
+    "c": "meta",
+    "d": "Like Thetis' Gambit, but also sets the jump tag of the cast to the given iota. If the iota is Null, this is equivalent to Thetis' Gambit.",
+    "i": "[pattern] | pattern, any",
+    "o": "many"
+  },
+  "caduceus:eval/control": {
+    "n": "Arke's Gambit",
+    "c": "meta",
+    "d": "Cast a pattern or list of patterns from the stack similarly to Iris' Gambit. Must be drawn within Thetis' Gambit.",
+    "i": "[pattern] | pattern",
+    "o": "many"
+  },
+  "caduceus:eval/control_at": {
+    "n": "Arke's Gambit II",
+    "c": "meta",
+    "d": "Like Arke's Gambit, but only patterns within an enclosing Thetis' Gambit II with a jump tag matching the given iota are captured. If the iota is Null, this is equivalent to Arke's Gambit.",
+    "i": "[pattern] | pattern, any",
+    "o": "many"
+  },
+  "caduceus:eval/setup_goto": {
+    "n": "Elbrus' Gambit",
+    "c": "meta",
+    "d": "Cast a list of patterns from the stack exactly like Hermes' Gambit, except that a Prometheus' Gambit within this cast will jump to an index within this list of patterns.",
+    "i": "[pattern]",
+    "o": "many"
+  },
+  "caduceus:eval/goto": {
+    "n": "Prometheus' Gambit",
+    "c": "meta",
+    "d": "Remove a number from the stack, then jump to that index in the list cast by the enclosing Elbrus' Gambit. If the number is negative, the index counts from the end of the list instead.",
+    "i": "number",
+    "o": "many"
+  },
+  "complexhex:bubble": {
+    "n": "Bubbles' Purification",
+    "c": "meta",
+    "d": "Pushes a Bubbled Iota, which when popped via execution (by Hermes' or the likes), will push the contained iota to the stack.",
+    "i": "any",
+    "o": "{any}"
+  },
+  "hexways:rotateportal": {
+    "n": "Rotate Portal",
+    "c": "meta",
+    "d": "Ah, fickle rotation vectors. To my luck, I may use this spell to change the rotation of a given portal. The final argument determines whether the rotation is limited to one side, for a 2-way portal.",
+    "i": "entity (Portal), vec, bool",
+    "o": "-"
+  },
+  "hexways:setportalsides": {
+    "n": "Set Portal Sides",
+    "c": "meta",
+    "d": "As, well, *familiar* as I am with hexagons, sadly they don't fit every situation. But with this spell, I may alter the count of a portal's sides and roll, free of cost.",
+    "i": "entity (Portal), num, num",
+    "o": "-"
+  },
+  "hexways:removeportal": {
+    "n": "Remove Portal",
+    "c": "meta",
+    "d": "Alas, if a portal provides the visage of too much for my eyes to handle, this spell may cut the string, banishing a portal pair. Costs no media.",
+    "i": "entity (Portal)",
+    "o": "-"
+  },
+  "hex_ars_link:cast_spell": {
+    "n": "Cast Spell",
+    "c": "meta",
+    "d": "Cast the given spell from myself.\nCosts 1 dust for each glyph used.",
+    "i": "[glyph]",
+    "o": "-"
+  },
+  "hex_ars_link:set_callback": {
+    "n": "Register Callback",
+    "c": "meta",
+    "d": "Register the given spell list as callback, which will be executed when \"Trigger Callback\" glyph executes.",
+    "i": "list",
+    "o": "-"
+  },
+  "hexflow:pure_map": {
+    "n": "Nehmetawy's Gambit",
+    "c": "meta",
+    "d": "Similar to Thoth's Gambit, but won't copy the original stack inside each sub-execution.",
+    "i": "list, list",
+    "o": "list"
+  },
+  "hexflow:pure_reduce": {
+    "n": "Conway's Gambit",
+    "c": "meta",
+    "d": "Similar to Thoth's Gambit; for data list with length **n**, it executes **n - 1** times; The first initial stack is the first two elements, and each subsequent execution uses the stack after the last execution.",
+    "i": "list, list",
+    "o": "list"
+  },
+  "hexflow:for_range/cube": {
+    "n": "Rubik's Gambit",
+    "c": "meta",
+    "d": "Executes given list on each point as initial iota inside the cuboid defined by given 2 points as body diagonal.",
+    "i": "list, vec, vec(, int)",
+    "o": "list"
+  },
+  "hexflow:for_range/cube/pure": {
+    "n": "Pure Rubik's Gambit",
+    "c": "meta",
+    "d": "...and yes, there are pure version for those shaped mapping patterns, too.\nEverything the same, except that original stack isn't copied into each sub-executions.",
+    "i": "list, vec, vec(, int)",
+    "o": "list"
+  },
+  "hexflow:for_range/line": {
+    "n": "Measuring Ruler's Gambit",
+    "c": "meta",
+    "d": "Executes given list on each point as initial iota on the line connecting 2 points (start, end).",
+    "i": "list, vec, vec(, int(, int))",
+    "o": "list"
+  },
+  "hexflow:for_range/line/pure": {
+    "n": "Pure Ruler's Gambit",
+    "c": "meta",
+    "d": "Everything the same, except that original stack isn't copied into each sub-executions.",
+    "i": "list, vec, vec(, int(, int))",
+    "o": "list"
+  },
+  "hexflow:inf_loop": {
+    "n": "Aleph's Gambit",
+    "c": "meta",
+    "d": "*(technically not a Thoth but...)*\nConsumes and executes given executable on current stack **INFINITELY, UNTIL THE END.**",
+    "i": "evaluatable",
+    "o": "-"
+  },
+  "hexflow:fsm": {
+    "n": "Markov's Gambit",
+    "c": "meta",
+    "d": "*(technically not a Thoth but...)*\nTakes eval-ables list as **states**. Each iteration, pops int **n** and executes **states[n]**. Stops if stack top is not a valid state index.",
+    "i": "[evaluatable]",
+    "o": "-"
+  },
+  "hexflow:build_nested": {
+    "n": "Build Nested",
+    "c": "meta",
+    "d": "Copy list #0 and set back to index #1",
+    "i": "list, num",
+    "o": "list"
+  },
+  "hexflow:nested_modify": {
+    "n": "Transplant's Exaltation",
+    "c": "meta",
+    "d": "List iota #0 is the nested list to be modified. According to the index sequence given by list #1, traverses to the inner layer, and sets the corresponding element to iota #2.",
+    "i": "list, list, any",
+    "o": "list"
+  },
+  "hexflow:mass_rotate": {
+    "n": "Mass Rotation Gambit",
+    "c": "meta",
+    "d": "Accepts the size to reorder and a bottom-to-top order list, and do the corresponding reorder to the rest of the stack. For example, **3** plus **[1,2,0]** for Rotation Gambit, and **2** plus **[0,1,0,1]** for Dioscuri Gambit",
+    "i": "many, num, list",
+    "o": "many"
+  },
+  "hexflow:weak_escape": {
+    "n": "Contemplation (HexFlow)",
+    "c": "meta",
+    "d": "Same as Consideration, but with lowest execution priority, and won't grow in **2^n** formula exponentially inside nested Intro-Retros",
+    "i": "-",
+    "o": "-"
+  },
+  "hexflow:call_stack": {
+    "n": "Hanoi's Gambit",
+    "c": "meta",
+    "d": "Executes given pattern/list/Jump? iota in an independent stack, then recovers the original stack at bottom. If given an integer argument X no more than stack size, first X iotas will be taken away as the initial new stack.",
+    "i": "executable(, int)",
+    "o": "many"
+  },
+  "manifestation:destroy_current_splinter": {
+    "n": "Destroy Current Splinter",
+    "c": "meta",
+    "d": "Only castable by a splinter. Dismisses only the current splinter.",
+    "i": "-",
+    "o": "none"
+  },
+  "manifestation:get_splinter_location": {
+    "n": "Get Splinter Location",
+    "c": "meta",
+    "d": "Only castable by a splinter. Returns the current vector of the splinter. Useful for self-renewal.",
+    "i": "-",
+    "o": "vec"
+  },
+  "manifestation:renew_splinter": {
+    "n": "Renew Splinter",
+    "c": "meta",
+    "d": "Only castable by a splinter. Renews the current splinter, with the same pattern. Preserves the Ravenmind between splinters.",
+    "i": "vec, num",
+    "o": "none"
+  },
+  "manifestation:saturns_gambit": {
+    "n": "Saturn's Gambit",
+    "c": "meta",
+    "d": "Like Hermes' Gambit but executes it asynchronously, splitting up large lists of work over multiple ticks that execute synchronously.\nIt borrows the technique from Splinters but is not a Splinter.",
+    "i": "pattern",
+    "o": "none"
+  },
+  "hexoverpowered:mind_env/schedule": {
+    "n": "Delay's Gambit",
+    "c": "meta",
+    "d": "Delays **the single** given iota list to execute after the given time (number of ticks). If delay time is not greater than 0, then the spell will be casted immediately.",
+    "i": "evaluatable, num",
+    "o": "-"
+  },
+  "hexal:wisp/summon/projectile": {
+    "n": "Summon Projectile Wisp",
+    "c": "meta",
+    "d": "This wisp is summoned and launched like an arrow, casting its hex on whatever it hits. The initial stack when it executes will be a reference to itself, then a reference to what it hit.",
+    "i": "[pattern], vec, vec, number",
+    "o": "-"
+  },
+  "hexal:wisp/summon/ticking": {
+    "n": "Summon Cyclic Wisp",
+    "c": "meta",
+    "d": "Similar to Summon Projectile Wisp, but with only one vector input for the position to summon the wisp. Cyclic wisps are unmoving once summoned, instead executing their hex up to 20 times each second.",
+    "i": "[pattern], vec, number",
+    "o": "-"
+  },
+  "hexal:wisp/self": {
+    "n": "Identity Reflection",
+    "c": "meta",
+    "d": "Add a reference to the casting wisp to the stack. This must be cast by a wisp; trying to cast it through a staff will fail rather spectacularly.",
+    "i": "-",
+    "o": "entity"
+  },
+  "hexal:wisp/media": {
+    "n": "Reservoir Reflection",
+    "c": "meta",
+    "d": "Add the amount of media in the wisp's reservoir to the stack. This must be cast by a wisp; trying to cast it through a staff will fail rather spectacularly.",
+    "i": "-",
+    "o": "num"
+  },
+  "hexal:wisp/hex": {
+    "n": "Manager's Purification",
+    "c": "meta",
+    "d": "Removes a reference to a wisp from the stack, and replaces it with the wisp's contained hex. Must be a wisp you summoned, or a wisp that has allowed transfer with the caster or caster's owner.",
+    "i": "entity",
+    "o": "[pattern]"
+  },
+  "hexal:wisp/owner": {
+    "n": "Allegiance Distillation",
+    "c": "meta",
+    "d": "Removes a reference to a wisp and an entity from the stack, and returns true if that entity owns that wisp, and false otherwise.",
+    "i": "entity, entity",
+    "o": "bool"
+  },
+  "hexal:wisp/move/target/set": {
+    "n": "Pathfinder's Gambit",
+    "c": "meta",
+    "d": "Removes a position vector from the stack; The Cyclic Wisp that executed this pattern will move in a straight line towards that position (colliding with terrain in its path) until it reaches it.",
+    "i": "vec",
+    "o": "-"
+  },
+  "hexal:wisp/move/target/get": {
+    "n": "Pathfinder's Reflection",
+    "c": "meta",
+    "d": "Adds to the stack the position vector that the executing Cyclic Wisp is currently moving towards.",
+    "i": "-",
+    "o": "vec"
+  },
+  "hexal:wisp/move/speed/set": {
+    "n": "Haste",
+    "c": "meta",
+    "d": "Removes a number from the stack, and sets the executing Cyclic Wisp's maximum speed to that number.",
+    "i": "num",
+    "o": "-"
+  },
+  "hexal:wisp/move/speed/get": {
+    "n": "Speedometer's Reflection",
+    "c": "meta",
+    "d": "Gets the executing Cyclic Wisp's current maximum speed.",
+    "i": "-",
+    "o": "num"
+  },
+  "hexal:wisp/transfer/allow": {
+    "n": "Allow Transfer",
+    "c": "meta",
+    "d": "When two wisps are linked together, they transfer media between each other until they are balanced. By default this only happens between wisps with the same owner. This takes an index, and explicitly allows the wisp to exchange media with the linkable at that index.",
+    "i": "num",
+    "o": "-"
+  },
+  "hexal:wisp/transfer/disallow": {
+    "n": "Disallow Transfer",
+    "c": "meta",
+    "d": "Correspondingly, this takes an index and disallows the wisp from exchanging media with the linkable at that index.",
+    "i": "num",
+    "o": "-"
+  },
+  "hexal:wisp/transfer/others/allow": {
+    "n": "Allow Transfer Others",
+    "c": "meta",
+    "d": "This takes a wisp that you own and an index, and allows the wisp to exchange media with the linkable at that index.",
+    "i": "wisp, num",
+    "o": "-"
+  },
+  "hexal:wisp/transfer/others/disallow": {
+    "n": "Disallow Transfer Others",
+    "c": "meta",
+    "d": "This takes a wisp that you own and an index, and disallows the wisp from exchanging media with the linkable at that index.",
+    "i": "wisp, num",
+    "o": "-"
+  },
+  "hexal:wisp/trigger/tick": {
+    "n": "Delay Wisp",
+    "c": "meta",
+    "d": "Removes an integer from the stack, then delays the wisp's next cast until at least that many twentieth's of a second have passed. This and other triggers like it will halve the wisp's upkeep cost while it isn't casting.",
+    "i": "number",
+    "o": "-"
+  },
+  "hexal:wisp/trigger/comm": {
+    "n": "Listen",
+    "c": "meta",
+    "d": "The wisp's next cast will not occur until it has received at least one communication.",
+    "i": "-",
+    "o": "-"
+  },
+  "hexal:wisp/trigger/move": {
+    "n": "Wander",
+    "c": "meta",
+    "d": "The wisp's next cast will not occur until it has reached the position it is navigating towards.",
+    "i": "-",
+    "o": "-"
+  },
+  "hexal:wisp/seon/get": {
+    "n": "Familiar's Reflection",
+    "c": "meta",
+    "d": "Returns my currently bound wisp. A new wisp can only be bound when this returns null. (This is not a great spell, I have simply placed it here for convenience.)",
+    "i": "-",
+    "o": "entity | null"
+  },
+  "hexal:gate/mark": {
+    "n": "Gate's Opening",
+    "c": "meta",
+    "d": "Consumes a gate iota and an entity. Marks that entity to be teleported the next time that gate is closed. Costs one twentieth of an Amethyst Dust.",
+    "i": "gate, entity",
+    "o": "-"
+  },
+  "hexal:gate/unmark": {
+    "n": "Gate's Dismissal",
+    "c": "meta",
+    "d": "Consumes a gate iota and an entity. Unmarks that entity so that if it was marked with Gate's Opening it will no longer be teleported the next time that gate is closed.",
+    "i": "gate, entity",
+    "o": "-"
+  },
+  "hexal:gate/mark/get": {
+    "n": "Marked Distillation",
+    "c": "meta",
+    "d": "Consumes a gate iota and an entity, returns whether that entity is marked by that gate.",
+    "i": "gate, entity",
+    "o": "bool"
+  },
+  "hexical:wish": {
+    "n": "Wish",
+    "c": "meta",
+    "d": "Wish the genie to cast a Hex for me. Because I am *teaching* a mind rather than *etching* a casting device, I can freely reteach the genie a new Hex any time without losing media.",
+    "i": "list of patterns",
+    "o": "-"
+  },
+  "hextrapats:true_eval": {
+    "n": "Helios' Gambit",
+    "c": "meta",
+    "d": "Casts a pattern or list of patterns like Hermes' Gambit if the next iota from the top of the stack is considered True by Nature.",
+    "i": "any, ([pattern] | pattern)",
+    "o": "many"
+  },
+  "hextrapats:false_eval": {
+    "n": "Selene's Gambit",
+    "c": "meta",
+    "d": "Casts a pattern or list of patterns like Hermes' Gambit if the next iota from the top of the stack is considered False by Nature.",
+    "i": "any, ([pattern] | pattern)",
+    "o": "many"
+  },
+  "hextrapats:main_for_each": {
+    "n": "Anubis' Gambit",
+    "c": "meta",
+    "d": "Casts like Thoth's Gambit, however each sub-execution operates on the main stack instead of copies of the stack.",
+    "i": "many, [pattern], list",
+    "o": "many"
+  },
+  "hextrapats:nulls/exec": {
+    "n": "Coalescing Gambit",
+    "c": "meta",
+    "d": "If the first argument is not Null, returns it. Otherwise, executes the second argument, much like Hermes' Gambit.",
+    "i": "any, [pattern] | pattern",
+    "o": "any"
+  },
+  "hierophantics:reenable_minds": {
+    "n": "Stabilize Minds",
+    "c": "meta",
+    "d": "When I die, my embedded minds become unstable and cease to function. This spell restores them to working order. Costs one Amethyst Dust per mind restored.",
+    "i": "-",
+    "o": "-"
+  },
+  "hierophantics:make_jump_trigger": {
+    "n": "Trigger Reflection: Jump",
+    "c": "meta",
+    "d": "Creates a trigger that activates whenever I jump.",
+    "i": "-",
+    "o": "trigger"
+  },
+  "overevaluate:athena": {
+    "n": "Athena's Gambit",
+    "c": "meta",
+    "d": "Casts a list of patterns similar to Hermes' Gambit but allows for handling of mishaps.",
+    "i": "list of patterns",
+    "o": "boolean"
+  },
+  "overevaluate:atalanta": {
+    "n": "Atalanta's Gambit",
+    "c": "meta",
+    "d": "Should only be run inside Thoth's or Sisyphus' Gambit. Acts similarly to Charon's Gambit except does not end the iterator, only skips the rest of the current iteration.",
+    "i": "-",
+    "o": "-"
+  },
+  "overevaluate:castor": {
+    "n": "Castor's Gambit",
+    "c": "meta",
+    "d": "Should only be run within a Thoth's. Details on the next page. Beware of triggering the Delve Too Deep mishap.",
+    "i": "any",
+    "o": "-"
+  },
+  "overevaluate:themis": {
+    "n": "Themis' Gambit",
+    "c": "meta",
+    "d": "Takes a list and a pattern or pattern list which is used to sort the list by casting over every iota similar to Thoth's Gambit.",
+    "i": "list, pattern/list",
+    "o": "list"
+  }
+}

@@ -1,0 +1,424 @@
+{
+  "_description": {
+    "summary": "User interface and visuals: icons and markers on the map, draw text, rectangle and line, speck (floating pattern) control, shader vision, hotbar and key or mouse input reflections, telepathy, news and chat display, sounds and particles, Animated Scroll ink.",
+    "use_cases": [
+      "Drawing icons, text or shapes on screen or map",
+      "Controlling speck (floating pattern) appearance",
+      "Reading player input (keys, mouse, hotbar)",
+      "Changing vision or sending thoughts"
+    ]
+  },
+  "manifestation:create_list_menu": {
+    "n": "Manifest List Menu",
+    "c": "ui",
+    "d": "Takes a list of intents, a menu title and manifests a list menu.",
+    "i": "list, text",
+    "o": "-"
+  },
+  "manifestation:create_grid_menu": {
+    "n": "Manifest Grid Menu",
+    "c": "ui",
+    "d": "Takes a list of intents, a menu title, and a number of columns to manifest a grid menu. Columns are limited to 1-10.",
+    "i": "list, text, num",
+    "o": "-"
+  },
+  "manifestation:create_radial_menu": {
+    "n": "Manifest Radial Menu",
+    "c": "ui",
+    "d": "Takes a list of intents and a menu title to manifest a radial button menu. Radial menus only accept button intents",
+    "i": "list, text",
+    "o": "-"
+  },
+  "manifestation:intent_button": {
+    "n": "Intent Button",
+    "c": "ui",
+    "d": "Creates a button from a list of patterns and a label. When clicked, the button casts the patterns. The patterns are cast in their own environment so they can't use special patterns specific to spell circles or charms. They inherit the stack of environment they are cast from.",
+    "i": "list, text",
+    "o": "intent"
+  },
+  "manifestation:intent_input": {
+    "n": "Intent Input",
+    "c": "ui",
+    "d": "Creates an input field from a label. Entered text is pushed to the stack of an executed action, like from a button.",
+    "i": "text",
+    "o": "intent"
+  },
+  "manifestation:intent_numeric_input": {
+    "n": "Intent Numeric Input",
+    "c": "ui",
+    "d": "Creates a numeric input from a default value and label. The entered number is pushed to the stack of an executed action.",
+    "i": "num, text",
+    "o": "intent"
+  },
+  "manifestation:intent_slider": {
+    "n": "Intent Slider",
+    "c": "ui",
+    "d": "Creates a slider from min, max, current values, and a label. The chosen value is pushed to the stack of an executed action.",
+    "i": "num, num, num, text",
+    "o": "intent"
+  },
+  "manifestation:intent_checkbox": {
+    "n": "Intent Checkbox",
+    "c": "ui",
+    "d": "Creates a checkbox from a default checked state and label. The resulting boolean is pushed to the stack of an executed action.",
+    "i": "bool, text",
+    "o": "intent"
+  },
+  "manifestation:intent_select_list": {
+    "n": "Intent Select List",
+    "c": "ui",
+    "d": "Creates a selectable list from options, a max visible row count, and a label. Optionally accepts a boolean to enable multi-select. The selected option or options are pushed to the stack of an executed action.",
+    "i": "list, num, text, bool?",
+    "o": "intent"
+  },
+  "manifestation:intent_section": {
+    "n": "Intent Section",
+    "c": "ui",
+    "d": "Creates a non-interactive section from a label, acting as a sub heading.",
+    "i": "text",
+    "o": "intent"
+  },
+  "manifestation:intent_dropdown": {
+    "n": "Intent Dropdown",
+    "c": "ui",
+    "d": "Creates a dropdown from a list of options and a label. The selected option is pushed to the stack of an executed action.",
+    "i": "list, text",
+    "o": "intent"
+  },
+  "manifestation:link_intent_relay": {
+    "n": "Manifest Relay",
+    "c": "ui",
+    "d": "Takes a destination vector for where the relay will go, then a face vector to choose which side to manifest it on, and then a target vector for the thing to link the relay to.",
+    "i": "vec, vec, vec, num?",
+    "o": "none"
+  },
+  "manifestation:open_corridor_portal": {
+    "n": "Manifest Threshold",
+    "c": "ui",
+    "d": "Takes a vector, a Prescence intent, media allocation and an optional string label and pigment. Opens a portal bridging two locations together.**Cost: 2 dust per second. 35 Charged Crystal on frame.**",
+    "i": "vec, presence, num, text?, pigment?",
+    "o": "none"
+  },
+  "manifestation:presence_intent": {
+    "n": "Presence Intent",
+    "c": "ui",
+    "d": "Takes a location and a directional vector and creates an intent. Used with manifest threshold.**Cost: 35 amethyst.**",
+    "i": "vec, vec",
+    "o": "presenceIntent"
+  },
+  "manifestation:destroy_manifestation": {
+    "n": "Raze Manifestation",
+    "c": "ui",
+    "d": "Takes an origin vector and a radius, destroys manifestations (portals and relays) in that area. Based on permissions.",
+    "i": "vec, num",
+    "o": "none"
+  },
+  "manifestation:manifest_splinter": {
+    "n": "Manifest Splinter",
+    "c": "ui",
+    "d": "Creates a splinter at a position, with a delay and a list of patterns to cast. The splinter casts the payload as if it were the caster, then collapses. The splinter's location is only visible to its creator.",
+    "i": "vec, num, list",
+    "o": "none"
+  },
+  "manifestation:destroy_splinters": {
+    "n": "Destroy Splinters",
+    "c": "ui",
+    "d": "Dismisses all splinters you have active.",
+    "i": "-",
+    "o": "none"
+  },
+  "manifestation:hex_trail": {
+    "n": "Hex Trail",
+    "c": "ui",
+    "d": "Hex Trail creates a particle trail as it moves. By using the same ID across casts you can create a continuous trail that moves smoothy between positions.",
+    "i": "vec, vec, vec, num, num, num?",
+    "o": "none"
+  },
+  "manifestation:equation_hex_cloud": {
+    "n": "Equation Hex Cloud",
+    "c": "ui",
+    "d": "Creates large particle effects from an Equation Particle iota to avoid large vector lists. The Iota can be created using an Equation Synthesizer block. Uses an ID to keep positional state like Hex Trail.",
+    "i": "vec|entity, equation, num",
+    "o": "none"
+  },
+  "manifestation:spell_circle": {
+    "n": "Manifest Spell Circle",
+    "c": "ui",
+    "d": "Projects a solid spell circle into the world displaying a pattern for a duration before disintegrating.**Cost: 1/500 dust.**",
+    "i": "[pattern], vec, vec, num, num?, vec?",
+    "o": "none"
+  },
+  "manifestation:set_charm_cast_sound": {
+    "n": "Set Charm Cast Sound",
+    "c": "ui",
+    "d": "Changes the sound a charmed item makes when casting.\nTop of stack is string, text, or null.**Cost: 10 dust.**",
+    "i": "string | text | null, item entity?",
+    "o": "none"
+  },
+  "manifestation:memory_reflection": {
+    "n": "Resonance Reflection",
+    "c": "ui",
+    "d": "Returns the held or embedded Memory Crystal's unique memory identifier. Favours the off-hand first.",
+    "i": "none",
+    "o": "memory"
+  },
+  "manifestation:replay_memory": {
+    "n": "Resonance Purification",
+    "c": "ui",
+    "d": "Returns the stored memory pattern (or null if none) from a held or embedded Memory Crystal. Takes a Memory Iota from Memory Reflection. Favours the off-hand first.",
+    "i": "memory",
+    "o": "[pattern] | null"
+  },
+  "manifestation:store_memory": {
+    "n": "Resonance Gambit",
+    "c": "ui",
+    "d": "Stores the top of the stack in a held or embedded Memory Crystal's memory. Takes a Memory Iota from Memory Reflection. Favours the off-hand first.",
+    "i": "memory, any",
+    "o": "none"
+  },
+  "manifestation:mind_vault_counts": {
+    "n": "Mind Vault Counts",
+    "c": "ui",
+    "d": "Takes a vector of a mind vault location and returns [ready, total], where ready is the number of stored minds not on cooldown and total is the number of stored minds in the vault.",
+    "i": "vec",
+    "o": "[num, num]"
+  },
+  "manifestation:exit_if_interacting": {
+    "n": "Exit If Interacting",
+    "c": "ui",
+    "d": "Exits a hex if caster uses something interactable. Useful for charmed items that use righ-click.",
+    "i": "none",
+    "o": "none"
+  },
+  "manifestation:open_casting_screen": {
+    "n": "Open Casting Screen",
+    "c": "ui",
+    "d": "Opens the spell grid and must be cast by a person.",
+    "i": "none",
+    "o": "none"
+  },
+  "hexmapping:create_marker/circle": {
+    "n": "Circle Marker Exlt.",
+    "c": "ui",
+    "d": "Creates a new Circle Marker with the provided identifier, label, position, and radius",
+    "i": "str, str, vec, num",
+    "o": "marker"
+  },
+  "hexmapping:create_marker/rectangle": {
+    "n": "Rectangle Marker Exlt.",
+    "c": "ui",
+    "d": "Creates a new Rectangle Marker with the provided identifier, label, top corner, and bottom corner",
+    "i": "str, str, vec, vec",
+    "o": "marker"
+  },
+  "hexmapping:create_marker/polygon": {
+    "n": "Polygon Marker Exlt.",
+    "c": "ui",
+    "d": "Creates a new Polygon Marker with the provided identifier, label, and list of positions OR a Hexical Mesh Entity",
+    "i": "str, str, [vec] | mesh",
+    "o": "marker"
+  },
+  "hexmapping:create_marker/polyline": {
+    "n": "Polyline Marker Exlt.",
+    "c": "ui",
+    "d": "Creates a new Polyline Marker with the provided identifier, label, and list of positions OR a Hexical Mesh Entity",
+    "i": "str, str, [vec] | mesh",
+    "o": "marker"
+  },
+  "hexmapping:create_marker/icon": {
+    "n": "Icon Marker Exlt.",
+    "c": "ui",
+    "d": "Creates a new Icon Marker with the provided identifier, label, icon, and position",
+    "i": "str, str, str, vec",
+    "o": "marker"
+  },
+  "hexmapping:has_marker": {
+    "n": "Marker Dist.",
+    "c": "ui",
+    "d": "Checks if a marker exists on the map under the provided identifier",
+    "i": "map, str",
+    "o": "marker"
+  },
+  "hexmapping:set_fill_color": {
+    "n": "Marker Fill Dist.",
+    "c": "ui",
+    "d": "Sets the Fill Color of a marker, if applicable (Circle, Rectangle, and Polygon)",
+    "i": "marker, num | dye",
+    "o": "marker"
+  },
+  "hexmapping:set_line_color": {
+    "n": "Marker Line Dist.",
+    "c": "ui",
+    "d": "Sets the Line Color of a marker, if applicable (Circle, Rectangle, Polyline, and Polygon)",
+    "i": "marker, num | dye",
+    "o": "marker"
+  },
+  "hexmapping:set_line_weight": {
+    "n": "Marker Line Dist. II",
+    "c": "ui",
+    "d": "Sets the Line Weight of a marker, if applicable (Circle, Rectangle, Polyline, and Polygon)",
+    "i": "marker, num",
+    "o": "marker"
+  },
+  "hexmapping:get_maps/bluemap": {
+    "n": "Bluemap Reflection",
+    "c": "ui",
+    "d": "Pushes a list of Maps for your current dimension from Bluemap to the stack",
+    "i": "-",
+    "o": "[map]"
+  },
+  "hexmapping:get_maps/dynmap": {
+    "n": "Dynmap Reflection",
+    "c": "ui",
+    "d": "Pushes a list of Maps for your current dimension from Dynmap to the stack",
+    "i": "-",
+    "o": "[map]"
+  },
+  "hexmapping:get_maps/pl3xmap": {
+    "n": "Pl3xmap Reflection",
+    "c": "ui",
+    "d": "Pushes a list of Maps for your current dimension from Pl3xmap to the stack",
+    "i": "-",
+    "o": "[map]"
+  },
+  "hexmapping:get_maps/squaremap": {
+    "n": "Squaremap Reflection",
+    "c": "ui",
+    "d": "Pushes a list of Maps for your current dimension from Squaremap to the stack",
+    "i": "-",
+    "o": "[map]"
+  },
+  "hexical:glow_scroll": {
+    "n": "Illuminate Ink",
+    "c": "ui",
+    "d": "Causes the ink of an Animated Scroll to brightly glow, regardless of lighting conditions.",
+    "i": "entity",
+    "o": "-"
+  },
+  "hexical:conjure_speck": {
+    "n": "Conjure Speck",
+    "c": "ui",
+    "d": "Conjures a speck with the iota, position, and rotation. Costs a negligible amount of media. Pushes the speck iota to the stack.",
+    "i": "any, vector, vector",
+    "o": "entity"
+  },
+  "hexical:iota_speck": {
+    "n": "Alter Speck",
+    "c": "ui",
+    "d": "Changes the speck's iota.",
+    "i": "speck entity, any",
+    "o": "-"
+  },
+  "hexical:kill_specklike": {
+    "n": "Dismiss Speck",
+    "c": "ui",
+    "d": "Forces a speck to disappear.",
+    "i": "speck entity",
+    "o": "-"
+  },
+  "hexical:move_specklike": {
+    "n": "Move Speck",
+    "c": "ui",
+    "d": "Moves a speck entity to the position.",
+    "i": "speck entity, vector",
+    "o": "-"
+  },
+  "hexical:rotate_specklike": {
+    "n": "Rotate Speck",
+    "c": "ui",
+    "d": "Rotates a speck entity to face the vector.",
+    "i": "speck entity, vector",
+    "o": "-"
+  },
+  "hexical:roll_specklike": {
+    "n": "Roll Speck",
+    "c": "ui",
+    "d": "Accepts a number between 0 and 1, representing a fraction of a full rotation, and rotates the speck's image by that amount.",
+    "i": "speck entity, number",
+    "o": "-"
+  },
+  "hexical:size_specklike": {
+    "n": "Resize Speck",
+    "c": "ui",
+    "d": "Scales the speck, can range from 0 to 10. Represents size in blocks and is zero by default.",
+    "i": "speck entity, number",
+    "o": "-"
+  },
+  "hexical:thickness_specklike": {
+    "n": "Thicken Speck",
+    "c": "ui",
+    "d": "Changes the stroke thickness of a pattern speck, can range from 0 to 10. Represents twentieths of a block, and is zero by default.",
+    "i": "speck entity, number",
+    "o": "-"
+  },
+  "hexical:lifetime_specklike": {
+    "n": "Time Speck",
+    "c": "ui",
+    "d": "Commands the speck to disappear after that many twentieths of a second.",
+    "i": "speck entity, number",
+    "o": "-"
+  },
+  "hexpose:get_chat": {
+    "n": "Newspaper Reflection",
+    "c": "ui",
+    "d": "Applies News Reflection to the last up to 32 messages in chat, wraps each in a list, and pushes a list of those lists.",
+    "i": "-",
+    "o": "list of lists"
+  },
+  "scryglass:get_window_size": {
+    "n": "Periphery Reflection",
+    "c": "ui",
+    "d": "Returns the full width and height of my vision as a vector.",
+    "i": "-",
+    "o": "vector"
+  },
+  "scryglass:get_icons": {
+    "n": "Icons Reflection",
+    "c": "ui",
+    "d": "Pushes a list of the indices of all the Icons I have. This appears as a list of numbers.",
+    "i": "-",
+    "o": "list of indices"
+  },
+  "scryglass:remove_icon": {
+    "n": "Clear Icon",
+    "c": "ui",
+    "d": "Immediately clears an Icon.",
+    "i": "index",
+    "o": "-"
+  },
+  "scryglass:draw_text": {
+    "n": "Draw Text",
+    "c": "ui",
+    "d": "Takes an index, a position, a number, and any iota. Conjures an Icon displaying that iota.",
+    "i": "index, vector, number, any",
+    "o": "-"
+  },
+  "scryglass:draw_rect": {
+    "n": "Draw Rectangle",
+    "c": "ui",
+    "d": "Takes an index, a position, a size, and a color. Conjures an Icon displaying that rectangle.",
+    "i": "index, vector, vector, vector",
+    "o": "-"
+  },
+  "scryglass:draw_line": {
+    "n": "Draw Line",
+    "c": "ui",
+    "d": "Takes an index, a position, a size, and a color. Conjures an Icon that joins between the two with a thin line.",
+    "i": "index, vector, vector, vector",
+    "o": "-"
+  },
+  "scryglass:rotate_icon": {
+    "n": "Rotate Icon",
+    "c": "ui",
+    "d": "Takes an index and an amount of rotation counterclockwise in terms of a full circle. Rotates the icon.",
+    "i": "index, number",
+    "o": "-"
+  },
+  "scryglass:scale_icon": {
+    "n": "Scale Icon",
+    "c": "ui",
+    "d": "Takes an index and a scaling factor. Scales the icon.",
+    "i": "index, number",
+    "o": "-"
+  }
+}

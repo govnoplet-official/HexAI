@@ -1,0 +1,178 @@
+{
+  "_description": {
+    "summary": "Pattern-level meta-operations: halting a hex (Charon's, Thanatos), Contemplation, comment handling, Timekeeper, Everbook entries, queue and cassette control, serializing and deserializing patterns, comparing pattern shapes, draw_pattern, raycast variants, special gambits (Ra, Apep, Pollux, Castor), debris and sediment particles.",
+    "use_cases": [
+      "Stopping a running hex",
+      "Working with patterns as data (serialize, compare, draw)",
+      "Managing the Everbook or queued cassettes"
+    ]
+  },
+  "runtime_escape": {
+    "n": "Contemplation",
+    "c": "patterns",
+    "d": "To use Contemplation, I draw it, then another arbitrary pattern. That second pattern is added to the stack.",
+    "i": "-",
+    "o": "-"
+  },
+  "halt": {
+    "n": "Charon's Gambit",
+    "c": "patterns",
+    "d": "This pattern forcibly halts a Hex. This is mostly useless on its own, as I could simply just stop writing patterns, or put down my staff.",
+    "i": "-",
+    "o": "-"
+  },
+  "thanatos": {
+    "n": "Thanatos' Reflection",
+    "c": "patterns",
+    "d": "It seems there is a limit to how many patterns can be evaluated within a single Hex. I can use this pattern to deterime how many patterns remain before I reach this limit.",
+    "i": "-",
+    "o": "number"
+  },
+  "create_linebreak": {
+    "n": "Line-Break Prfn.",
+    "c": "patterns",
+    "d": "Adds a line-break comment iota with space-indents of given number to the stack.",
+    "i": "num",
+    "o": "comment"
+  },
+  "switch_comment": {
+    "n": "Comment Switcher",
+    "c": "patterns",
+    "d": "Transforms input Comment Iota into String Iota, or everything else into Comment Iota; has no effect if **MoreIotas** not installed.",
+    "i": "comment/any",
+    "o": "string/comment"
+  },
+  "current_tick": {
+    "n": "Timekeeper's Reflection",
+    "c": "patterns",
+    "d": "Adds a number to the stack which seems to be related to how Nature represents time; If I cast the pattern, then cast the same pattern a second later, the number it adds has increased by 20.",
+    "i": "-",
+    "o": "number"
+  },
+  "everbook/delete": {
+    "n": "Lethe's Gambit",
+    "c": "patterns",
+    "d": "Takes a pattern and removes the entry with that pattern key from your Everbook.",
+    "i": "pattern",
+    "o": "-"
+  },
+  "everbook/toggle_macro": {
+    "n": "Brigh's Gambit",
+    "c": "patterns",
+    "d": "Takes a pattern and marks that entry of your Everbook as a Pattern that when drawn by your hand will be treated as any other of Nature's patterns.",
+    "i": "pattern",
+    "o": "-"
+  },
+  "dequeue": {
+    "n": "Dequeue",
+    "c": "patterns",
+    "d": "I can also automate killing cassettes with this pattern. It takes an iota and dequeues the cassette with that label if it exists.",
+    "i": "any",
+    "o": "-"
+  },
+  "killall": {
+    "n": "Disqueue",
+    "c": "patterns",
+    "d": "Terminates all cassettes, similar to the effects of the Parallel Processing mishap.",
+    "i": "-",
+    "o": "-"
+  },
+  "imbue_equipment": {
+    "n": "Imbue Equipment",
+    "c": "patterns",
+    "d": "Imbues the supplied hexes into the Amethyst equipment in my other hand, so that they will be cast whenever the item is used. Costs 9 Charged Amethyst except on arrows, which cost 5 Shards.",
+    "i": "[pattern]",
+    "o": "-"
+  },
+  "similar": {
+    "n": "Similarity Distillation (Hexical)",
+    "c": "patterns",
+    "d": "Pushes whether two patterns have same shape but not necessarily the same stroke order.",
+    "i": "pattern, pattern",
+    "o": "boolean"
+  },
+  "serialize_pattern": {
+    "n": "Chirographer's Purification",
+    "c": "patterns",
+    "d": "Turns a pattern into a list of numbers for my splitting, analysis, and dissection. The inverse of Calligrapher's Purification.",
+    "i": "pattern",
+    "o": "list of numbers"
+  },
+  "deserialize_pattern": {
+    "n": "Calligrapher's Purification",
+    "c": "patterns",
+    "d": "Turns a list of numbers into a pattern for my viewing and execution. The inverse of Chirographer's Purification.",
+    "i": "list of numbers",
+    "o": "pattern"
+  },
+  "draw_pattern": {
+    "n": "Handwriting Distillation",
+    "c": "patterns",
+    "d": "Takes a pattern and produces a normalized list of vectors. The z-component of these vectors is zero. I feel this may be useful for artistic Hexes.",
+    "i": "pattern",
+    "o": "list of vectors"
+  },
+  "piercing_raycast": {
+    "n": "Railgun Exaltation",
+    "c": "patterns",
+    "d": "Works similar to Archer's Distillation but accepts an additional identifier. It will pierce all blocks until it hits the block specified by the identifier.",
+    "i": "vec, vec, id",
+    "o": "vec/null"
+  },
+  "piercing_surface_raycast": {
+    "n": "Laser Exaltation",
+    "c": "patterns",
+    "d": "Works similar to Architect's Distillation but accepts an additional identifier. It will pierce all blocks until it hits the block specified by the identifier.",
+    "i": "vec, vec, id",
+    "o": "vec/null"
+  },
+  "entity_width": {
+    "n": "Caliper's Purification",
+    "c": "patterns",
+    "d": "Similar to Stadiometer's Purification but pushes the width of an entity rather than its height.",
+    "i": "entity",
+    "o": "number"
+  },
+  "main_index_for_each": {
+    "n": "Ra's Gambit",
+    "c": "patterns",
+    "d": "Casts like Djehuty's Gambit, however each sub-execution operates on the main stack instead of copies of the stack.",
+    "i": "many, [pattern], list",
+    "o": "many"
+  },
+  "get_mind_hex": {
+    "n": "Payload Purification",
+    "c": "patterns",
+    "d": "Pushes the Hex stored in the provided mind, or Null if there isn't one.",
+    "i": "mind",
+    "o": "[pattern] | null"
+  },
+  "set_mind_hex": {
+    "n": "Payload Gambit",
+    "c": "patterns",
+    "d": "Stores the provided Hex into the mind. If there is already a stored Hex, it will be overwritten. Costs one Charged Amethyst.",
+    "i": "mind, [pattern] | null",
+    "o": "-"
+  },
+  "play_block_particle": {
+    "n": "Conjure Debris",
+    "c": "patterns",
+    "d": "Conjures a visual bit of debris, similar to that caused by breaking a block. Takes in a block identifier.",
+    "i": "..., identifier",
+    "o": "-"
+  },
+  "play_falling_dust_particle": {
+    "n": "Conjure Sediment",
+    "c": "patterns",
+    "d": "Conjures particles similar to that caused by suspended gravity-affected blocks. Takes in a block identifier.",
+    "i": "..., identifier",
+    "o": "-"
+  },
+  "play_item_particle": {
+    "n": "Conjure Fragments",
+    "c": "patterns",
+    "d": "Conjures a visual bit of fragments, similar to that caused by a tool breaking after wearing. Takes in an item iota.",
+    "i": "..., item",
+    "o": "-"
+  }
+}

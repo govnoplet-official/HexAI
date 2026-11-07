@@ -1,0 +1,1163 @@
+{
+  "lapisworks:create_enchsent": {
+    "id": "lapisworks:create_enchsent",
+    "name": "Summon Enchanted Sentinel",
+    "direction": "NORTH_WEST",
+    "signature": "aqaeawdwwwdwqwdwwwdwesdwdwdswqdedqqwdewaawdeq",
+    "is_per_world": true,
+    "display_only": true,
+    "display_as": null,
+    "operators": [
+      {
+        "description": "Summons an enchanted version of the Greater Sentinel at the given position (which must be within 32 blocks around me) and the given ambit (which can be from 1-64). Costs 5 amethyst dust to summon.",
+        "inputs": "vec, num",
+        "outputs": null,
+        "book_url": "https://real-luxof.github.io/Lapisworks/v/1.5.8.4/1.8dev0/en_us#great/enchsent@lapisworks:create_enchsent",
+        "mod_id": "lapisworks"
+      }
+    ]
+  },
+  "lapisworks:flay_artmind": {
+    "id": "lapisworks:flay_artmind",
+    "name": "Imbue Mind",
+    "direction": "SOUTH_EAST",
+    "signature": "ewewedeaeaeasaqaewaqawqdedaeaqqwqeqadqasqqqsaqdaq",
+    "is_per_world": true,
+    "display_only": true,
+    "display_as": null,
+    "operators": [
+      {
+        "description": "Takes an entity and the location of a full Simple Mind Container, and imbues the mind into the entity.",
+        "inputs": "entity, vec",
+        "outputs": null,
+        "book_url": "https://real-luxof.github.io/Lapisworks/v/1.5.8.4/1.8dev0/en_us#great/flay_artmind@lapisworks:flay_artmind_entity",
+        "mod_id": "lapisworks"
+      },
+      {
+        "description": "Takes the location of a block and then the location of a full Simple Mind Container, and imbues the mind into it for five Charged Amethyst.*Great minds do not think alike. Ideas simply wish to be thought.*",
+        "inputs": "vec, vec",
+        "outputs": null,
+        "book_url": "https://real-luxof.github.io/Lapisworks/v/1.5.8.4/1.8dev0/en_us#great/flay_artmind@lapisworks:flay_artmind",
+        "mod_id": "lapisworks"
+      }
+    ]
+  },
+  "lapisworks:hastenature": {
+    "id": "lapisworks:hastenature",
+    "name": "Hastenature",
+    "direction": "WEST",
+    "signature": "qwdeeadewseaqqedwswqqwdedsdadeaaqqe",
+    "is_per_world": true,
+    "display_only": true,
+    "display_as": null,
+    "operators": [
+      {
+        "description": "Takes a block position and a positive number, and ages the block (or how I call it, induces a random tick) there that many times. Costs 1 shard per age-up, but 3.5 if the target is Budding Amethyst.",
+        "inputs": "vec, int",
+        "outputs": null,
+        "book_url": "https://real-luxof.github.io/Lapisworks/v/1.5.8.4/1.8dev0/en_us#great/hastenature@lapisworks:hastenature",
+        "mod_id": "lapisworks"
+      }
+    ]
+  },
+  "lapisworks:quenched_indigo": {
+    "id": "lapisworks:quenched_indigo",
+    "name": "Indigan Lapidary",
+    "direction": "NORTH_WEST",
+    "signature": "ddwaadaewewweweeeqqedddaqwwqawwsaedeqedeeqdwaasaddqdqwewwewea",
+    "is_per_world": true,
+    "display_only": true,
+    "display_as": null,
+    "operators": [
+      {
+        "description": "Given at least two pieces of Lapis Lazuli in the other hand, converts Lapis Lazuli to Amethyst Shards at a conversion rate of 2:1. Overflow of Lapis is wasted.",
+        "inputs": null,
+        "outputs": null,
+        "book_url": "https://real-luxof.github.io/Lapisworks/v/1.5.8.4/1.8dev0/en_us#great/quenched_indigo@lapisworks:quenched_indigo",
+        "mod_id": "lapisworks"
+      }
+    ]
+  },
+  "hexcasting:craft/battery": {
+    "id": "hexcasting:craft/battery",
+    "name": "Craft Phial",
+    "direction": "SOUTH_WEST",
+    "signature": "aqqqaqwwaqqqqqeqaqqqawwqwqwqwqwqw",
+    "is_per_world": true,
+    "display_only": false,
+    "display_as": null,
+    "operators": [
+      {
+        "description": "Infuse a bottle with media to form a [Phial.](https://hexcasting.hexxy.media/v/0.11.4/1.0/en_us#items/phials)",
+        "inputs": "entity",
+        "outputs": null,
+        "book_url": "https://hexcasting.hexxy.media/v/0.11.4/1.0/en_us#patterns/great_spells/make_battery@hexcasting:craft/battery",
+        "mod_id": "hexcasting"
+      }
+    ]
+  },
+  "hexcasting:potion/regeneration": {
+    "id": "hexcasting:potion/regeneration",
+    "name": "White Sun's Zenith",
+    "direction": "NORTH_WEST",
+    "signature": "qqqqaawawaedd",
+    "is_per_world": true,
+    "display_only": false,
+    "display_as": null,
+    "operators": [
+      {
+        "description": "Bestows regeneration. Base cost is one [Amethyst Dust](https://hexcasting.hexxy.media/v/0.11.4/1.0/en_us#items/amethyst) per second.",
+        "inputs": "entity, number, number",
+        "outputs": null,
+        "book_url": "https://hexcasting.hexxy.media/v/0.11.4/1.0/en_us#patterns/great_spells/zeniths@hexcasting:potion/regeneration",
+        "mod_id": "hexcasting"
+      }
+    ]
+  },
+  "hexcasting:potion/night_vision": {
+    "id": "hexcasting:potion/night_vision",
+    "name": "Blue Sun's Zenith",
+    "direction": "WEST",
+    "signature": "qqqaawawaeqdd",
+    "is_per_world": true,
+    "display_only": false,
+    "display_as": null,
+    "operators": [
+      {
+        "description": "Bestows night vision. Base cost is one [Amethyst Dust](https://hexcasting.hexxy.media/v/0.11.4/1.0/en_us#items/amethyst) per 5 seconds.",
+        "inputs": "entity, number",
+        "outputs": null,
+        "book_url": "https://hexcasting.hexxy.media/v/0.11.4/1.0/en_us#patterns/great_spells/zeniths@hexcasting:potion/night_vision",
+        "mod_id": "hexcasting"
+      }
+    ]
+  },
+  "hexcasting:potion/absorption": {
+    "id": "hexcasting:potion/absorption",
+    "name": "Black Sun's Zenith",
+    "direction": "SOUTH_WEST",
+    "signature": "qqaawawaeqqdd",
+    "is_per_world": true,
+    "display_only": false,
+    "display_as": null,
+    "operators": [
+      {
+        "description": "Bestows absorption. Base cost is one [Amethyst Dust](https://hexcasting.hexxy.media/v/0.11.4/1.0/en_us#items/amethyst) per second.",
+        "inputs": "entity, number, number",
+        "outputs": null,
+        "book_url": "https://hexcasting.hexxy.media/v/0.11.4/1.0/en_us#patterns/great_spells/zeniths@hexcasting:potion/absorption",
+        "mod_id": "hexcasting"
+      }
+    ]
+  },
+  "hexcasting:potion/haste": {
+    "id": "hexcasting:potion/haste",
+    "name": "Red Sun's Zenith",
+    "direction": "SOUTH_EAST",
+    "signature": "qaawawaeqqqdd",
+    "is_per_world": true,
+    "display_only": false,
+    "display_as": null,
+    "operators": [
+      {
+        "description": "Bestows haste. Base cost is one [Amethyst Dust](https://hexcasting.hexxy.media/v/0.11.4/1.0/en_us#items/amethyst) per 3 seconds.",
+        "inputs": "entity, number, number",
+        "outputs": null,
+        "book_url": "https://hexcasting.hexxy.media/v/0.11.4/1.0/en_us#patterns/great_spells/zeniths@hexcasting:potion/haste",
+        "mod_id": "hexcasting"
+      }
+    ]
+  },
+  "hexcasting:potion/strength": {
+    "id": "hexcasting:potion/strength",
+    "name": "Green Sun's Zenith",
+    "direction": "EAST",
+    "signature": "aawawaeqqqqdd",
+    "is_per_world": true,
+    "display_only": false,
+    "display_as": null,
+    "operators": [
+      {
+        "description": "Bestows strength. Base cost is one [Amethyst Dust](https://hexcasting.hexxy.media/v/0.11.4/1.0/en_us#items/amethyst) per 3 seconds.",
+        "inputs": "entity, number, number",
+        "outputs": null,
+        "book_url": "https://hexcasting.hexxy.media/v/0.11.4/1.0/en_us#patterns/great_spells/zeniths@hexcasting:potion/strength",
+        "mod_id": "hexcasting"
+      }
+    ]
+  },
+  "hexcasting:lightning": {
+    "id": "hexcasting:lightning",
+    "name": "Summon Lightning",
+    "direction": "EAST",
+    "signature": "waadwawdaaweewq",
+    "is_per_world": true,
+    "display_only": false,
+    "display_as": null,
+    "operators": [
+      {
+        "description": "I command the heavens! This spell will summon a bolt of lightning to strike the earth where I direct it. Costs about three [Amethyst Shards](https://hexcasting.hexxy.media/v/0.11.4/1.0/en_us#items/amethyst).",
+        "inputs": "vector",
+        "outputs": null,
+        "book_url": "https://hexcasting.hexxy.media/v/0.11.4/1.0/en_us#patterns/great_spells/weather_manip@hexcasting:lightning",
+        "mod_id": "hexcasting"
+      }
+    ]
+  },
+  "hexcasting:flight": {
+    "id": "hexcasting:flight",
+    "name": "Altiora",
+    "direction": "NORTH_WEST",
+    "signature": "eawwaeawawaa",
+    "is_per_world": true,
+    "display_only": false,
+    "display_as": null,
+    "operators": [
+      {
+        "description": "Summon a sheaf of media about me in the shape of wings, endowed with enough substance to allow gliding.",
+        "inputs": "player",
+        "outputs": null,
+        "book_url": "https://hexcasting.hexxy.media/v/0.11.4/1.0/en_us#patterns/great_spells/altiora@hexcasting:flight",
+        "mod_id": "hexcasting"
+      }
+    ]
+  },
+  "hexcasting:create_lava": {
+    "id": "hexcasting:create_lava",
+    "name": "Create Lava",
+    "direction": "EAST",
+    "signature": "eaqawqadaqd",
+    "is_per_world": true,
+    "display_only": false,
+    "display_as": null,
+    "operators": [
+      {
+        "description": "Summon a block of lava (or insert up to a bucket's worth) into a block at the given position. Costs about one [Charged Amethyst](https://hexcasting.hexxy.media/v/0.11.4/1.0/en_us#items/amethyst).",
+        "inputs": "vector",
+        "outputs": null,
+        "book_url": "https://hexcasting.hexxy.media/v/0.11.4/1.0/en_us#patterns/great_spells/create_lava@hexcasting:create_lava",
+        "mod_id": "hexcasting"
+      }
+    ]
+  },
+  "hexcasting:teleport/great": {
+    "id": "hexcasting:teleport/great",
+    "name": "Greater Teleport",
+    "direction": "EAST",
+    "signature": "wwwqqqwwwqqeqqwwwqqwqqdqqqqqdqq",
+    "is_per_world": true,
+    "display_only": false,
+    "display_as": null,
+    "operators": [
+      {
+        "description": "Far more powerful than [Blink](https://hexcasting.hexxy.media/v/0.11.4/1.0/en_us#patterns/spells/basic@hexcasting:blink), this spell lets me teleport an entity to anywhere in the entire world! No matter the distance, it always seems to cost about ten [Charged Amethyst](https://hexcasting.hexxy.media/v/0.11.4/1.0/en_us#items/amethyst).",
+        "inputs": "entity, vector",
+        "outputs": null,
+        "book_url": "https://hexcasting.hexxy.media/v/0.11.4/1.0/en_us#patterns/great_spells/teleport@hexcasting:teleport/great",
+        "mod_id": "hexcasting"
+      }
+    ]
+  },
+  "hexcasting:sentinel/create/great": {
+    "id": "hexcasting:sentinel/create/great",
+    "name": "Summon Greater Sentinel",
+    "direction": "EAST",
+    "signature": "waeawaeqqqwqwqqwq",
+    "is_per_world": true,
+    "display_only": false,
+    "display_as": null,
+    "operators": [
+      {
+        "description": "Summon a greater version of my [Sentinel](https://hexcasting.hexxy.media/v/0.11.4/1.0/en_us#patterns/spells/sentinels). Costs about two [Amethyst Dust](https://hexcasting.hexxy.media/v/0.11.4/1.0/en_us#items/amethyst).",
+        "inputs": "vector",
+        "outputs": null,
+        "book_url": "https://hexcasting.hexxy.media/v/0.11.4/1.0/en_us#patterns/great_spells/greater_sentinel@hexcasting:sentinel/create/great",
+        "mod_id": "hexcasting"
+      }
+    ]
+  },
+  "hexcasting:dispel_rain": {
+    "id": "hexcasting:dispel_rain",
+    "name": "Dispel Rain",
+    "direction": "EAST",
+    "signature": "eeewwweeewwaqqddqdqd",
+    "is_per_world": true,
+    "display_only": false,
+    "display_as": null,
+    "operators": [
+      {
+        "description": "A counterpart to summoning rain. This spell will dispel rain across the world I cast it upon. Costs about one [Amethyst Shard](https://hexcasting.hexxy.media/v/0.11.4/1.0/en_us#items/amethyst). Does nothing if the skies are already clear.",
+        "inputs": null,
+        "outputs": null,
+        "book_url": "https://hexcasting.hexxy.media/v/0.11.4/1.0/en_us#patterns/great_spells/weather_manip@hexcasting:dispel_rain",
+        "mod_id": "hexcasting"
+      }
+    ]
+  },
+  "hexcasting:summon_rain": {
+    "id": "hexcasting:summon_rain",
+    "name": "Summon Rain",
+    "direction": "WEST",
+    "signature": "wwweeewwweewdawdwad",
+    "is_per_world": true,
+    "display_only": false,
+    "display_as": null,
+    "operators": [
+      {
+        "description": "I control the clouds! This spell will summon rain across the world I cast it upon. Costs about one [Charged Amethyst](https://hexcasting.hexxy.media/v/0.11.4/1.0/en_us#items/amethyst). Does nothing if it is already raining.",
+        "inputs": null,
+        "outputs": null,
+        "book_url": "https://hexcasting.hexxy.media/v/0.11.4/1.0/en_us#patterns/great_spells/weather_manip@hexcasting:summon_rain",
+        "mod_id": "hexcasting"
+      }
+    ]
+  },
+  "hexcasting:brainsweep": {
+    "id": "hexcasting:brainsweep",
+    "name": "Flay Mind",
+    "direction": "NORTH_EAST",
+    "signature": "qeqwqwqwqwqeqaeqeaqeqaeqaqded",
+    "is_per_world": true,
+    "display_only": false,
+    "display_as": null,
+    "operators": [
+      {
+        "description": "I cannot make heads or tails of this spell... To be honest, I'm not sure I want to know what it does.",
+        "inputs": "entity, vector",
+        "outputs": null,
+        "book_url": "https://hexcasting.hexxy.media/v/0.11.4/1.0/en_us#patterns/great_spells/brainsweep@hexcasting:brainsweep",
+        "mod_id": "hexcasting"
+      }
+    ]
+  },
+  "complexhex:summonblockdisplay": {
+    "id": "complexhex:summonblockdisplay",
+    "name": "Summon Block Display",
+    "direction": "SOUTH_EAST",
+    "signature": "wqwqwqwqwqwawqaqqqqqe",
+    "is_per_world": true,
+    "display_only": false,
+    "display_as": null,
+    "operators": [
+      {
+        "description": "Summons a Block Display entity at the given position, displaying the given block. (The string must be the internal name i.e \"minecraft:dirt\", not \"Dirt\").\nCosts about a [Charged Amethyst](https://hexcasting.hexxy.media/v/0.11.4/1.0/en_us#items/amethyst)",
+        "inputs": "vector, string",
+        "outputs": null,
+        "book_url": "http://complexhex.hexxy.media/v/latest/0.1.x/en_us#patterns/great_spells/bits@complexhex:summonblockdisplay",
+        "mod_id": "complexhex"
+      }
+    ]
+  },
+  "complexhex:summonitemdisplay": {
+    "id": "complexhex:summonitemdisplay",
+    "name": "Summon Item Display",
+    "direction": "SOUTH_EAST",
+    "signature": "wqwqwqwqwqwaqedeaaedeq",
+    "is_per_world": true,
+    "display_only": false,
+    "display_as": null,
+    "operators": [
+      {
+        "description": "Summons an Item Display entity at the given position, displaying the given item (The string must be the internal name i.e \"minecraft:stick\", not \"Stick\").\nCosts about a [Charged Amethyst](https://hexcasting.hexxy.media/v/0.11.4/1.0/en_us#items/amethyst)",
+        "inputs": "vector, string",
+        "outputs": null,
+        "book_url": "http://complexhex.hexxy.media/v/latest/0.1.x/en_us#patterns/great_spells/bits@complexhex:summonitemdisplay",
+        "mod_id": "complexhex"
+      }
+    ]
+  },
+  "complexhex:summontextdisplay": {
+    "id": "complexhex:summontextdisplay",
+    "name": "Summon Text Display",
+    "direction": "SOUTH_EAST",
+    "signature": "wqwqwqwqwqwawaaqawdeddw",
+    "is_per_world": true,
+    "display_only": false,
+    "display_as": null,
+    "operators": [
+      {
+        "description": "Summons a Text Display entity at the given position, displaying the given string. Costs about a [Charged Amethyst](https://hexcasting.hexxy.media/v/0.11.4/1.0/en_us#items/amethyst)",
+        "inputs": "vector, string",
+        "outputs": null,
+        "book_url": "http://complexhex.hexxy.media/v/latest/0.1.x/en_us#patterns/great_spells/bits@complexhex:summontextdisplay",
+        "mod_id": "complexhex"
+      }
+    ]
+  },
+  "dthexcasting:transform": {
+    "id": "dthexcasting:transform",
+    "name": "Transform",
+    "direction": "NORTH_EAST",
+    "signature": "wqaqwqwqaqwqwqaqwqwqaqwqwqaqwqwqaqw",
+    "is_per_world": true,
+    "display_only": false,
+    "display_as": null,
+    "operators": [
+      {
+        "description": "Provided a tree's position, I can command Nature to change the very Species of the tree till my heart's content, provided I have the media equivalent of a Shard per character in the string which defines its' structure.",
+        "inputs": "pos, species",
+        "outputs": null,
+        "book_url": "https://techtastic.github.io/DynamicTrees-Hexcasting/v/1.0.2/1.0/en_us#patterns/spells/tree_spells@dthexcasting:transform",
+        "mod_id": "dthexcasting"
+      }
+    ]
+  },
+  "ephemera:invisibility": {
+    "id": "ephemera:invisibility",
+    "name": "Hidden Sun's Zenith",
+    "direction": "SOUTH_WEST",
+    "signature": "qqqqqaewawaweqa",
+    "is_per_world": true,
+    "display_only": false,
+    "display_as": null,
+    "operators": [
+      {
+        "description": "Functions just like the normal [Zeniths](https://hexcasting.hexxy.media/v/0.11.4/1.0/en_us#patterns/great_spells/zeniths), applying Invisibility. Costs one amethyst dust per three seconds.",
+        "inputs": "entity, num",
+        "outputs": null,
+        "book_url": "https://ephemera.hexxy.media/v/latest/1.20.1/en_us#patterns/spells/great/invisibility@ephemera:invisibility",
+        "mod_id": "ephemera"
+      }
+    ]
+  },
+  "ephemera:magearmor": {
+    "id": "ephemera:magearmor",
+    "name": "Instant Aegis",
+    "direction": "NORTH_WEST",
+    "signature": "qaweqqwqqewaqeqqqqqad",
+    "is_per_world": true,
+    "display_only": false,
+    "display_as": null,
+    "operators": [
+      {
+        "description": "Accepts a player to grant the armor to, the durability of the armor, the protection value of the armor (max 10), a status effect to apply, and that effect's level. The latter two can be replaced with any non-status iota to ignore them.",
+        "inputs": "entity, num, num, status, num",
+        "outputs": null,
+        "book_url": "https://ephemera.hexxy.media/v/latest/1.20.1/en_us#patterns/spells/great/magearmor@ephemera:magearmor",
+        "mod_id": "ephemera"
+      }
+    ]
+  },
+  "ephemera:repair": {
+    "id": "ephemera:repair",
+    "name": "Induce Mending",
+    "direction": "WEST",
+    "signature": "waqdqqwqqdqawwqqqqqaqedeq",
+    "is_per_world": true,
+    "display_only": false,
+    "display_as": null,
+    "operators": [
+      {
+        "description": "Accepts a raw media item on the ground, and attempts to use it to repair a tool in my other hand.",
+        "inputs": "entity",
+        "outputs": null,
+        "book_url": "https://ephemera.hexxy.media/v/latest/1.20.1/en_us#patterns/spells/great/mending@ephemera:repair",
+        "mod_id": "ephemera"
+      }
+    ]
+  },
+  "hexkeys:write_noetic_bookshelf": {
+    "id": "hexkeys:write_noetic_bookshelf",
+    "name": "Mnemosyne’s Gambit",
+    "direction": "EAST",
+    "signature": "wqwawqwqwqwqwqawewdwewa",
+    "is_per_world": true,
+    "display_only": false,
+    "display_as": null,
+    "operators": [
+      {
+        "description": "Write a list to an empty noetic bookshelf. Also converts akashic shelves to noetic (This is how you get noetic shelves)",
+        "inputs": "vec|noetic shelf, list",
+        "outputs": null,
+        "book_url": "http://hexkeys.munebase.dev/v/0.1.6/1.0.dev0/en_us#patterns/great_spells/hexkeys_noetic_bookshelves@hexkeys:write_noetic_bookshelf",
+        "mod_id": "hexkeys"
+      }
+    ]
+  },
+  "hexkeys:create_library_key": {
+    "id": "hexkeys:create_library_key",
+    "name": "Morpheus's Reflection",
+    "direction": "WEST",
+    "signature": "ewdwewdeewdwewdewewdwe",
+    "is_per_world": true,
+    "display_only": false,
+    "display_as": null,
+    "operators": [
+      {
+        "description": "",
+        "inputs": null,
+        "outputs": "Library Key",
+        "book_url": "http://hexkeys.munebase.dev/v/0.1.6/1.0.dev0/en_us#patterns/great_spells/hexkeys_visit_mindscape@hexkeys:create_library_key",
+        "mod_id": "hexkeys"
+      }
+    ]
+  },
+  "hexkeys:kleins_chest": {
+    "id": "hexkeys:kleins_chest",
+    "name": "Klein's Chest",
+    "direction": "SOUTH_EAST",
+    "signature": "eawaeawqawwawqq",
+    "is_per_world": true,
+    "display_only": false,
+    "display_as": null,
+    "operators": [
+      {
+        "description": "The cost of using this mental storage is an amethyst shard plus a quarter of an amethyst dust per slot filled. It takes a surprisingly large amount of mental energy to recall things that shouldn't be there in the first place.",
+        "inputs": null,
+        "outputs": null,
+        "book_url": "http://hexkeys.munebase.dev/v/0.1.6/1.0.dev0/en_us#patterns/great_spells/hexkeys_kliens_chest@hexkeys:kleins_chest",
+        "mod_id": "hexkeys"
+      }
+    ]
+  },
+  "hexways:onewayportal": {
+    "id": "hexways:onewayportal",
+    "name": "Summon 1 Way Portal",
+    "direction": "EAST",
+    "signature": "awqwqwadadadaadadaqwdee",
+    "is_per_world": true,
+    "display_only": false,
+    "display_as": null,
+    "operators": [
+      {
+        "description": "Accepts the arguments of 2-way portal, but constructs a portal restricted to unilateral traversal. Strangely, Nature offers no discount for this lesser portal.",
+        "inputs": "vec, vec, vec, num",
+        "outputs": null,
+        "book_url": "https://shadowcube264.github.io/hexways-1.20.1/v/1.0.1/1.0/en_us#patterns/spells/hexways@hexways:onewayportal",
+        "mod_id": "hexways"
+      }
+    ]
+  },
+  "hexways:twowayportal": {
+    "id": "hexways:twowayportal",
+    "name": "Summon 2 Way Portal",
+    "direction": "WEST",
+    "signature": "wdeeqawqwqwadeaqadeaedaqae",
+    "is_per_world": true,
+    "display_only": false,
+    "display_as": null,
+    "operators": [
+      {
+        "description": "Accepts a vector for the portal's input, one for output, a third for rotation, and a number for its initial radius. Costs increase logarithmically with distance.",
+        "inputs": "vec, vec, vec, num",
+        "outputs": null,
+        "book_url": "https://shadowcube264.github.io/hexways-1.20.1/v/1.0.1/1.0/en_us#patterns/spells/hexways@hexways:twowayportal",
+        "mod_id": "hexways"
+      }
+    ]
+  },
+  "hex_ars_link:cast_spell_as": {
+    "id": "hex_ars_link:cast_spell_as",
+    "name": "Delegated Spell",
+    "direction": "NORTH_WEST",
+    "signature": "aqaeqwaawewaawdwawwawwqwwawwwded",
+    "is_per_world": true,
+    "display_only": false,
+    "display_as": null,
+    "operators": [
+      {
+        "description": "Cast the given spell from the given TrueName.\nCosts 1 charged crystal for each glyph used.",
+        "inputs": "player, [glyph]",
+        "outputs": null,
+        "book_url": "http://hexarslink.hexxy.media/v/0.9.5.1/1.1/en_us#hex_ars_link/glyph_patterns@hex_ars_link:cast_spell_as",
+        "mod_id": "hex_ars_link"
+      }
+    ]
+  },
+  "hexflow:for_range/floodfill": {
+    "id": "hexflow:for_range/floodfill",
+    "name": "Ultimine's Gambit",
+    "direction": "NORTH_EAST",
+    "signature": "dadadqadadwdadadwdadaddwwawwaadaddwaaddad",
+    "is_per_world": true,
+    "display_only": false,
+    "display_as": null,
+    "operators": [
+      {
+        "description": "Executes given list on each point as initial iota which is connected with given points with the same block type, and within casting ambit.",
+        "inputs": "list, vec(, int(, int))",
+        "outputs": "list",
+        "book_url": "http://hexflow.hexxy.media/v/0.6.0/1.0.1/en_us#hexflow_thoth@hexflow:for_range/floodfill",
+        "mod_id": "hexflow"
+      }
+    ]
+  },
+  "hexflow:for_range/floodfill/pure": {
+    "id": "hexflow:for_range/floodfill/pure",
+    "name": "Pure Ultimine's Gambit",
+    "direction": "NORTH_EAST",
+    "signature": "dadadadqadadwdadadwdadaddwwawwaadaddwaaddad",
+    "is_per_world": true,
+    "display_only": false,
+    "display_as": null,
+    "operators": [
+      {
+        "description": "Everything the same, except that original stack isn't copied into each sub-executions.",
+        "inputs": "list, vec(, int(, int))",
+        "outputs": "list",
+        "book_url": "http://hexflow.hexxy.media/v/0.6.0/1.0.1/en_us#hexflow_thoth@hexflow:for_range/floodfill/pure",
+        "mod_id": "hexflow"
+      }
+    ]
+  },
+  "hexmapping:set_marker": {
+    "id": "hexmapping:set_marker",
+    "name": "Set Marker",
+    "direction": "NORTH_EAST",
+    "signature": "aawwaawqaawwaaw",
+    "is_per_world": true,
+    "display_only": false,
+    "display_as": null,
+    "operators": [
+      {
+        "description": "Adds the provided marker to the map under the provided identifier\nAmbit validation is done here",
+        "inputs": "map, marker",
+        "outputs": null,
+        "book_url": "https://techtastic.github.io/HexMapping/v/0.0.3/1.0.dev0/en_us#patterns/spells/marker_spells@hexmapping:set_marker",
+        "mod_id": "hexmapping"
+      }
+    ]
+  },
+  "hexmapping:remove_marker": {
+    "id": "hexmapping:remove_marker",
+    "name": "Remove Marker",
+    "direction": "NORTH_EAST",
+    "signature": "wddweddwwddwedd",
+    "is_per_world": true,
+    "display_only": false,
+    "display_as": null,
+    "operators": [
+      {
+        "description": "Removed the marker on the map under the provided identifier",
+        "inputs": "map, str",
+        "outputs": null,
+        "book_url": "https://techtastic.github.io/HexMapping/v/0.0.3/1.0.dev0/en_us#patterns/spells/marker_spells@hexmapping:remove_marker",
+        "mod_id": "hexmapping"
+      }
+    ]
+  },
+  "hexoverpowered:yjsp_media": {
+    "id": "hexoverpowered:yjsp_media",
+    "name": "YJSP's Charge Media",
+    "direction": "NORTH_EAST",
+    "signature": "eaddaddaeaeaddaddaeaeaddaddae",
+    "is_per_world": true,
+    "display_only": false,
+    "display_as": null,
+    "operators": [
+      {
+        "description": "Charges the current casting environment to an equivalent of **114514** amethyst dust media.",
+        "inputs": null,
+        "outputs": null,
+        "book_url": "http://hexoverpowered.hexxy.media/v/0.12.1/1.1/en_us#pages@hexoverpowered:yjsp_media",
+        "mod_id": "hexoverpowered"
+      }
+    ]
+  },
+  "hexoverpowered:factor_cut": {
+    "id": "hexoverpowered:factor_cut",
+    "name": "Factor Cut",
+    "direction": "WEST",
+    "signature": "waawaawawdeddwaaqawdwddwddw",
+    "is_per_world": true,
+    "display_only": false,
+    "display_as": null,
+    "operators": [
+      {
+        "description": "Factorize enemy's health as integer with input number, with higher efficiency using prime factors.\nUsage 1: **living -> int** reads a living entity's health as an integer to be factorized; ...",
+        "inputs": "living | living, int",
+        "outputs": "int",
+        "book_url": "http://hexoverpowered.hexxy.media/v/0.12.1/1.1/en_us#pages@hexoverpowered:factor_cut",
+        "mod_id": "hexoverpowered"
+      }
+    ]
+  },
+  "hexparse:compile": {
+    "id": "hexparse:compile",
+    "name": "Compile",
+    "direction": "EAST",
+    "signature": "aqqqqqeawqwqwqwqwqwdeweweqeweweqewewe",
+    "is_per_world": true,
+    "display_only": false,
+    "display_as": null,
+    "operators": [
+      {
+        "description": "Compiles accepted string iota into an iota list; has no effect if **MoreIotas** not installed.",
+        "inputs": "str",
+        "outputs": "list",
+        "book_url": "http://hexparse.hexxy.media/v/1.11.2/1.1/en_us#patterns/hexparse@hexparse:compile",
+        "mod_id": "hexparse"
+      }
+    ]
+  },
+  "hextweaks:infusion": {
+    "id": "hextweaks:infusion",
+    "name": "Infuse Will",
+    "direction": "SOUTH_WEST",
+    "signature": "waawaawaqwaeaeaeaeaea",
+    "is_per_world": true,
+    "display_only": false,
+    "display_as": null,
+    "operators": [
+      {
+        "description": "Takes a pattern and makes it unique to me by injecting patterns that I cannot draw by hand\nalso seems to put more power into certain spells",
+        "inputs": "pattern",
+        "outputs": "pattern",
+        "book_url": "https://walksanatora.github.io/HexTweaks/v/5.3.3/1.0.dev0/en_us#patterns/great_spells/infusion@hextweaks:infusion",
+        "mod_id": "hextweaks"
+      }
+    ]
+  },
+  "hexal:wisp/consume": {
+    "id": "hexal:wisp/consume",
+    "name": "Consume Wisp",
+    "direction": "NORTH_WEST",
+    "signature": "wawqwawwwewwwewwwawqwawwwewwwewdeaweewaqaweewaawwww",
+    "is_per_world": true,
+    "display_only": false,
+    "display_as": null,
+    "operators": [
+      {
+        "description": "Remove a wisp from the stack, and disassemble the wisp. The patterns contained are lost, but the media that it contained can be repurposed if this spell is cast by another wisp.",
+        "inputs": "entity",
+        "outputs": null,
+        "book_url": "https://hexal.hexxy.media/v/0.3.1/1.0/en_us#patterns/great_spells/great_wisps@hexal:wisp/consume",
+        "mod_id": "hexal"
+      }
+    ]
+  },
+  "hexal:wisp/seon/set": {
+    "id": "hexal:wisp/seon/set",
+    "name": "Bind Wisp",
+    "direction": "SOUTH_WEST",
+    "signature": "aqweewqaeaqweewqaqwww",
+    "is_per_world": true,
+    "display_only": false,
+    "display_as": null,
+    "operators": [
+      {
+        "description": "Bind one of my wisps closer to me; I may only have one bound wisp at a time, but whichever wisp is bound costs significantly less upkeep and increased range.",
+        "inputs": "entity",
+        "outputs": null,
+        "book_url": "https://hexal.hexxy.media/v/0.3.1/1.0/en_us#patterns/great_spells/great_wisps@hexal:wisp/seon/set",
+        "mod_id": "hexal"
+      }
+    ]
+  },
+  "hexal:tick": {
+    "id": "hexal:tick",
+    "name": "Accelerate",
+    "direction": "SOUTH_EAST",
+    "signature": "wwwdwdwwwawqqeqwqqwqeqwqq",
+    "is_per_world": true,
+    "display_only": false,
+    "display_as": null,
+    "operators": [
+      {
+        "description": "Causes the block at the passed vector to perform its normal actions faster in the instant that this spell is cast.",
+        "inputs": "vec",
+        "outputs": null,
+        "book_url": "https://hexal.hexxy.media/v/0.3.1/1.0/en_us#patterns/great_spells/tick@hexal:tick",
+        "mod_id": "hexal"
+      }
+    ]
+  },
+  "hexal:gate/make": {
+    "id": "hexal:gate/make",
+    "name": "Gate's Reflection",
+    "direction": "WEST",
+    "signature": "qwqwqwqwqwqqeaeaeaeaeae",
+    "is_per_world": true,
+    "display_only": false,
+    "display_as": null,
+    "operators": [
+      {
+        "description": "Adds a new gate iota to the stack. Any copy of this iota will point to the same numbered gate. Costs 32 [Charged Amethyst](https://hexcasting.hexxy.media/v/0.11.4/1.0/en_us#items/amethyst). If passed null, makes a Drifting Gate. If passed a vector, makes a Location Anchored Gate, If passed a vector and an entity, makes an Entity Anchored Gate.",
+        "inputs": "null | vec | vec, entity",
+        "outputs": "gate",
+        "book_url": "https://hexal.hexxy.media/v/0.3.1/1.0/en_us#patterns/great_spells/gates@hexal:gate/make",
+        "mod_id": "hexal"
+      }
+    ]
+  },
+  "hexic:attachworld": {
+    "id": "hexic:attachworld",
+    "name": "Bind Demiplane",
+    "direction": "EAST",
+    "signature": "qaaqqwaeddeawqqaaqawwwawwwwwwwqwwwawwwqwwwwwwwawwwaqaaqqwaeddeawqqaaq",
+    "is_per_world": true,
+    "display_only": false,
+    "display_as": null,
+    "operators": [
+      {
+        "description": "Binds the given demiplane to a position in my current dimension (which must not be the demiplane itself). This position is used when exiting the demiplane, as well as in case of any *unfortunate accidents*. Costs one shard.",
+        "inputs": "imprint, vec",
+        "outputs": null,
+        "book_url": "https://files.pool.net.eu.org/docs/hexic/v/2.1.1/1.0/en_us#addon/hexic/world@hexic:attachworld",
+        "mod_id": "hexic"
+      }
+    ]
+  },
+  "hexic:deleteworld": {
+    "id": "hexic:deleteworld",
+    "name": "Shatter Demiplane",
+    "direction": "EAST",
+    "signature": "qaaqqwaeddeawqqaaqawwwawwwwwwwaqaaqqwaeddeawqqaaqawwwwwwwawwwaqaaqqwaeddeawqqaaq",
+    "is_per_world": true,
+    "display_only": false,
+    "display_as": null,
+    "operators": [
+      {
+        "description": "Ruptures the boundaries of the given demiplane, destroying its contents. All dropped items and experience are spewed at the plane's attachment point. Costs five shards.",
+        "inputs": "imprint",
+        "outputs": null,
+        "book_url": "https://files.pool.net.eu.org/docs/hexic/v/2.1.1/1.0/en_us#addon/hexic/world@hexic:deleteworld",
+        "mod_id": "hexic"
+      }
+    ]
+  },
+  "hexic:makeworld": {
+    "id": "hexic:makeworld",
+    "name": "Conjure Demiplane",
+    "direction": "EAST",
+    "signature": "qaaqqwaeddeawqqaaqqwwwaeddeewdqaaqdweeddeawwwqqaaqqwaeddeawqqaaqawwwwwwwawwwwwww",
+    "is_per_world": true,
+    "display_only": false,
+    "display_as": null,
+    "operators": [
+      {
+        "description": "Creates a fresh cuboid with a 9x9x9 interior, as well as a dimension to hold it in. Costs six quenched allays (720 dust).",
+        "inputs": null,
+        "outputs": "imprint",
+        "book_url": "https://files.pool.net.eu.org/docs/hexic/v/2.1.1/1.0/en_us#addon/hexic/world@hexic:makeworld",
+        "mod_id": "hexic"
+      }
+    ]
+  },
+  "hexic:moveentity": {
+    "id": "hexic:moveentity",
+    "name": "Transfer Creature",
+    "direction": "SOUTH_EAST",
+    "signature": "edeeewawdweaaddaqwqwqaddaaewdwawewdqd",
+    "is_per_world": true,
+    "display_only": false,
+    "display_as": null,
+    "operators": []
+  },
+  "hexical:promote_lamp": {
+    "id": "hexical:promote_lamp",
+    "name": "Promote Lamp",
+    "direction": "WEST",
+    "signature": "qweedeqeedeqdqdwewewwewewwewe",
+    "is_per_world": true,
+    "display_only": false,
+    "display_as": null,
+    "operators": [
+      {
+        "description": "Hold the lamp in my other hand and cast. Costs about ten [Charged Amethyst](https://hexcasting.hexxy.media/v/0.11.4/1.0/en_us#items/amethyst) and requires the sacrifice.",
+        "inputs": "entity",
+        "outputs": null,
+        "book_url": "https://hexical.hexxy.media/v/latest/main/en_us#lamp/genie_lore@hexical:promote_lamp",
+        "mod_id": "hexical"
+      }
+    ]
+  },
+  "hexical:charm": {
+    "id": "hexical:charm",
+    "name": "Charm",
+    "direction": "SOUTH_EAST",
+    "signature": "edeeeeeqaaqeeeadweeqeeqdqeeqeeqde",
+    "is_per_world": true,
+    "display_only": false,
+    "display_as": null,
+    "operators": [
+      {
+        "description": "Charms an item. Takes the item to charm, the Hex, and an amount of media in [Amethyst Dust](https://hexcasting.hexxy.media/v/0.11.4/1.0/en_us#items/amethyst). Consumes that amount and about three [Charged Amethyst](https://hexcasting.hexxy.media/v/0.11.4/1.0/en_us#items/amethyst).",
+        "inputs": "entity, list, num, list of num, list of num",
+        "outputs": null,
+        "book_url": "https://hexical.hexxy.media/v/latest/main/en_us#patterns/great_spells/charm@hexical:charm",
+        "mod_id": "hexical"
+      }
+    ]
+  },
+  "hexical:greater_blink": {
+    "id": "hexical:greater_blink",
+    "name": "Greater Blink",
+    "direction": "SOUTH_WEST",
+    "signature": "wqawawaqwqwqawawaqw",
+    "is_per_world": true,
+    "display_only": false,
+    "display_as": null,
+    "operators": [
+      {
+        "description": "Teleports me up to 128 blocks away, relative to my position and rotation. Costs about two [Amethyst Dust](https://hexcasting.hexxy.media/v/0.11.4/1.0/en_us#items/amethyst).",
+        "inputs": "vector",
+        "outputs": null,
+        "book_url": "https://hexical.hexxy.media/v/latest/main/en_us#patterns/great_spells/greater_blink@hexical:greater_blink",
+        "mod_id": "hexical"
+      }
+    ]
+  },
+  "hexical:conjure_mesh": {
+    "id": "hexical:conjure_mesh",
+    "name": "Conjure Mesh",
+    "direction": "EAST",
+    "signature": "qaqqqqqwqqqdeeweweeaeewewee",
+    "is_per_world": true,
+    "display_only": false,
+    "display_as": null,
+    "operators": [
+      {
+        "description": "Conjures a mesh with the location and leaves a mesh entity on the stack. Costs about one [Amethyst Dust](https://hexcasting.hexxy.media/v/0.11.4/1.0/en_us#items/amethyst).",
+        "inputs": "vector",
+        "outputs": "entity",
+        "book_url": "https://hexical.hexxy.media/v/latest/main/en_us#patterns/great_spells/meshes@hexical:conjure_mesh",
+        "mod_id": "hexical"
+      }
+    ]
+  },
+  "hexssence:analyze_essence": {
+    "id": "hexssence:analyze_essence",
+    "name": "Analysis",
+    "direction": "EAST",
+    "signature": "aqqqqqwaeaeaeaeaea",
+    "is_per_world": true,
+    "display_only": false,
+    "display_as": null,
+    "operators": [
+      {
+        "description": "Remove an item entity, then add an iota representing the combination recipe for that item to the stack.\nSuccessful analyses tear the item apart.\nMishaps if target does not have a valid combination recipe.\nCosts 5 Charged Amethyst.",
+        "inputs": "entity",
+        "outputs": "recipe",
+        "book_url": "http://hexssence.hexxy.media/v/0.1.3+1.20.1/1.0/en_us#patterns/great_spells/recipe_analysis@hexssence:analyze_essence",
+        "mod_id": "hexssence"
+      }
+    ]
+  },
+  "hexdim:dim/create": {
+    "id": "hexdim:dim/create",
+    "name": "Everett's Exaltation",
+    "direction": "SOUTH_WEST",
+    "signature": "wawdwawawdwawawdwewdwqwdwqwdwqwdwqwdwqwdw",
+    "is_per_world": true,
+    "display_only": false,
+    "display_as": null,
+    "operators": [
+      {
+        "description": "Creates a new room for me",
+        "inputs": "num, num, num",
+        "outputs": "room",
+        "book_url": "https://walksanatora.github.io/hexxy-dimensions/v/1.2.1/1.20.0/en_us#patterns/great_spells/dimension@hexdim:dim/create",
+        "mod_id": "hexdim"
+      }
+    ]
+  },
+  "hexxyplanes:enter_plane": {
+    "id": "hexxyplanes:enter_plane",
+    "name": "Planar Intrusion",
+    "direction": "NORTH_EAST",
+    "signature": "dwawdeewedwwqqqwwqq",
+    "is_per_world": true,
+    "display_only": false,
+    "display_as": null,
+    "operators": [
+      {
+        "description": "Sends the target to the provided hexplane. Costs 5 charged amethyst if the target is not already in a hexplane, and 5 dust otherwise.",
+        "inputs": "plane, entity",
+        "outputs": null,
+        "book_url": "https://real-septicake.github.io/HexxyPlanes/v/0.2.3+1.20.1/1.0/en_us#patterns/spells/hexplane@hexxyplanes:enter_plane",
+        "mod_id": "hexxyplanes"
+      }
+    ]
+  },
+  "oneironaut:dimteleport": {
+    "id": "oneironaut:dimteleport",
+    "name": "Noetic Gateway",
+    "direction": "NORTH_EAST",
+    "signature": "qeewwwweeqeqeewwwweeqdqqdwwwdqeqdwwwdqdadwwdqdwwddadaqadaawww",
+    "is_per_world": true,
+    "display_only": false,
+    "display_as": null,
+    "operators": [
+      {
+        "description": "Accepts an entity and a Spatial Imprint and teleports the entity to its position in the proper dimension. Generally costs 20 Charged Amethyst.\nWill fail if supplied a player other than myself.",
+        "inputs": "Entity, Imprint",
+        "outputs": null,
+        "book_url": "https://oneironaut.hexxy.media/v/latest/1.20.1/en_us#patterns/spells/great/dim_teleport@oneironaut:dimteleport",
+        "mod_id": "oneironaut"
+      }
+    ]
+  },
+  "oneironaut:infusemedia": {
+    "id": "oneironaut:infusemedia",
+    "name": "Media Infusion",
+    "direction": "EAST",
+    "signature": "wwaqqqqqeqqqwwwqqeqqwwwqqweqadadadaqeqeqadadadaqe",
+    "is_per_world": true,
+    "display_only": false,
+    "display_as": null,
+    "operators": [
+      {
+        "description": "Accepts a vector and infuses media into the corresponding block in order to transmute it. Cost and exact effect vary depending on target.",
+        "inputs": "Vector",
+        "outputs": null,
+        "book_url": "https://oneironaut.hexxy.media/v/latest/1.20.1/en_us#patterns/spells/great/infusemedia@oneironaut:infusemedia",
+        "mod_id": "oneironaut"
+      }
+    ]
+  },
+  "oneironaut:swapspace": {
+    "id": "oneironaut:swapspace",
+    "name": "Spatial Interchange",
+    "direction": "EAST",
+    "signature": "wqqqwwwwwqqqwwwqdaqadwqqwdaqadweqeqqqqeqeqaqeqedeqeqa",
+    "is_per_world": true,
+    "display_only": false,
+    "display_as": null,
+    "operators": [
+      {
+        "description": "Accepts two lists of two vectors, to define two cuboids, and a Spatial Imprint. These cuboids must have the exact same dimensions and rotation.",
+        "inputs": "[vec, vec], [vec, vec], Imprint",
+        "outputs": null,
+        "book_url": "https://oneironaut.hexxy.media/v/latest/1.20.1/en_us#patterns/spells/great/swap_space@oneironaut:swapspace",
+        "mod_id": "oneironaut"
+      }
+    ]
+  },
+  "oneironaut:resistdetection": {
+    "id": "oneironaut:resistdetection",
+    "name": "Stealth Shroud",
+    "direction": "EAST",
+    "signature": "wawwwdwdwwaqqqqqe",
+    "is_per_world": true,
+    "display_only": false,
+    "display_as": null,
+    "operators": [
+      {
+        "description": "Accepts a living entity and a number (*n*), and shields the entity from hex-based detection for *n* seconds. Costs two amethyst dust per second.",
+        "inputs": "entity, number",
+        "outputs": null,
+        "book_url": "https://oneironaut.hexxy.media/v/latest/1.20.1/en_us#patterns/spells/great/detection_shielding@oneironaut:resistdetection",
+        "mod_id": "oneironaut"
+      }
+    ]
+  },
+  "oneironaut:applynotmissing": {
+    "id": "oneironaut:applynotmissing",
+    "name": "Uplifting Resonance",
+    "direction": "SOUTH_WEST",
+    "signature": "qdaeqeawaeqeadqqdeed",
+    "is_per_world": true,
+    "display_only": false,
+    "display_as": null,
+    "operators": [
+      {
+        "description": "Accepts a living entity, and allows it to be accessed from anywhere for one minute. Has a base cost of one amethyst shard, plus one additional shard per application before allowing it to expire.",
+        "inputs": "entity",
+        "outputs": null,
+        "book_url": "https://oneironaut.hexxy.media/v/latest/1.20.1/en_us#patterns/spells/great/glow_ambit@oneironaut:applynotmissing",
+        "mod_id": "oneironaut"
+      }
+    ]
+  },
+  "oneironaut:applymindrender": {
+    "id": "oneironaut:applymindrender",
+    "name": "Empower Mind Render",
+    "direction": "EAST",
+    "signature": "qweqadeqadeqadqqqwdaqedaqedaqeqaqdwawdwawdwaqawdwawdwawddwwwwwqdeddw",
+    "is_per_world": true,
+    "display_only": false,
+    "display_as": null,
+    "operators": [
+      {
+        "description": "Accepts an item or item frame bearing the Sharpness enchantment, and converts it into Mind Render of the same level. Cost is based on enchantment level, and increases by 50% if the item is a book.",
+        "inputs": "entity",
+        "outputs": null,
+        "book_url": "https://oneironaut.hexxy.media/v/latest/1.20.1/en_us#items/mindrender@oneironaut:applymindrender",
+        "mod_id": "oneironaut"
+      }
+    ]
+  },
+  "oneironaut:reviveflayed": {
+    "id": "oneironaut:reviveflayed",
+    "name": "Instill Psyche",
+    "direction": "NORTH_EAST",
+    "signature": "qeqwqqedeeeeeaqwqeqaqedqde",
+    "is_per_world": true,
+    "display_only": false,
+    "display_as": null,
+    "operators": [
+      {
+        "description": "Accepts a flayed mob, and creates an artifical pseudo-mind to inhabit its body. Costs 16 charged amethyst when used on a villager or allay, or 10 amethyst shards for anything else.",
+        "inputs": "entity",
+        "outputs": null,
+        "book_url": "https://oneironaut.hexxy.media/v/latest/1.20.1/en_us#greatwork/flayrevival@oneironaut:reviveflayed",
+        "mod_id": "oneironaut"
+      }
+    ]
+  },
+  "oneironaut:extradimensionaleval": {
+    "id": "oneironaut:extradimensionaleval",
+    "name": "Heimdall's Gambit",
+    "direction": "WEST",
+    "signature": "wqwqwqwqwqwaqdeaqqe",
+    "is_per_world": true,
+    "display_only": false,
+    "display_as": null,
+    "operators": [
+      {
+        "description": "A strange pattern that appears to be a variant of Hermes' Gambit. Accepts a spatial imprint and an executable iota, and attempts to cast the iota in the corresponding dimension.",
+        "inputs": "Imprint, executable",
+        "outputs": "many",
+        "book_url": "https://oneironaut.hexxy.media/v/latest/1.20.1/en_us#patterns/extradimensional_casting@oneironaut:extradimensionaleval",
+        "mod_id": "oneironaut"
+      }
+    ]
+  },
+  "oneironaut:erosionshield": {
+    "id": "oneironaut:erosionshield",
+    "name": "Stabilize Matter",
+    "direction": "WEST",
+    "signature": "wwqwwqwwqwwqwwqwwaeqwwqqqwwqaeadaqadaawww",
+    "is_per_world": true,
+    "display_only": false,
+    "display_as": null,
+    "operators": []
+  },
+  "slate_work:induce_restock": {
+    "id": "slate_work:induce_restock",
+    "name": "Induce Restock",
+    "direction": "SOUTH_WEST",
+    "signature": "eaqwqaeqwaeaeqqeaeawedaawqwawqa",
+    "is_per_world": true,
+    "display_only": false,
+    "display_as": null,
+    "operators": [
+      {
+        "description": "While digging amongst archives, I had oddly found this [Great Spell](https://hexcasting.hexxy.media/v/0.11.4/1.0/en_us#patterns/great_spells). It takes a position of a [Merchant Directrix](https://stick404.github.io/SlateWork/v/2.2.0/1.0/en_us#greatwork/trade_loci), and forces it to restock; like the day had began or ended. Costs 5 [Charged Amethyst](https://hexcasting.hexxy.media/v/0.11.4/1.0/en_us#items/amethyst).",
+        "inputs": "vector",
+        "outputs": null,
+        "book_url": "https://stick404.github.io/SlateWork/v/2.2.0/1.0/en_us#patterns/spells/trade_loci@slate_work:induce_restock",
+        "mod_id": "slate_work"
+      }
+    ]
+  },
+  "mediatransport:send_other": {
+    "id": "mediatransport:send_other",
+    "name": "Submit Iota II",
+    "direction": "EAST",
+    "signature": "wewdwwwdwaawawdwawaqwdwwdada",
+    "is_per_world": true,
+    "display_only": false,
+    "display_as": null,
+    "operators": [
+      {
+        "description": "Sends the iota on the top of the stack to be received by the player second from the top of the stack. It seems to have a separate receiver from the other one. Usually costs 2 'sending power', but this could be different depending on the server configuration.",
+        "inputs": "player, sendable",
+        "outputs": null,
+        "book_url": "https://penguinencounter.github.io/mediatransport/v/1.1.1+1.20.1/2.0/en_us#patterns/figura@mediatransport:send_other",
+        "mod_id": "mediatransport"
+      }
+    ]
+  }
+}

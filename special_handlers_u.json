@@ -1,0 +1,138 @@
+{
+  "hexcasting:mask": {
+    "n": "Bookkeeper's Gambit",
+    "c": "hexcasting",
+    "d": "An infinite family of actions that keep or remove elements at the top of the stack based on the sequence of dips and lines.",
+    "i": "many",
+    "o": "many",
+    "u": "This pattern accepts arguments. Use it like this: hexcasting:mask(1100100), where 1 represents a line (keep the element) and 0 represents a dip (remove the element). For example if the stack is [1, 2, 3, 4, 5] and you use hexcasting:mask(11010) the stack will become [1, 2, 4]"
+  },
+  "overevaluate:nephthys": {
+    "n": "Nephthys' Gambit",
+    "c": "overevaluate",
+    "d": "Pops a pattern or pattern list and dives down an amount corresponding to the tail length to cast the pattern list. Useful for surgery-like operations.",
+    "i": "pattern/list",
+    "o": "varies",
+    "u": ""
+  },
+  "overevaluate:sekhmet": {
+    "n": "Sekhmet' Gambit",
+    "c": "overevaluate",
+    "d": "Voids the entire stack except for the top n iota, determined by tail length. In the examples above, zero, one, and two iota are left untouched respectively.",
+    "i": "-",
+    "o": "varies",
+    "u": ""
+  },
+  "overevaluate:geb": {
+    "n": "Geb's Gambit",
+    "c": "overevaluate",
+    "d": "Yanks the iota n from the top up to the top, determined by tail length. In the examples above, the iota second, third, and fourth from the top are yanked respectively.",
+    "i": "many",
+    "o": "many",
+    "u": ""
+  },
+  "overevaluate:nut": {
+    "n": "Nut's Gambit",
+    "c": "overevaluate",
+    "d": "Sinks the top iota n from the top, determined by tail length. In the examples above, the iota is moved to the second, third, and fourth place from the top respectively.",
+    "i": "many",
+    "o": "many",
+    "u": ""
+  },
+  "complexhex:long": {
+    "n": "Long Reflection",
+    "c": "complexhex",
+    "d": "Just like with normal numbers, Nature is not so generous as to make this easy for us.\n(Details on next page)",
+    "i": "-",
+    "o": "long",
+    "u": ""
+  },
+  "hexflow:noob_num": {
+    "n": "Noob Num Reflection",
+    "c": "hexflow",
+    "d": "The starting cumulative number is 0; putting the initial direction to →, all ↗ makes the result **\\* 2 + 1**, all → makes it **\\* 2**, and all ↘ for **/ 10**. Starting with the patterns on the right negates the result.",
+    "i": "-",
+    "o": "number",
+    "u": ""
+  },
+  "hexflow:copy_mask": {
+    "n": "Electric Fisherman",
+    "c": "hexflow",
+    "d": "Each \"n\" on the fisherman pattern's bottom fishing line makes a copy of correspond iota to stack top, following the same targeting rules as Bookkeeper's Gambit.",
+    "i": "-",
+    "o": "many",
+    "u": ""
+  },
+  "hextrace:trace": {
+    "n": "Apply Trace",
+    "c": "hextrace",
+    "d": "Applies the given trace to the top Iota.",
+    "i": "-",
+    "o": "-",
+    "u": ""
+  },
+  "hexthings:noop": {
+    "n": "Patience",
+    "c": "hexthings",
+    "d": "Does nothing, but the tail can be any shape. Useful as a placeholder to be replaced later",
+    "i": "-",
+    "o": "-",
+    "u": ""
+  },
+  "hextrapats:vec/x": {
+    "n": "Vector Reflection +X/-X II",
+    "c": "hextrapats",
+    "d": "A head that sharply bends to the left will output a vector along the X axis.",
+    "i": "-",
+    "o": "vector",
+    "u": ""
+  },
+  "hextrapats:vec/y": {
+    "n": "Vector Reflection +Y/-Y II",
+    "c": "hextrapats",
+    "d": "A head that doesn't bend will output a vector along the Y axis.",
+    "i": "-",
+    "o": "vector",
+    "u": ""
+  },
+  "hextrapats:vec/z": {
+    "n": "Vector Reflection +Z/-Z II",
+    "c": "hextrapats",
+    "d": "A head that sharply bends to the right will output a vector along the Z axis.",
+    "i": "-",
+    "o": "vector",
+    "u": ""
+  },
+  "hextrapats:vec/1": {
+    "n": "Vector Reflection +1/-1 II",
+    "c": "hextrapats",
+    "d": "A head that slightly bends to the left will output a vector where all 3 components are the same.",
+    "i": "-",
+    "o": "vector",
+    "u": ""
+  },
+  "hextrapats:vec/swizzle": {
+    "n": "Swizzling Purification",
+    "c": "hextrapats",
+    "d": "A family of patterns that \"swizzles\" a vector's components based on the 3 sections of its tail.",
+    "i": "vec",
+    "o": "vec",
+    "u": ""
+  },
+  "hextrapats:scientific_exp": {
+    "n": "Scientific Purification",
+    "c": "hextrapats",
+    "d": "Multiplies the input by 10^n or 10^-n, where n is the length of the tail, depending on whether the start is similar to Mult. Dstl. or Div. Dstl.. The top 3 patterns are x10^1, x10^2, and x10^3. The bottom 3 are x10^-1, x10^-2, and x10^-3.",
+    "i": "num/vec",
+    "o": "num/vec",
+    "u": ""
+  },
+  "hextrapats:duplicate_at": {
+    "n": "Angler's Gambit",
+    "c": "hextrapats",
+    "d": "A family of patterns that takes the Nth iota from the top of the stack, determined by the length of the head, and duplicates it in place. The copy will be created right above the original iota.",
+    "i": "many",
+    "o": "many",
+    "u": ""
+  }
+}

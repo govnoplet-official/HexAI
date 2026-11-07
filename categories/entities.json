@@ -1,0 +1,977 @@
+{
+  "_description": {
+    "summary": "Entities: getting an entity at a position (by type), zone filters (distance and type or status), entity properties (health, air, hunger, height, sleeping, sprinting, villager data, pets, held items), riding and mounting, flight, links and networks, entity comparison, scale.",
+    "use_cases": [
+      "Finding or filtering entities near a position",
+      "Reading entity state (health, hunger, air, equipment, villager info)",
+      "Mounting, riding or giving flight",
+      "Comparing entities or items"
+    ]
+  },
+  "hexcasting:get_caster": {
+    "n": "Mind's Reflection",
+    "c": "entities",
+    "d": "Adds me, the caster, to the stack.",
+    "i": "-",
+    "o": "entity | null"
+  },
+  "hexcasting:get_entity_height": {
+    "n": "Stadiometer's Purification",
+    "c": "entities",
+    "d": "Transforms an entity on the stack into its height.",
+    "i": "entity",
+    "o": "num"
+  },
+  "hexcasting:raycast/entity": {
+    "n": "Scout's Distillation",
+    "c": "entities",
+    "d": "Like Archer's Distillation, but instead returns the *entity* I am looking at. Costs a negligible amount of media.",
+    "i": "vector, vector",
+    "o": "entity | null"
+  },
+  "hexcasting:recharge": {
+    "n": "Recharge Item",
+    "c": "entities",
+    "d": "Recharge a media-containing item in my other hand. Costs about one Amethyst Shard per item.",
+    "i": "entity",
+    "o": "-"
+  },
+  "hexcasting:flight/range": {
+    "n": "Anchorite's Flight",
+    "c": "entities",
+    "d": "A flight limited in its range.",
+    "i": "entity, number",
+    "o": "-"
+  },
+  "hexcasting:flight/time": {
+    "n": "Wayfarer's Flight",
+    "c": "entities",
+    "d": "A flight limited in its duration.",
+    "i": "entity, number",
+    "o": "-"
+  },
+  "hexcasting:flight/can_fly": {
+    "n": "Aviator's Purification",
+    "c": "entities",
+    "d": "Returns whether the given player is under the effects of Anchorite's or Wayfarer's Flight.",
+    "i": "entity",
+    "o": "boolean"
+  },
+  "hexcasting:get_entity": {
+    "n": "Entity Purification",
+    "c": "entities",
+    "d": "Transform the position on the stack into the entity at that location (or Null if there isn't one).",
+    "i": "vector",
+    "o": "entity or null"
+  },
+  "hexcasting:get_entity/animal": {
+    "n": "Entity Purification: Animal",
+    "c": "entities",
+    "d": "Transform the position on the stack into the animal at that location (or Null if there isn't one).",
+    "i": "vector",
+    "o": "entity or null"
+  },
+  "hexcasting:get_entity/monster": {
+    "n": "Entity Purification: Monster",
+    "c": "entities",
+    "d": "Transform the position on the stack into the monster at that location (or Null if there isn't one).",
+    "i": "vector",
+    "o": "entity or null"
+  },
+  "hexcasting:get_entity/item": {
+    "n": "Entity Purification: Item",
+    "c": "entities",
+    "d": "Transform the position on the stack into the dropped item at that location (or Null if there isn't one).",
+    "i": "vector",
+    "o": "entity or null"
+  },
+  "hexcasting:get_entity/player": {
+    "n": "Entity Purification: Player",
+    "c": "entities",
+    "d": "Transform the position on the stack into the player at that location (or Null if there isn't one).",
+    "i": "vector",
+    "o": "entity or null"
+  },
+  "hexcasting:get_entity/living": {
+    "n": "Entity Purification: Living",
+    "c": "entities",
+    "d": "Transform the position on the stack into the living creature at that location (or Null if there isn't one).",
+    "i": "vector",
+    "o": "entity or null"
+  },
+  "hexcasting:zone_entity": {
+    "n": "Zone Distillation: Any",
+    "c": "entities",
+    "d": "Take a position and maximum distance on the stack, and combine them into a list of all entities near the position.",
+    "i": "vector, number",
+    "o": "list"
+  },
+  "hexcasting:zone_entity/animal": {
+    "n": "Zone Distillation: Animal",
+    "c": "entities",
+    "d": "Take a position and maximum distance on the stack, and combine them into a list of animals near the position.",
+    "i": "vector, number",
+    "o": "list"
+  },
+  "hexcasting:zone_entity/not_animal": {
+    "n": "Zone Distillation: Non-Animal",
+    "c": "entities",
+    "d": "Take a position and maximum distance on the stack, and combine them into a list of non-animal entities near the position.",
+    "i": "vector, number",
+    "o": "list"
+  },
+  "hexcasting:zone_entity/monster": {
+    "n": "Zone Distillation: Monster",
+    "c": "entities",
+    "d": "Take a position and maximum distance on the stack, and combine them into a list of monsters near the position.",
+    "i": "vector, number",
+    "o": "list"
+  },
+  "hexcasting:zone_entity/not_monster": {
+    "n": "Zone Distillation: Non-Monster",
+    "c": "entities",
+    "d": "Take a position and maximum distance on the stack, and combine them into a list of non-monster entities near the position.",
+    "i": "vector, number",
+    "o": "list"
+  },
+  "hexcasting:zone_entity/item": {
+    "n": "Zone Distillation: Item",
+    "c": "entities",
+    "d": "Take a position and maximum distance on the stack, and combine them into a list of dropped items near the position.",
+    "i": "vector, number",
+    "o": "list"
+  },
+  "hexcasting:zone_entity/not_item": {
+    "n": "Zone Distillation: Non-Item",
+    "c": "entities",
+    "d": "Take a position and maximum distance on the stack, and combine them into a list of non-dropped-item entities near the position.",
+    "i": "vector, number",
+    "o": "list"
+  },
+  "hexcasting:zone_entity/player": {
+    "n": "Zone Distillation: Player",
+    "c": "entities",
+    "d": "Take a position and maximum distance on the stack, and combine them into a list of players near the position.",
+    "i": "vector, number",
+    "o": "list"
+  },
+  "hexcasting:zone_entity/not_player": {
+    "n": "Zone Distillation: Non-Player",
+    "c": "entities",
+    "d": "Take a position and maximum distance on the stack, and combine them into a list of non-player characters near the position.",
+    "i": "vector, number",
+    "o": "list"
+  },
+  "hexcasting:zone_entity/living": {
+    "n": "Zone Distillation: Living",
+    "c": "entities",
+    "d": "Take a position and maximum distance on the stack, and combine them into a list of living creatures near the position.",
+    "i": "vector, number",
+    "o": "list"
+  },
+  "hexcasting:zone_entity/not_living": {
+    "n": "Zone Distillation: Non-Living",
+    "c": "entities",
+    "d": "Take a position and maximum distance on the stack, and combine them into a list of non-living entities near the position.",
+    "i": "vector, number",
+    "o": "list"
+  },
+  "hexcasting:compare_entity": {
+    "n": "Taxonomer's Distillation",
+    "c": "entities",
+    "d": "Compare the given entities and push whether they are of the same type.",
+    "i": "entity, entity",
+    "o": "bool"
+  },
+  "hexcasting:compare_item/lenient": {
+    "n": "Sorter's Distillation",
+    "c": "entities",
+    "d": "Compare the items represented or held by the given entities and push whether they are the same type of item. Two Foci will always compare as equal.",
+    "i": "entity, entity",
+    "o": "bool"
+  },
+  "hexcasting:compare_item/strict": {
+    "n": "Stacking Distillation",
+    "c": "entities",
+    "d": "Like Sorter's Distillation, but push whether they are identical items. Two Foci only compare as identical if they hold the same iota and have the same appearance.",
+    "i": "entity, entity",
+    "o": "bool"
+  },
+  "hexcasting:interop/pehkui/get": {
+    "n": "Gulliver's Purification",
+    "c": "entities",
+    "d": "Get the scale of the entity, as a proportion of their normal size. For most entities, this will be 1.",
+    "i": "entity",
+    "o": "num"
+  },
+  "hexcasting:interop/pehkui/set": {
+    "n": "Alter Scale",
+    "c": "entities",
+    "d": "Set the scale of the entity, passing in a proportion of their normal size. Costs about 1 Amethyst Shard.",
+    "i": "entity, num",
+    "o": "-"
+  },
+  "complexhex:get_entity/bit": {
+    "n": "Entity Purification: BIT",
+    "c": "entities",
+    "d": "Transform the position on the stack into the BIT at that location (or Null if there isn't one)",
+    "i": "vector",
+    "o": "entity"
+  },
+  "complexhex:zone_entity/bit": {
+    "n": "Zone Distillation: BIT",
+    "c": "entities",
+    "d": "Take a position and a maximum distance on the stack, and combine them into a list of BIT's near the position.",
+    "i": "vector, number",
+    "o": "[entity]"
+  },
+  "complexhex:zone_entity/not_bit": {
+    "n": "Zone Distillation: Not BIT",
+    "c": "entities",
+    "d": "Take a position and a maximum distance on the stack, and combine them into a list of non-BIT's near the position.",
+    "i": "vector, number",
+    "o": "[entity]"
+  },
+  "ephemera:getstatuscategory": {
+    "n": "Apothecary's Purification II",
+    "c": "entities",
+    "d": "Accepts a status effect type, and returns a number based on whether the effect is likely to be helpful, harmful, or neutral to a creature.",
+    "i": "status",
+    "o": "num"
+  },
+  "ephemera:getstatusduration": {
+    "n": "Pharmacist's Distillation",
+    "c": "entities",
+    "d": "Accepts an entity and a status effect type, and returns the effect on the target's duration in seconds.",
+    "i": "entity, status",
+    "o": "num"
+  },
+  "ephemera:getstatuslevel": {
+    "n": "Pharmacist's Dstln. II",
+    "c": "entities",
+    "d": "Accepts an entity and a status effect type, and returns the effect on the target's potency.",
+    "i": "entity, status",
+    "o": "num"
+  },
+  "ephemera:getbystatus": {
+    "n": "Zone Exaltation: Status",
+    "c": "entities",
+    "d": "Accepts a status effect type, a vector, and a number (*n*), and returns a list of entities within radius *n* of the vector which have that effect.",
+    "i": "status, vec, num",
+    "o": "[entity]"
+  },
+  "ephemera:getbystatusinverse": {
+    "n": "Zone Exaltation: Not-Status",
+    "c": "entities",
+    "d": "Accepts a status effect type, a vector, and a number (*n*), and returns a list of entities within radius *n* of the vector which do not have that effect.",
+    "i": "status, vec, num",
+    "o": "[entity]"
+  },
+  "ephemera:getbystatussingle": {
+    "n": "Entity Distillation: Status",
+    "c": "entities",
+    "d": "Accepts a status effect type and a vector, and returns an entity at that position which has that effect.",
+    "i": "status, vector",
+    "o": "entity | NULL"
+  },
+  "ephemera:getabsorption": {
+    "n": "Ablation Purification",
+    "c": "entities",
+    "d": "Accepts a living entity, and returns how much damage it can Absorb before its health is affected.",
+    "i": "entity",
+    "o": "num"
+  },
+  "ephemera:filteredentityraycast": {
+    "n": "Scout's Exaltation",
+    "c": "entities",
+    "d": "As Scout's Distillation, but also accepts a list of entity type iotas. Any entity whose type is not present in the list will be ignored. Costs an amount of media slightly less negligible than that of the aforementioned pattern.",
+    "i": "[type], vec, vec",
+    "o": "entity | NULL"
+  },
+  "ephemera:gaussianrand": {
+    "n": "Entropy Reflection II",
+    "c": "entities",
+    "d": "Returns a random number with a gaussian distribution, with a mean of zero and a standard deviation of one.",
+    "i": "-",
+    "o": "num"
+  },
+  "ephemera:hash": {
+    "n": "Hashing Purification",
+    "c": "entities",
+    "d": "Accepts any iota, and converts it into its hashed form.",
+    "i": "any",
+    "o": "hash"
+  },
+  "ephemera:hashbits": {
+    "n": "undocumented hash-to-numbers pattern",
+    "c": "entities",
+    "d": "-",
+    "i": "-",
+    "o": "-"
+  },
+  "ephemera:getrevealcost": {
+    "n": "Postage Purification",
+    "c": "entities",
+    "d": "Accepts a player and returns how much amethyst dust it would cost to send them a message via Postman's Gambit, between 1/10 of a dust and 10 dust.",
+    "i": "Player",
+    "o": "num"
+  },
+  "ephemera:getdurabilitymainhand": {
+    "n": "Menderbug's Reflection",
+    "c": "entities",
+    "d": "Returns how many times the item in my other hand can be used without breaking, durability-manipulating effects notwithstanding.",
+    "i": "-",
+    "o": "num"
+  },
+  "ephemera:getdurabilityoffhand": {
+    "n": "Menderbug's Reflection II",
+    "c": "entities",
+    "d": "As previous, targeting the item in the hand I'm casting this with. Most useful with delayed casts of one form or another.",
+    "i": "-",
+    "o": "num"
+  },
+  "ephemera:getiotasize": {
+    "n": "Flock's Purification",
+    "c": "entities",
+    "d": "Accepts any iota, and returns its total size.",
+    "i": "-",
+    "o": "num"
+  },
+  "ephemera:getstacksizedeep": {
+    "n": "Flock's Reflection II",
+    "c": "entities",
+    "d": "Returns the total size of all iotas on my stack, including the contents of lists and similar. If this number ever reaches 1024, my stack shall come crashing down into garbage.",
+    "i": "-",
+    "o": "num"
+  },
+  "ephemera:collisionprobe": {
+    "n": "Clearance Purification",
+    "c": "entities",
+    "d": "Accepts a vector, and returns whether that vector is within (or just on the edge of) the block in that space. Seems to involve the boxes I see in my mind's eye.",
+    "i": "vec",
+    "o": "bool"
+  },
+  "ephemera:thothyoink": {
+    "n": "Seshat's Gambit",
+    "c": "entities",
+    "d": "Pops an iota from the accumulator and pushes it to the current stack. Mishaps if used outside of Thoth's Gambit.",
+    "i": "-",
+    "o": "any | null"
+  },
+  "ephemera:thothcount": {
+    "n": "Seshat's Reflection",
+    "c": "entities",
+    "d": "Returns how many iotas are currently accessible via Seshat's Gambit. Returns -1 if used outside of Thoth's Gambit.",
+    "i": "-",
+    "o": "num"
+  },
+  "ephemera:no": {
+    "n": "No",
+    "c": "entities",
+    "d": "-",
+    "i": "-",
+    "o": "-"
+  },
+  "ephemera:getproperties": {
+    "n": "State Purification",
+    "c": "entities",
+    "d": "Accepts a vector, and returns a list of strings corresponding to values contained in the state of the block at the corresponding position.",
+    "i": "vec",
+    "o": "[string]"
+  },
+  "ephemera:getpropertyvalue": {
+    "n": "State Distillation",
+    "c": "entities",
+    "d": "Accepts a vector and a string, and uses the string as a key to retrieve the value it corresponds to in the target block's state, or null if there is no corresponding value.",
+    "i": "vec, string",
+    "o": "bool|num|vec|string"
+  },
+  "ephemera:getrider": {
+    "n": "Equestrian Purification",
+    "c": "entities",
+    "d": "Accepts an entity, and returns a list of entities seated atop it.",
+    "i": "entity",
+    "o": "[entity]"
+  },
+  "ephemera:getmount": {
+    "n": "Equestrian Purification II",
+    "c": "entities",
+    "d": "Accepts an entity, and returns the entity it is seated atop.",
+    "i": "entity",
+    "o": "entity"
+  },
+  "ephemera:getflight/type": {
+    "n": "Aviator's Purification II",
+    "c": "entities",
+    "d": "Returns true if the target is under the effects of Anchorite's Flight, false if Wayfarer's Flight, null if neither.",
+    "i": "player",
+    "o": "bool | null"
+  },
+  "ephemera:getflight/remaining": {
+    "n": "Aviator's Purification III",
+    "c": "entities",
+    "d": "Returns how close the target is to the end of their flight spell, represented as either their distance to the boundary or how many seconds remain.",
+    "i": "player",
+    "o": "num | null"
+  },
+  "ephemera:readframerotation": {
+    "n": "Decorator's Purification",
+    "c": "entities",
+    "d": "Accepts an item frame entity, and returns its rotation, from 0 to 7.",
+    "i": "item frame",
+    "o": "number"
+  },
+  "ephemera:setframerotation": {
+    "n": "Decorator's Gambit",
+    "c": "entities",
+    "d": "Accepts an item frame entity and an integer from 0 to 7, and sets its rotation to the number. Costs a negligible amount of media.",
+    "i": "item frame, number",
+    "o": "-"
+  },
+  "ephemera:networkscan": {
+    "n": "Network Distillation",
+    "c": "entities",
+    "d": "Scans the link network connected to the input linkable up to a recursion depth equal to the input number (max 32), and returns a list of all connected linkables. Costs a negligible amount of media.",
+    "i": "linkable, num",
+    "o": "[linkable]"
+  },
+  "ephemera:networkindex": {
+    "n": "Routing Distillation",
+    "c": "entities",
+    "d": "Accepts a linkable to use for network access, and any iota. If a relay connected to the network has an adjacent Network Routing Index with the same iota, returns that relay's position. Costs half an amethyst dust.",
+    "i": "linkable, iota",
+    "o": "vec"
+  },
+  "ephemera:networktp": {
+    "n": "Network Gateway",
+    "c": "entities",
+    "d": "Accepts an entity to teleport, a linkable to use for access to its network, and a destination. If the entity is within 8 blocks of the linkable, and there is a network node within 4 blocks of the destination, the entity will be teleported. Cost varies based on what entity is teleported.",
+    "i": "entity, linkable, vec",
+    "o": "-"
+  },
+  "ephemera:particleburst": {
+    "n": "Particle Burst",
+    "c": "entities",
+    "d": "Accepts two vectors and two numbers, and uses them to define a burst of particles. Costs a negligible amount of media.",
+    "i": "vec, vec, num, num",
+    "o": "-"
+  },
+  "ephemera:paintconjured": {
+    "n": "Externalize Pigment",
+    "c": "entities",
+    "d": "Accepts a vector and an itemtype representing a pigment. Costs a negligible amount of media if targeting my own block, or 1 Amethyst Dust if not.",
+    "i": "Vector, itemtype",
+    "o": "-"
+  },
+  "ephemera:revealtoother": {
+    "n": "Postman's Gambit",
+    "c": "entities",
+    "d": "Accepts a player and any iota less than 256 characters long, and shows that iota to them as if they had cast Reveal, also telling them who sent the message. Cost is inversely proportional to the length of time since they were last targeted by this spell.",
+    "i": "Player, any",
+    "o": "-"
+  },
+  "ephemera:clearrevealcost": {
+    "n": "Postman's Gambit II",
+    "c": "entities",
+    "d": "Resets the cost of sending me a message via Postman's Gambit back to 1/10 of a dust. Costs 1/10 of a dust.",
+    "i": "-",
+    "o": "-"
+  },
+  "ephemera:ridewisp": {
+    "n": "Ride Wisp",
+    "c": "entities",
+    "d": "Accepts one of my wisps (or a wandering wisp), and places me atop it, similar to sitting in a minecart. I must be within the wisp's ambit, or four blocks for wandering wisps. Costs one amethyst shard.",
+    "i": "wisp",
+    "o": "-"
+  },
+  "ephemera:dismount": {
+    "n": "Dismount",
+    "c": "entities",
+    "d": "Takes me off of whatever entity I may be riding when cast. Costs 1/100 of a dust.",
+    "i": "-",
+    "o": "-"
+  },
+  "ephemera:cancelflight": {
+    "n": "Terminate Flight",
+    "c": "entities",
+    "d": "Cancels my current flight ability, at a cost of one tenth of an Amethyst Dust. Casting a new flight spell in the same instant allows me to continue flying, potentially with different parameters.",
+    "i": "-",
+    "o": "-"
+  },
+  "hexways:resizeportal": {
+    "n": "Resize Portal",
+    "c": "entities",
+    "d": "Passing a portal, height, and width, I may change the size of the portal, reverting it to a hexagonal shape, curiously. Costs no media.",
+    "i": "entity (Portal), num, num",
+    "o": "-"
+  },
+  "hex_ars_link:read_glyphs": {
+    "n": "Read Glyphs",
+    "c": "entities",
+    "d": "Read all glyphs from a given entity: could be an item like glyph, spellcaster and parchment, or item frames containing those, or a player with learnt glyphs.\nThis could be the only way to obtain a glyph iota if I choose to deny the evil power of HexParse.",
+    "i": "entity",
+    "o": "[glyph]"
+  },
+  "hexal:breath": {
+    "n": "Diver's Purification",
+    "c": "entities",
+    "d": "Removes a Living entity from the stack and returns how much breath it has left (i.e., how close it is to drowning).",
+    "i": "entity",
+    "o": "num"
+  },
+  "hexal:health": {
+    "n": "Nurse's Purification",
+    "c": "entities",
+    "d": "Removes a Living entity from the stack and returns how much health it has left (i.e., how close it is to dying).",
+    "i": "entity",
+    "o": "num"
+  },
+  "hexal:armour": {
+    "n": "Squire's Purification",
+    "c": "entities",
+    "d": "Removes a Living entity from the stack and returns how much armour it has.",
+    "i": "entity",
+    "o": "num"
+  },
+  "hexal:toughness": {
+    "n": "Boxer's Purification",
+    "c": "entities",
+    "d": "Removes a Living entity from the stack and returns how much toughness it has (another property of armour).",
+    "i": "entity",
+    "o": "num"
+  },
+  "hexal:smelt": {
+    "n": "Smelt",
+    "c": "entities",
+    "d": "Remove a location, item entity, or mote from the stack, then either smelt the block at the location or smelt all the items in the item entity or mote.",
+    "i": "vec | entity | mote",
+    "o": "-"
+  },
+  "hexal:get_entity/wisp": {
+    "n": "Entity Purification: Wisp",
+    "c": "entities",
+    "d": "Transform the position on the stack into the wisp at that location (or Null if there isn't one).",
+    "i": "vec",
+    "o": "entity | null"
+  },
+  "hexal:zone_entity/wisp": {
+    "n": "Zone Distillation: Wisp",
+    "c": "entities",
+    "d": "Take a position and maximum distance on the stack, and combine them into a list of wisps near the position.",
+    "i": "vec, num",
+    "o": "[entity]"
+  },
+  "hexal:zone_entity/not_wisp": {
+    "n": "Zone Distillation: Non-Wisp",
+    "c": "entities",
+    "d": "Take a position and maximum distance on the stack, and combine them into a list of non-wisp entities near the position.",
+    "i": "vec, num",
+    "o": "[entity]"
+  },
+  "hexal:link": {
+    "n": "Link",
+    "c": "entities",
+    "d": "Links the caster to the entity removed from the stack, which must be linkable. This costs one Amethyst Shard.",
+    "i": "linkable",
+    "o": "-"
+  },
+  "hexal:link/get_index": {
+    "n": "Recognition Purification",
+    "c": "entities",
+    "d": "Removes an entity from the stack, and adds the index to the link to that entity to the stack (or -1 if the caster isn't linked to that entity).",
+    "i": "linkable",
+    "o": "num"
+  },
+  "hexal:link/comm/clear": {
+    "n": "Unclogging Gambit",
+    "c": "entities",
+    "d": "Removes all unread iota from the caster's received iota queue.",
+    "i": "-",
+    "o": "-"
+  },
+  "hexal:mote/make": {
+    "n": "Mediafy Item",
+    "c": "entities",
+    "d": "Convert an item in the world (either an item entity or an item frame) into a mote on your stack. If passed an existing mote instead adds the items from the entity to the mote. Mediafying an item costs a tenth of an Amethyst Dust.",
+    "i": "item | item, mote",
+    "o": "mote"
+  },
+  "hexpose:am_enlightened": {
+    "n": "Epiphany Purification",
+    "c": "entities",
+    "d": "Pushes whether the given player has achieved Enlightenment.",
+    "i": "player entity",
+    "o": "boolean"
+  },
+  "hexpose:is_brainswept": {
+    "n": "Sentience Purification",
+    "c": "entities",
+    "d": "Pushes whether an entity has been \"magically relieved of its mind\". I feel this is strongly related to Flay Mind somehow...",
+    "i": "entity",
+    "o": "boolean"
+  },
+  "hexpose:get_health": {
+    "n": "Vitality Purification",
+    "c": "entities",
+    "d": "Pushes how close an entity is to death. I can think of these in terms of half-hearts.",
+    "i": "entity",
+    "o": "number"
+  },
+  "hexpose:get_max_health": {
+    "n": "Fitness Purification",
+    "c": "entities",
+    "d": "Pushes how much health an entity can have at its prime. I can think of these in terms of half-hearts.",
+    "i": "entity",
+    "o": "number"
+  },
+  "hexpose:burning": {
+    "n": "Inferno Purification",
+    "c": "entities",
+    "d": "Pushes the number of seconds the burning entity will continue burning if not put out. -1 if the entity is not burning currently.",
+    "i": "entity",
+    "o": "number"
+  },
+  "hexpose:is_wet": {
+    "n": "Enderman's Purification",
+    "c": "entities",
+    "d": "Pushes whether the entity is touching rain, water, or in a bubble column.",
+    "i": "entity",
+    "o": "boolean"
+  },
+  "hexpose:get_air": {
+    "n": "Suffocation Purification",
+    "c": "entities",
+    "d": "Pushes the number of seconds before an entity will start to suffocate. This applies to marine creatures out of water as well as land creatures in water.",
+    "i": "entity",
+    "o": "number"
+  },
+  "hexpose:get_max_air": {
+    "n": "Lung Purification",
+    "c": "entities",
+    "d": "Pushes the number of seconds a regular entity of that type can last outside their normal breathing environment before they start suffocating.",
+    "i": "entity",
+    "o": "number"
+  },
+  "hexpose:is_sleeping": {
+    "n": "Sloth's Purification",
+    "c": "entities",
+    "d": "Pushes whether the Player, Cat, Fox, or other entity is sleeping.",
+    "i": "entity",
+    "o": "boolean"
+  },
+  "hexpose:is_sprinting": {
+    "n": "Racer's Purification",
+    "c": "entities",
+    "d": "Pushes whether the Player, Cat, Fox, or other entity is sprinting. Swimming and leaving the ground after starting to sprint are still included.",
+    "i": "entity",
+    "o": "boolean"
+  },
+  "hexpose:is_baby": {
+    "n": "Youth Purification",
+    "c": "entities",
+    "d": "Pushes whether a living creature is a baby. Also works on Armor Stands oddly.",
+    "i": "entity",
+    "o": "boolean"
+  },
+  "hexpose:breedable": {
+    "n": "Reproduction Purification",
+    "c": "entities",
+    "d": "Pushes whether an animal creature is in love and ready to mate, or Null if that creature is not capable of that type of reproduction.",
+    "i": "entity",
+    "o": "boolean/null"
+  },
+  "hexpose:get_player_hunger": {
+    "n": "Hunger Purification",
+    "c": "entities",
+    "d": "Pushes how full a Player is. I can think of this in terms of half-hunches.",
+    "i": "player entity",
+    "o": "number"
+  },
+  "hexpose:get_player_saturation": {
+    "n": "Stamina Purification",
+    "c": "entities",
+    "d": "Pushes a Player's saturation, which roughly correlates to how long the Player will remain full.",
+    "i": "entity entity",
+    "o": "number"
+  },
+  "hexpose:entity_vehicle": {
+    "n": "Vehicle Purification",
+    "c": "entities",
+    "d": "Pushes the entity the given entity is riding or Null if it is not riding in or on anything.",
+    "i": "entity",
+    "o": "entity/null"
+  },
+  "hexpose:shooter": {
+    "n": "Shooter Purification",
+    "c": "entities",
+    "d": "Pushes the shooter of the given projectile entity or Null if it has no shooter or isn't a projectile. It also pushes Null if the shooter is outside my ambit.",
+    "i": "entity",
+    "o": "entity/null"
+  },
+  "hexpose:pet_owner": {
+    "n": "Adoration Purification",
+    "c": "entities",
+    "d": "Pushes the player that has tamed this animal, or Null if it is untamed or the player is out of ambit.",
+    "i": "entity",
+    "o": "entity/null"
+  },
+  "hexpose:absorption_hearts": {
+    "n": "Absorption Purification",
+    "c": "entities",
+    "d": "Pushes the number of magical hearts this player has. I can think of these in terms of half-hearts.",
+    "i": "entity",
+    "o": "number"
+  },
+  "hexpose:get_mainhand": {
+    "n": "Tool Purification",
+    "c": "entities",
+    "d": "Returns the item in the entity's mainhand.",
+    "i": "entity",
+    "o": "item"
+  },
+  "hexpose:get_offhand": {
+    "n": "Accessory Purification",
+    "c": "entities",
+    "d": "Returns the item in the entity's offhand.",
+    "i": "entity",
+    "o": "item"
+  },
+  "hexpose:villager_level": {
+    "n": "Tier Purification",
+    "c": "entities",
+    "d": "Pushes how advanced a villager is as a number, encoding mastery of their craft.",
+    "i": "entity",
+    "o": "number"
+  },
+  "hexpose:villager_profession": {
+    "n": "Professional Purification",
+    "c": "entities",
+    "d": "Pushes the profession of a villager as an identifier",
+    "i": "entity",
+    "o": "identifier"
+  },
+  "hexpose:villager_type": {
+    "n": "Culture Purification",
+    "c": "entities",
+    "d": "Pushes the ambient cultural aspect tied to the villager’s origin, such as desert or taiga roots.",
+    "i": "entity",
+    "o": "identifier"
+  },
+  "hexpose:biome_to_villager": {
+    "n": "Nurture Purification",
+    "c": "entities",
+    "d": "Projects the villager archetype most attuned to the essence of the specified biome, or Null if none can be drawn.",
+    "i": "identifier",
+    "o": "identifier/null"
+  },
+  "hexpose:get_media": {
+    "n": "Media Purification",
+    "c": "entities",
+    "d": "Pushes the amount of media inside an item, that a creature contains or holds, or that a specialized media-holding block contains.",
+    "i": "entity | item | vector",
+    "o": "number"
+  },
+  "hexpose:cat_variant": {
+    "n": "Feline Purification",
+    "c": "entities",
+    "d": "Pushes the variant of the Cat.",
+    "i": "entity",
+    "o": "identifier"
+  },
+  "hexpose:creeper_fuse": {
+    "n": "Anger Purification",
+    "c": "entities",
+    "d": "Pushes the progress of a Creeper to explosion.",
+    "i": "entity",
+    "o": "number"
+  },
+  "hexpose:item_frame_rotation": {
+    "n": "Showcase Purification",
+    "c": "entities",
+    "d": "Pushes the rotation of an Item Frame as an integer 0 to 7.",
+    "i": "entity",
+    "o": "number"
+  },
+  "hexpose:painting_variant": {
+    "n": "Artistic Purification",
+    "c": "entities",
+    "d": "Pushes the variant of the Painting.",
+    "i": "entity",
+    "o": "identifier"
+  },
+  "hextrapats:empty_set/entity": {
+    "n": "Vacant Reflection: Entity Set",
+    "c": "entities",
+    "d": "Push an empty set that can hold entities to the top of the stack.",
+    "i": "-",
+    "o": "entity set"
+  },
+  "hextrogen:refresh_dashes": {
+    "n": "Overdrive",
+    "c": "entities",
+    "d": "Instantly replenishes all of the player's Dashes. Costs about one Charged Amethyst. Nature *really* doesn't want me to dash infinitely, it seems. Requires Estrogen.",
+    "i": "entity",
+    "o": "-"
+  },
+  "hexdim:dim/kidnap": {
+    "n": "Everett's Abduction",
+    "c": "entities",
+    "d": "You are going to ~~Brazil~~, ~~My Domain~~, *T H E F U N Z O N E*",
+    "i": "room | entry, entity | [entity]",
+    "o": "-"
+  },
+  "hexdim:dim/kick": {
+    "n": "Everett's Expulsion",
+    "c": "entities",
+    "d": "G E T O U T",
+    "i": "entity | [entity]",
+    "o": "-"
+  },
+  "hexxyplanes:plane_banish": {
+    "n": "Planar Expulsion",
+    "c": "entities",
+    "d": "Forces the target out of the hexplane, costing 5 shards if used on something other than myself, and being free otherwise. Mishaps if not currently in a hexplane.",
+    "i": "entity",
+    "o": "-"
+  },
+  "hierophantics:villager_sleep": {
+    "n": "Induce Exhaustion",
+    "c": "entities",
+    "d": "Causes the villager to seek out its bed and take a short nap. Not effective if the villager lacks a bed to use. Costs one Charged Amethyst.",
+    "i": "villager",
+    "o": "-"
+  },
+  "hierophantics:make_attack_trigger": {
+    "n": "Trigger Reflection: Attack",
+    "c": "entities",
+    "d": "Creates a trigger that activates whenever I strike another entity.",
+    "i": "-",
+    "o": "trigger"
+  },
+  "hyperhexcast:getmt": {
+    "n": "Rider's Purification",
+    "c": "entities",
+    "d": "Returns the entity that a given entity is riding. Null if the entity isn't riding anything.",
+    "i": "entity",
+    "o": "entity | null"
+  },
+  "hyperhexcast:getpsgr": {
+    "n": "Jockey's Purification",
+    "c": "entities",
+    "d": "Returns a list of entities that are riding a given entity.",
+    "i": "entity",
+    "o": "[entity]"
+  },
+  "hyperhexcast:isdrvr": {
+    "n": "Driver's Purification",
+    "c": "entities",
+    "d": "Returns whether or not the given entity is considered the \"Driver\" of its vehicle. Null if the entity isn't riding a vehicle.",
+    "i": "entity",
+    "o": "bool | null"
+  },
+  "hyperhexcast:mount": {
+    "n": "Mount Entity",
+    "c": "entities",
+    "d": "Make an entity ride another entity. Costs about 2 Amethyst Dust if the top of the stack is a non-player entity, 1 if it is you, and about a crystal's worth if is it another player.",
+    "i": "entity, entity",
+    "o": "-"
+  },
+  "hyperhexcast:dismount": {
+    "n": "Dismount Entity",
+    "c": "entities",
+    "d": "Make an entity stop riding the entity they are riding. Costs about 1 Amethyst Dust, or a negligible amount when cast on yourself (but why would you).",
+    "i": "entity",
+    "o": "-"
+  },
+  "moreiotas:get_entity/type": {
+    "n": "Entity Distillation: Type",
+    "c": "entities",
+    "d": "-",
+    "i": "-",
+    "o": "-"
+  },
+  "moreiotas:zone_entity/type": {
+    "n": "Zone Exaltation: Type",
+    "c": "entities",
+    "d": "-",
+    "i": "-",
+    "o": "-"
+  },
+  "moreiotas:zone_entity/not_type": {
+    "n": "Zone Exaltation: Not-Type",
+    "c": "entities",
+    "d": "-",
+    "i": "-",
+    "o": "-"
+  },
+  "movesthemind:destroy": {
+    "n": "Banish Creature",
+    "c": "entities",
+    "d": "Banishes the creature, making it disappear until I call it back. One Shard.",
+    "i": "player",
+    "o": "-"
+  },
+  "movesthemind:move/stopall": {
+    "n": "Halt Creature",
+    "c": "entities",
+    "d": "An important signal! Stops actions being performed by the creature, continuous and otherwise. Conveniently, an exception to the cost rule facing this page; It's free to cast.",
+    "i": "player",
+    "o": "-"
+  },
+  "movesthemind:move/walk": {
+    "n": "Bid: Walking",
+    "c": "entities",
+    "d": "Instructs the creature to walk along its facing. A 1 beckons it forth, and a -1 backward. Interestingly, a 0 causes it to stop, as if I had halted it.",
+    "i": "player, num",
+    "o": "-"
+  },
+  "movesthemind:move/strafe": {
+    "n": "Bid: Strafing",
+    "c": "entities",
+    "d": "As previous, but along strafing. A 1, then, beckons it to the left, and a -1 to the right.",
+    "i": "player, num",
+    "o": "-"
+  },
+  "movesthemind:move/jump": {
+    "n": "Bid: Jumping",
+    "c": "entities",
+    "d": "Simply instructs the creature to hop. Also works on myself.",
+    "i": "player",
+    "o": "-"
+  },
+  "movesthemind:move/sneak": {
+    "n": "Bid: Sneaking",
+    "c": "entities",
+    "d": "Takes a boolean and tells the creature to start or stop sneaking. Also seems to work on myself, until my synapses kick in a moment after. Maybe it could be of use with other bids?",
+    "i": "player, bool",
+    "o": "-"
+  },
+  "movesthemind:move/sprint": {
+    "n": "Bid: Sprinting",
+    "c": "entities",
+    "d": "As previous, but with sprinting. Even when stationary, the creature produces sprinting particles to denote its intention.",
+    "i": "player, bool",
+    "o": "-"
+  },
+  "movesthemind:move/attack": {
+    "n": "Bid: Attack",
+    "c": "entities",
+    "d": "Given 0, uses it continuously, such as eating or channeling, or in the case of Attack, mining. Given -1, uses or attacks once and stops.",
+    "i": "player, num",
+    "o": "-"
+  },
+  "movesthemind:move/swap_hands": {
+    "n": "Bid: Swap Hands",
+    "c": "entities",
+    "d": "Instructs the creature to hand its mainhand item into its offhand, and vice versa. As previous, in its function to myself.",
+    "i": "player",
+    "o": "-"
+  },
+  "movesthemind:move/drop": {
+    "n": "Bid: Drop Item",
+    "c": "entities",
+    "d": "Instructs the creature to drop the item or stack of items it holds in its main hand. Can even yank an item from my own hand, as I'm so familiar with.",
+    "i": "player",
+    "o": "-"
+  }
+}

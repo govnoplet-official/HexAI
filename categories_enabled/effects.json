@@ -1,0 +1,227 @@
+{
+  "_description": {
+    "summary": "Status effects and body changes: applying potions (Sun's Nadirs), cleansing and reading status effects (category, amplifier, duration, level), gender transitions and breast/body property get and set (Hexgender).",
+    "use_cases": [
+      "Applying, removing or reading potion effects",
+      "Checking what effects an entity has",
+      "Changing or reading gender and body properties"
+    ]
+  },
+  "potion/weakness": {
+    "n": "White Sun's Nadir",
+    "c": "effects",
+    "d": "Inflicts weakness. Base cost is one Amethyst Dust per 10 seconds.",
+    "i": "entity, number, number",
+    "o": "-"
+  },
+  "potion/levitation": {
+    "n": "Blue Sun's Nadir",
+    "c": "effects",
+    "d": "Inflicts levitation. Base cost is one Amethyst Dust per 5 seconds.",
+    "i": "entity, number",
+    "o": "-"
+  },
+  "potion/wither": {
+    "n": "Black Sun's Nadir",
+    "c": "effects",
+    "d": "Inflicts withering. Base cost is one Amethyst Dust per second.",
+    "i": "entity, number, number",
+    "o": "-"
+  },
+  "potion/poison": {
+    "n": "Red Sun's Nadir",
+    "c": "effects",
+    "d": "Inflicts poison. Base cost is one Amethyst Dust per 3 seconds.",
+    "i": "entity, number, number",
+    "o": "-"
+  },
+  "potion/slowness": {
+    "n": "Green Sun's Nadir",
+    "c": "effects",
+    "d": "Inflicts slowness. Base cost is one Amethyst Dust per 5 seconds.",
+    "i": "entity, number, number",
+    "o": "-"
+  },
+  "removestatus": {
+    "n": "Cleanse Status",
+    "c": "effects",
+    "d": "Accepts an entity and a status effect type, and removes that status effect from the entity. Cost is based on the effect's innate harmfulness, its potency, and its remaining duration.",
+    "i": "entity, status",
+    "o": "-"
+  },
+  "getstatus": {
+    "n": "Apothecary's Purification",
+    "c": "effects",
+    "d": "Accepts a living entity, and returns a list of status iotas representing all effects on the target.",
+    "i": "entity",
+    "o": "[status]"
+  },
+  "female_transition": {
+    "n": "Transition: Feminine",
+    "c": "effects",
+    "d": "Transitions the caster to a female!\nI wonder how I'd look in a skirt...",
+    "i": "-",
+    "o": "-"
+  },
+  "male_transition": {
+    "n": "Transition: Masculine",
+    "c": "effects",
+    "d": "Transitions the caster to a male!\nNo more periods!",
+    "i": "-",
+    "o": "-"
+  },
+  "other_transition": {
+    "n": "Transition: Non-binary",
+    "c": "effects",
+    "d": "Transitions the caster to androgynous!\nHmm... this is... interesting...",
+    "i": "-",
+    "o": "-"
+  },
+  "get_gender": {
+    "n": "Gender Identity Prfn.",
+    "c": "effects",
+    "d": "Obtains the target's selected gender as an ordinal (number)",
+    "i": "player",
+    "o": "num"
+  },
+  "get_bust_size": {
+    "n": "Oncologist's Purification",
+    "c": "effects",
+    "d": "Gives the bust size of the target",
+    "i": "player",
+    "o": "num"
+  },
+  "set_bust_size": {
+    "n": "Oncologist's Gambit",
+    "c": "effects",
+    "d": "Sets the bust size of the caster",
+    "i": "num",
+    "o": "-"
+  },
+  "get_bounciness": {
+    "n": "Gainax Purification",
+    "c": "effects",
+    "d": "Gives the bounciness of the target's breasts",
+    "i": "player",
+    "o": "num"
+  },
+  "set_bounciness": {
+    "n": "Gainax Gambit",
+    "c": "effects",
+    "d": "Sets the bounciness of the caster's breasts",
+    "i": "num",
+    "o": "-"
+  },
+  "get_floppiness": {
+    "n": "Lindhal's Purification",
+    "c": "effects",
+    "d": "Gives the floppiness of the target's breasts",
+    "i": "player",
+    "o": "num"
+  },
+  "set_floppiness": {
+    "n": "Lindhal's Gambit",
+    "c": "effects",
+    "d": "Sets the floppiness of the caster's breasts",
+    "i": "num",
+    "o": "-"
+  },
+  "get_physics": {
+    "n": "Hookean Purification",
+    "c": "effects",
+    "d": "Gives the physics of the target's breasts",
+    "i": "player",
+    "o": "bool"
+  },
+  "set_physics": {
+    "n": "Hookean Gambit",
+    "c": "effects",
+    "d": "Sets the physics of the caster's breasts",
+    "i": "bool",
+    "o": "-"
+  },
+  "get_cleavage": {
+    "n": "Cleavage Purification",
+    "c": "effects",
+    "d": "Gets the cleavage of the target's breasts",
+    "i": "player",
+    "o": "num"
+  },
+  "set_cleavage": {
+    "n": "Cleavage Gambit",
+    "c": "effects",
+    "d": "Sets the cleavage of the caster's breasts",
+    "i": "num",
+    "o": "-"
+  },
+  "get_breast_offsets": {
+    "n": "Liposuction Purification",
+    "c": "effects",
+    "d": "Gets the offset of the target's breasts",
+    "i": "player",
+    "o": "vec"
+  },
+  "set_breast_offsets": {
+    "n": "Liposuction Gambit",
+    "c": "effects",
+    "d": "Sets the offset of the caster's breasts",
+    "i": "vec",
+    "o": "-"
+  },
+  "get_uniboob": {
+    "n": "Symmastia Purification",
+    "c": "effects",
+    "d": "Gets whether the target's breasts are a uniboob",
+    "i": "player",
+    "o": "bool"
+  },
+  "set_uniboob": {
+    "n": "Symmastia Gambit",
+    "c": "effects",
+    "d": "Sets whether the caster's breasts are a uniboob",
+    "i": "bool",
+    "o": "-"
+  },
+  "periwinkle": {
+    "n": "Induce Digging",
+    "c": "effects",
+    "d": "Fortunately, the Art of Hexcasting is a versatile one and provides the means to bring back near anything.",
+    "i": "entity",
+    "o": "-"
+  },
+  "get_effects_entity": {
+    "n": "Diagnosis Purification",
+    "c": "effects",
+    "d": "Pushes a list of status effects the entity is afflicted with.",
+    "i": "entity",
+    "o": "list of identifiers"
+  },
+  "get_effects_item": {
+    "n": "Prescription Purification",
+    "c": "effects",
+    "d": "Pushes a list of status effects the food or potion will bestow.",
+    "i": "item",
+    "o": "list of identifiers"
+  },
+  "get_effect_category": {
+    "n": "Condition Purification",
+    "c": "effects",
+    "d": "Pushes the general \"goodness\" of the effect towards the afflicted. -1 for harmful, 0 for neutral, and 1 for beneficial.",
+    "i": "identifier",
+    "o": "number"
+  },
+  "get_effect_amplifier": {
+    "n": "Concentration Distillation",
+    "c": "effects",
+    "d": "Pushes how potent the effect type is acting on the entity or Null if the entity doesn't have it.",
+    "i": "entity, identifier",
+    "o": "number"
+  },
+  "get_effect_duration": {
+    "n": "Clearance Distillation",
+    "c": "effects",
+    "d": "Pushes how long the effect type will affect the entity in twentieths of a second or Null if the entity doesn't have it.",
+    "i": "entity, identifier",
+    "o": "number"
+  }
+}

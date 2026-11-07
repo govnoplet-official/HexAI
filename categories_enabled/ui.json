@@ -1,0 +1,144 @@
+{
+  "_description": {
+    "summary": "User interface and visuals: icons and markers on the map, draw text, rectangle and line, speck (floating pattern) control, shader vision, hotbar and key or mouse input reflections, telepathy, news and chat display, sounds and particles, Animated Scroll ink.",
+    "use_cases": [
+      "Drawing icons, text or shapes on screen or map",
+      "Controlling speck (floating pattern) appearance",
+      "Reading player input (keys, mouse, hotbar)",
+      "Changing vision or sending thoughts"
+    ]
+  },
+  "glow_scroll": {
+    "n": "Illuminate Ink",
+    "c": "ui",
+    "d": "Causes the ink of an Animated Scroll to brightly glow, regardless of lighting conditions.",
+    "i": "entity",
+    "o": "-"
+  },
+  "conjure_speck": {
+    "n": "Conjure Speck",
+    "c": "ui",
+    "d": "Conjures a speck with the iota, position, and rotation. Costs a negligible amount of media. Pushes the speck iota to the stack.",
+    "i": "any, vector, vector",
+    "o": "entity"
+  },
+  "iota_speck": {
+    "n": "Alter Speck",
+    "c": "ui",
+    "d": "Changes the speck's iota.",
+    "i": "speck entity, any",
+    "o": "-"
+  },
+  "kill_specklike": {
+    "n": "Dismiss Speck",
+    "c": "ui",
+    "d": "Forces a speck to disappear.",
+    "i": "speck entity",
+    "o": "-"
+  },
+  "move_specklike": {
+    "n": "Move Speck",
+    "c": "ui",
+    "d": "Moves a speck entity to the position.",
+    "i": "speck entity, vector",
+    "o": "-"
+  },
+  "rotate_specklike": {
+    "n": "Rotate Speck",
+    "c": "ui",
+    "d": "Rotates a speck entity to face the vector.",
+    "i": "speck entity, vector",
+    "o": "-"
+  },
+  "roll_specklike": {
+    "n": "Roll Speck",
+    "c": "ui",
+    "d": "Accepts a number between 0 and 1, representing a fraction of a full rotation, and rotates the speck's image by that amount.",
+    "i": "speck entity, number",
+    "o": "-"
+  },
+  "size_specklike": {
+    "n": "Resize Speck",
+    "c": "ui",
+    "d": "Scales the speck, can range from 0 to 10. Represents size in blocks and is zero by default.",
+    "i": "speck entity, number",
+    "o": "-"
+  },
+  "thickness_specklike": {
+    "n": "Thicken Speck",
+    "c": "ui",
+    "d": "Changes the stroke thickness of a pattern speck, can range from 0 to 10. Represents twentieths of a block, and is zero by default.",
+    "i": "speck entity, number",
+    "o": "-"
+  },
+  "lifetime_specklike": {
+    "n": "Time Speck",
+    "c": "ui",
+    "d": "Commands the speck to disappear after that many twentieths of a second.",
+    "i": "speck entity, number",
+    "o": "-"
+  },
+  "get_chat": {
+    "n": "Newspaper Reflection",
+    "c": "ui",
+    "d": "Applies News Reflection to the last up to 32 messages in chat, wraps each in a list, and pushes a list of those lists.",
+    "i": "-",
+    "o": "list of lists"
+  },
+  "get_window_size": {
+    "n": "Periphery Reflection",
+    "c": "ui",
+    "d": "Returns the full width and height of my vision as a vector.",
+    "i": "-",
+    "o": "vector"
+  },
+  "get_icons": {
+    "n": "Icons Reflection",
+    "c": "ui",
+    "d": "Pushes a list of the indices of all the Icons I have. This appears as a list of numbers.",
+    "i": "-",
+    "o": "list of indices"
+  },
+  "remove_icon": {
+    "n": "Clear Icon",
+    "c": "ui",
+    "d": "Immediately clears an Icon.",
+    "i": "index",
+    "o": "-"
+  },
+  "draw_text": {
+    "n": "Draw Text",
+    "c": "ui",
+    "d": "Takes an index, a position, a number, and any iota. Conjures an Icon displaying that iota.",
+    "i": "index, vector, number, any",
+    "o": "-"
+  },
+  "draw_rect": {
+    "n": "Draw Rectangle",
+    "c": "ui",
+    "d": "Takes an index, a position, a size, and a color. Conjures an Icon displaying that rectangle.",
+    "i": "index, vector, vector, vector",
+    "o": "-"
+  },
+  "draw_line": {
+    "n": "Draw Line",
+    "c": "ui",
+    "d": "Takes an index, a position, a size, and a color. Conjures an Icon that joins between the two with a thin line.",
+    "i": "index, vector, vector, vector",
+    "o": "-"
+  },
+  "rotate_icon": {
+    "n": "Rotate Icon",
+    "c": "ui",
+    "d": "Takes an index and an amount of rotation counterclockwise in terms of a full circle. Rotates the icon.",
+    "i": "index, number",
+    "o": "-"
+  },
+  "scale_icon": {
+    "n": "Scale Icon",
+    "c": "ui",
+    "d": "Takes an index and a scaling factor. Scales the icon.",
+    "i": "index, number",
+    "o": "-"
+  }
+}

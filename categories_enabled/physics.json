@@ -1,0 +1,23 @@
+{
+  "_description": {
+    "summary": "Physics and teleportation: applying impulses to entities, teleport triggers, lesser and simpler teleport.",
+    "use_cases": [
+      "Pushing entities with an impulse",
+      "Teleporting entities within ambit"
+    ]
+  },
+  "add_motion": {
+    "n": "Impulse",
+    "c": "physics",
+    "d": "Remove an entity and direction from the stack, then give a shove to the given entity in the given direction. The strength of the impulse is determined by the length of the vector.\nCosts units of Amethyst Dust equal to the square of the length of the vector, plus one for every Impulse except the first targeting an entity.",
+    "i": "entity, vector",
+    "o": "-"
+  },
+  "make_teleport_trigger": {
+    "n": "Trigger Reflection: Teleport",
+    "c": "physics",
+    "d": "Creates a trigger that activates whenever I teleport. For reasons I cannot discern, this will not detect teleports shorter than 1.5 blocks in length.",
+    "i": "-",
+    "o": "trigger"
+  }
+}

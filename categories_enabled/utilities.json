@@ -1,0 +1,2091 @@
+{
+  "_description": {
+    "summary": "Booleans, constants and general utilities: and, or, not, xor, equality and type comparisons, if, print and reveal, null, true and false constants, complex and quaternion constants, structure mirror and rotate, library and visitor keys, dictionaries, JSON and HTTP requests, coalescing, Mind Stack operations, phiangle links, many item and block helpers.",
+    "use_cases": [
+      "Boolean logic and conditional values",
+      "Comparing iotas for equality or type",
+      "Building dictionaries, JSON or HTTP requests",
+      "Printing or revealing values to the caster",
+      "Transforming stored structures"
+    ]
+  },
+  "and": {
+    "n": "Conjunction Distillation",
+    "c": "utilities",
+    "d": "Takes the intersection of two sets. | Returns True if both arguments are true; otherwise returns False. | Perform Bitwise AND | Takes the intersection of two sets. The new set will only contain elements that were present in both of the previous sets. The two sets must be of matching type.",
+    "i": "(num, num)|(list, list) | bool, bool | long, long | set, set",
+    "o": "num|list | bool | long | set"
+  },
+  "or": {
+    "n": "Disjunction Distillation",
+    "c": "utilities",
+    "d": "Unifies two sets. | Returns True if at least one of the arguments are True; otherwise returns False. | Perform Bitwise OR",
+    "i": "(num, num)|(list, list) | bool, bool | long, long",
+    "o": "num|list | bool | long"
+  },
+  "not": {
+    "n": "Negation Purification",
+    "c": "utilities",
+    "d": "If the argument is True, return False; if it is False, return True. | Takes the inversion of a bitset, changing all \"on\" bits to \"off\" and vice versa. In my experience, this will take the form of that number negated and decreased by one. For example, 0 will become -1, and -100 will become 99. | Perform Bitwise NOT",
+    "i": "bool | num | long, long",
+    "o": "bool | num | long"
+  },
+  "xor": {
+    "n": "Exclusion Distillation",
+    "c": "utilities",
+    "d": "Takes the exclusive disjunction of two sets. | Returns True if exactly one of the arguments is true; otherwise returns False. | Perform Bitwise XOR | Takes the exclusive disjunction of two sets. The new set will only contain elements that were present in only one of the two sets. The two sets must be of matching type.",
+    "i": "(num, num)|(list, list) | bool, bool | long, long | set, set",
+    "o": "num|list | bool | long | set"
+  },
+  "hexcasting:equals": {
+    "n": "Equality Distillation",
+    "c": "utilities",
+    "d": "If the first argument equals the second (within a small tolerance), return True. Otherwise, return False.",
+    "i": "any, any",
+    "o": "bool"
+  },
+  "not_equals": {
+    "n": "Inequality Distillation",
+    "c": "utilities",
+    "d": "If the first argument does not equal the second (outside a small tolerance), return True. Otherwise, return False.",
+    "i": "any, any",
+    "o": "bool"
+  },
+  "type_equals": {
+    "n": "Similarity Distillation",
+    "c": "utilities",
+    "d": "Compare the given iotas and push whether they are of the same type.",
+    "i": "any, any",
+    "o": "bool"
+  },
+  "type_not_equals": {
+    "n": "Dissimilarity Distillation",
+    "c": "utilities",
+    "d": "Compare the given iotas and push whether they are of different types.",
+    "i": "any, any",
+    "o": "bool"
+  },
+  "bool_coerce": {
+    "n": "Augur's Purification",
+    "c": "utilities",
+    "d": "Convert an argument to a boolean. The number 0, Null, False, the vector (0, 0, 0), and the empty list become False; everything else becomes True.",
+    "i": "any",
+    "o": "bool"
+  },
+  "if": {
+    "n": "Augur's Exaltation",
+    "c": "utilities",
+    "d": "If the first argument is True, keeps the second and discards the third; otherwise discards the second and keeps the third.",
+    "i": "bool, any, any",
+    "o": "any"
+  },
+  "print": {
+    "n": "Reveal",
+    "c": "utilities",
+    "d": "Displays the top iota of the stack to me.",
+    "i": "any",
+    "o": "any"
+  },
+  "hexcasting:erase": {
+    "n": "Erase Item",
+    "c": "utilities",
+    "d": "Clears Hex-containing or iota-containing items in my other hand. Costs about one Amethyst Dust per item.",
+    "i": "-",
+    "o": "-"
+  },
+  "const/null": {
+    "n": "Nullary Reflection",
+    "c": "utilities",
+    "d": "Adds the Null influence to the top of the stack.",
+    "i": "-",
+    "o": "null"
+  },
+  "const/true": {
+    "n": "True Reflection",
+    "c": "utilities",
+    "d": "Adds True to the top of the stack.",
+    "i": "-",
+    "o": "bool"
+  },
+  "const/false": {
+    "n": "False Reflection",
+    "c": "utilities",
+    "d": "Adds False to the top of the stack.",
+    "i": "-",
+    "o": "bool"
+  },
+  "index_of": {
+    "n": "Locator's Distillation",
+    "c": "utilities",
+    "d": "Remove the iota at the top of the stack, then replace the list at the top with the first index of that iota within the list (starting from 0). Replaces the list with -1 if the iota doesn't exist in the list. | Pushes the value present at the provided key, or Null if no value was present. | Remove the iota top of the stack, then return True if the set contains that iota, otherwise return False. The iota's type must match the set's type. | Removes two strings from the top of the stack, and returns the first index of the first string where the second string is a substring.",
+    "i": "list, any | dict, key | set, (num|vec|entity) | str, str",
+    "o": "num | any | set, bool | num"
+  },
+  "const/complex/1": {
+    "n": "Constant Realisation",
+    "c": "utilities",
+    "d": "Pushes 1 + 0i to the stack.",
+    "i": "-",
+    "o": "complex"
+  },
+  "const/complex/i": {
+    "n": "Constant Imagination",
+    "c": "utilities",
+    "d": "Pushes 0 + 1i to the stack.",
+    "i": "-",
+    "o": "complex"
+  },
+  "conjugate": {
+    "n": "Conjugation Prfn.",
+    "c": "utilities",
+    "d": "Negates the imaginary coefficient of the topmost iota",
+    "i": "complex",
+    "o": "complex"
+  },
+  "cnarg": {
+    "n": "hexcasting.action.complexhex:cnarg",
+    "c": "utilities",
+    "d": "-",
+    "i": "-",
+    "o": "-"
+  },
+  "const/quaternion/1": {
+    "n": "Quaternionic Rfln.: 1",
+    "c": "utilities",
+    "d": "Pushes 1 + 0i + 0j + 0k to the stack.",
+    "i": "-",
+    "o": "quaternion"
+  },
+  "const/quaternion/i": {
+    "n": "Quaternionic Rfln.: i",
+    "c": "utilities",
+    "d": "Pushes 0 + 1i + 0j + 0k to the stack.",
+    "i": "-",
+    "o": "quaternion"
+  },
+  "const/quaternion/j": {
+    "n": "Quaternionic Rfln: j",
+    "c": "utilities",
+    "d": "Pushes 0 + 0i + 1j + 0k to the stack.",
+    "i": "-",
+    "o": "quaternion"
+  },
+  "const/quaternion/k": {
+    "n": "Quaternionic Rfln: k",
+    "c": "utilities",
+    "d": "Pushes 0 + 0i + 0j + 1k to the stack.",
+    "i": "-",
+    "o": "quaternion"
+  },
+  "qinvert": {
+    "n": "Quaternionic Inverse",
+    "c": "utilities",
+    "d": "Negates the coefficients of i, j, & k",
+    "i": "quaternion",
+    "o": "quat"
+  },
+  "killbit": {
+    "n": "Kill BIT",
+    "c": "utilities",
+    "d": "Kills & removes the given BIT.",
+    "i": "BIT",
+    "o": "-"
+  },
+  "rotatebit": {
+    "n": "Rotate BIT",
+    "c": "utilities",
+    "d": "Rotates the BIT to the given Quaternion.",
+    "i": "BIT, quat",
+    "o": "-"
+  },
+  "chloe/make": {
+    "n": "hexcasting.action.complexhex:chloe/make",
+    "c": "utilities",
+    "d": "-",
+    "i": "-",
+    "o": "-"
+  },
+  "chloe/copy": {
+    "n": "hexcasting.action.complexhex:chloe/copy",
+    "c": "utilities",
+    "d": "-",
+    "i": "-",
+    "o": "-"
+  },
+  "derivative": {
+    "n": "Derivation Purification",
+    "c": "utilities",
+    "d": "Takes in an expression and a lone symbol and returns the partial derivative of the expression with respect to the symbol.",
+    "i": "expr, expr",
+    "o": "expr"
+  },
+  "code2focus": {
+    "n": "Decoding Gambit",
+    "c": "utilities",
+    "d": "Reads code from my local clipboard, then parse it into the focus I'm holding.\nCan only be casted by staff.",
+    "i": "-",
+    "o": "-"
+  },
+  "focus2code": {
+    "n": "Encoding Gambit",
+    "c": "utilities",
+    "d": "Reads data from the focus I'm holding, and prints parsed code into chat menu.\nCan only be casted by staff.",
+    "i": "-",
+    "o": "-"
+  },
+  "mirror_left_right": {
+    "n": "Mirror Purification X",
+    "c": "utilities",
+    "d": "Flips a stored Structure left-to-right, or across the X-axis.",
+    "i": "structure",
+    "o": "structure"
+  },
+  "mirror_front_back": {
+    "n": "Mirror Purification Z",
+    "c": "utilities",
+    "d": "Flips a stored Structure front-to-back, or across the Z-axis.",
+    "i": "structure",
+    "o": "structure"
+  },
+  "mirror_vertical": {
+    "n": "Mirror Purification Y",
+    "c": "utilities",
+    "d": "Flips a stored Structure top-to-bottom, or across the Y-axis.",
+    "i": "structure",
+    "o": "structure"
+  },
+  "rotate_clockwise": {
+    "n": "Rotation Purification Clockwise Y",
+    "c": "utilities",
+    "d": "Rotates a stored Structure 90-degrees clockwise about the Y-axis.",
+    "i": "structure",
+    "o": "structure"
+  },
+  "rotate_counterclockwise": {
+    "n": "Rotation Purification Counter-Clockwise Y",
+    "c": "utilities",
+    "d": "Rotates a stored Structure 90-degrees counterclockwise about the Y-axis.",
+    "i": "structure",
+    "o": "structure"
+  },
+  "rotate_clockwise_x": {
+    "n": "Rotation Purification Clockwise X",
+    "c": "utilities",
+    "d": "Rotates a stored Structure 90-degrees clockwise about the X-axis.",
+    "i": "structure",
+    "o": "structure"
+  },
+  "rotate_counterclockwise_x": {
+    "n": "Rotation Purification Counter-Clockwise X",
+    "c": "utilities",
+    "d": "Rotates a stored Structure 90-degrees counterclockwise about the X-axis.",
+    "i": "structure",
+    "o": "structure"
+  },
+  "rotate_clockwise_z": {
+    "n": "Rotation Purification Clockwise Z",
+    "c": "utilities",
+    "d": "Rotates a stored Structure 90-degrees clockwise about the Z-axis.",
+    "i": "structure",
+    "o": "structure"
+  },
+  "rotate_counterclockwise_z": {
+    "n": "Rotation Purification Counter-Clockwise Z",
+    "c": "utilities",
+    "d": "Rotates a stored Structure 90-degrees counterclockwise about the Z-axis.",
+    "i": "structure",
+    "o": "structure"
+  },
+  "insert": {
+    "n": "Flattening Exaltation",
+    "c": "utilities",
+    "d": "Similar to Surgeon's Exaltation, but replaces the element of the first list instead with the *contents* of the second list, rather than with the list itself.",
+    "i": "list, num, list",
+    "o": "list"
+  },
+  "requote": {
+    "n": "Retrojection",
+    "c": "utilities",
+    "d": "When used after an Introjection, This pattern puts all iota on the stack into the escaped list, with the previous state of the stack being restored.",
+    "i": "-",
+    "o": "-"
+  },
+  "isgreatersent": {
+    "n": "Shard Reflection",
+    "c": "utilities",
+    "d": "Pushes if my current sentinel is a Greater Sentinel, or Null if I have no sentinel at all.",
+    "i": "-",
+    "o": "bool | null"
+  },
+  "empty_dict": {
+    "n": "Impasse Reflection",
+    "c": "utilities",
+    "d": "Creates an empty Dictionary iota.",
+    "i": "-",
+    "o": "dict"
+  },
+  "dict_keys": {
+    "n": "Accessor's Purification",
+    "c": "utilities",
+    "d": "Pushes a list of the keys present in the Dictionary.",
+    "i": "dict",
+    "o": "list"
+  },
+  "dict_vals": {
+    "n": "Accessed's Purification",
+    "c": "utilities",
+    "d": "Pushes a list of the values present in the Dictionary.",
+    "i": "dict",
+    "o": "list"
+  },
+  "dict_ents": {
+    "n": "Entry Purification",
+    "c": "utilities",
+    "d": "Pushes a list of the key-value pairs in this Dictionary, each being a 2 element list.",
+    "i": "dict",
+    "o": "list"
+  },
+  "link/others": {
+    "n": "Link Others",
+    "c": "utilities",
+    "d": "May be evaluated by any casting instrument. Links two entities, which must be linkable. This costs one Amethyst Shard.",
+    "i": "linkable, linkable",
+    "o": "-"
+  },
+  "link/unlink/others": {
+    "n": "Unlink Others",
+    "c": "utilities",
+    "d": "Takes two linkables and unlinks them if they are linked. This costs two Amethyst Dust.",
+    "i": "linkable, linkable",
+    "o": "-"
+  },
+  "mote/storage/remaining_capacity/get": {
+    "n": "Capacity Reflection",
+    "c": "utilities",
+    "d": "Gets the remaining capacity of the bound Mote Nexus.",
+    "i": "-",
+    "o": "int"
+  },
+  "create_property": {
+    "n": "Schrödinger's Reflection",
+    "c": "utilities",
+    "d": "Creates a property iota for a random Property. Costs about five Charged Amethyst to etch this law into the universe.",
+    "i": "-",
+    "o": "property"
+  },
+  "observe_property": {
+    "n": "Observation Purification",
+    "c": "utilities",
+    "d": "Observes the current value of the property iota.",
+    "i": "property",
+    "o": "any"
+  },
+  "set_property": {
+    "n": "Schrödinger's Gambit",
+    "c": "utilities",
+    "d": "Sets the property iota. Costs about a tenth of an Amethyst Dust.",
+    "i": "property, any",
+    "o": "-"
+  },
+  "normalize_scroll": {
+    "n": "Restore Scroll",
+    "c": "utilities",
+    "d": "Restores the parchment of a scroll to an unmodified state.",
+    "i": "entity",
+    "o": "-"
+  },
+  "age_scroll": {
+    "n": "Age Scroll",
+    "c": "utilities",
+    "d": "Yellows the parchment of an Animated Scroll, making it bear striking semblance to some ancient scrolls I've been finding.",
+    "i": "entity",
+    "o": "-"
+  },
+  "vanish_scroll": {
+    "n": "Vanish Scroll",
+    "c": "utilities",
+    "d": "Causes the Animated Scroll to become invisible leaving only the pattern, making it appear as though the pattern were magically etched into the surface the scroll is on.",
+    "i": "entity",
+    "o": "-"
+  },
+  "color_scroll": {
+    "n": "Dye Ink",
+    "c": "utilities",
+    "d": "Changes the color of an Animated Scroll's ink to the color specified by the vector, with the components being 0 to 1 values of red, green, and blue respectively.",
+    "i": "entity, vector",
+    "o": "-"
+  },
+  "recharge_lamp": {
+    "n": "Refuel Lamp",
+    "c": "utilities",
+    "d": "Refuels the Lamp in my offhand by the given amount in Amethyst Dust. Costs just the media I'm giving the Lamp.",
+    "i": "number",
+    "o": "-"
+  },
+  "get_hand_lamp_position": {
+    "n": "Genie Reflection: Spatial",
+    "c": "utilities",
+    "d": "Pushes my original position when I began using the Hand Lamp.",
+    "i": "-",
+    "o": "vector"
+  },
+  "get_hand_lamp_rotation": {
+    "n": "Genie Reflection: Rotational",
+    "c": "utilities",
+    "d": "Pushes my original rotation when I began using the Hand Lamp.",
+    "i": "-",
+    "o": "vector"
+  },
+  "get_hand_lamp_velocity": {
+    "n": "Genie Reflection: Kinetic",
+    "c": "utilities",
+    "d": "Pushes my original velocity when I began using the Hand Lamp.",
+    "i": "-",
+    "o": "vector"
+  },
+  "get_hand_lamp_use_time": {
+    "n": "Genie Reflection: Temporal",
+    "c": "utilities",
+    "d": "Pushes how many times the Hand Lamp has cast since I began using the Hand Lamp. I can divide by by 20 to convert to seconds.",
+    "i": "-",
+    "o": "number"
+  },
+  "get_hand_lamp_media": {
+    "n": "Genie Reflection: Media",
+    "c": "utilities",
+    "d": "Pushes the remaining media of the Hand Lamp, in units of dust.",
+    "i": "-",
+    "o": "number"
+  },
+  "get_hand_lamp_storage": {
+    "n": "Genie Reflection: Memory",
+    "c": "utilities",
+    "d": "Requests the iota I had saved to the genie to be pushed to the top of the stack. If I had not previously saved anything, the genie pushes Null.",
+    "i": "-",
+    "o": "any"
+  },
+  "set_hand_lamp_storage": {
+    "n": "Genie Gambit",
+    "c": "utilities",
+    "d": "Asks the genie to remember an iota for me. Strangely, the genie seems able to bypass the Transgress Others mishap, perhaps because it requires my active concentration to use this Hand Lamp.",
+    "i": "any",
+    "o": "-"
+  },
+  "get_arch_lamp_position": {
+    "n": "Archgenie Reflection: Spatial",
+    "c": "utilities",
+    "d": "Pushes my original position when the Archgenie Lamp started casting.",
+    "i": "-",
+    "o": "vector"
+  },
+  "get_arch_lamp_rotation": {
+    "n": "Archgenie Reflection: Rotational",
+    "c": "utilities",
+    "d": "Pushes my original rotation when the Archgenie Lamp started casting.",
+    "i": "-",
+    "o": "vector"
+  },
+  "get_arch_lamp_velocity": {
+    "n": "Archgenie Reflection: Kinetic",
+    "c": "utilities",
+    "d": "Pushes my original velocity when the Archgenie Lamp started casting.",
+    "i": "-",
+    "o": "vector"
+  },
+  "get_arch_lamp_use_time": {
+    "n": "Archgenie Reflection: Temporal",
+    "c": "utilities",
+    "d": "Pushes how many times the Archgenie Lamp has cast since its activation. I can divide by by 20 to convert to seconds.",
+    "i": "-",
+    "o": "number"
+  },
+  "get_arch_lamp_storage": {
+    "n": "Archgenie Reflection: Memory",
+    "c": "utilities",
+    "d": "Can be cast by a casting device, Staff, or within the Archgenie Lamp to push the stored iota.",
+    "i": "-",
+    "o": "any"
+  },
+  "set_arch_lamp_storage": {
+    "n": "Archgenie Gambit",
+    "c": "utilities",
+    "d": "Can be cast by a casting device, Staff, or within the Archgenie Lamp to remember an iota. Unlike Hand Lamp, this is subject to Transgress Others mishap.",
+    "i": "any",
+    "o": "-"
+  },
+  "get_arch_lamp_media": {
+    "n": "Archgenie Reflection: Media",
+    "c": "utilities",
+    "d": "Pushes the remaining amount of media left in the Archgenie Lamp, in units of dust.",
+    "i": "-",
+    "o": "number"
+  },
+  "has_arch_lamp": {
+    "n": "Archgenie Purification",
+    "c": "utilities",
+    "d": "Pushes whether a player currently has an active Archgenie Lamp.",
+    "i": "entity",
+    "o": "boolean"
+  },
+  "lamp_finale": {
+    "n": "Finale Reflection",
+    "c": "utilities",
+    "d": "The instant I let go of my Hand Lamp, it casts an additional time. I can use this pattern to recognize whether a cast is that finale, and react accordingly.",
+    "i": "-",
+    "o": "boolean"
+  },
+  "rotate_block": {
+    "n": "Rotate Block",
+    "c": "utilities",
+    "d": "Rotates a block to face a certain vector direction. Requires a rotatable block. Costs about an eighth of an Amethyst Dust.",
+    "i": "vector, vector",
+    "o": "-"
+  },
+  "rotate_entity": {
+    "n": "Rotate Entity",
+    "c": "utilities",
+    "d": "Rotates an entity by a given change in pitch and yaw, expressed in radians.",
+    "i": "entity, number, number",
+    "o": "-"
+  },
+  "shuffle_pattern": {
+    "n": "Glyphmaker's Distillation",
+    "c": "utilities",
+    "d": "Uses the number to shuffle the pattern into one of the same shape, but different stroke order. My notes hint that ancient Hexcasters used this for some *grand library*.",
+    "i": "pattern, number",
+    "o": "pattern"
+  },
+  "congruent": {
+    "n": "Congruence Distillation",
+    "c": "utilities",
+    "d": "Pushes whether two patterns have the same shape, stroke order, and orientation.",
+    "i": "pattern, pattern",
+    "o": "boolean"
+  },
+  "grok_pull": {
+    "n": "Grok Reflection",
+    "c": "utilities",
+    "d": "Pushes two lists; one of the stack and one of the unfinished list building after an unclosed Introspection. Entity references to players that are not me become Null.",
+    "i": "-",
+    "o": "list, list"
+  },
+  "grok_push": {
+    "n": "Grok Gambit",
+    "c": "utilities",
+    "d": "Takes two lists of iotas and sets them as my stack and my parenthesized list respectively. Entity references to players that are not me become Null.",
+    "i": "list, list",
+    "o": "-"
+  },
+  "get_telepathy": {
+    "n": "Telepathic Reflection",
+    "c": "utilities",
+    "d": "By focusing on a particular image, I can detect that concentration via this pattern. Pushes how many twentieths of a second I've been intending to Call Telepathy, or -1 if I am not.",
+    "i": "-",
+    "o": "number"
+  },
+  "send_telepathy": {
+    "n": "Send Thought",
+    "c": "utilities",
+    "d": "Momentarily displays an iota above my hotbar. If cast repeatedly, each cast overwrites the previous instantly.",
+    "i": "any",
+    "o": "-"
+  },
+  "shout_telepathy": {
+    "n": "Shout Thought",
+    "c": "utilities",
+    "d": "Grandly flashes an iota across my vision. It obstructs my vision and takes some time to fade in, so I shall only use it sparingly.",
+    "i": "any",
+    "o": "-"
+  },
+  "pling": {
+    "n": "Hallucinate Pling",
+    "c": "utilities",
+    "d": "Causes me to hear a pling that is inaudible to others.",
+    "i": "-",
+    "o": "-"
+  },
+  "click": {
+    "n": "Hallucinate Click",
+    "c": "utilities",
+    "d": "Causes me to hear a click that is inaudible to others.",
+    "i": "-",
+    "o": "-"
+  },
+  "left_click": {
+    "n": "Offensive Reflection",
+    "c": "utilities",
+    "d": "Pushes how many twentieths of a second I've been intending to Attack/Destroy, or -1 if I am not.",
+    "i": "-",
+    "o": "number"
+  },
+  "right_click": {
+    "n": "Manipulative Reflection",
+    "c": "utilities",
+    "d": "Pushes how many twentieths of a second I've been intending to Use Item/Place Block, or -1 if I am not.",
+    "i": "-",
+    "o": "number"
+  },
+  "moving_up": {
+    "n": "Charge Reflection",
+    "c": "utilities",
+    "d": "Pushes how many twentieths of a second I've been intending to Walk Forwards, or -1 if I am not.",
+    "i": "-",
+    "o": "number"
+  },
+  "moving_down": {
+    "n": "Retreat Reflection",
+    "c": "utilities",
+    "d": "Pushes how many twentieths of a second I've been intending to Walk Backwards, or -1 if I am not.",
+    "i": "-",
+    "o": "number"
+  },
+  "moving_left": {
+    "n": "Dodge Reflection",
+    "c": "utilities",
+    "d": "Pushes how many twentieths of a second I've been intending to Strafe Left, or -1 if I am not. Can be differentiated from Evade Reflection because d comes to the left of e.",
+    "i": "-",
+    "o": "number"
+  },
+  "moving_right": {
+    "n": "Evade Reflection",
+    "c": "utilities",
+    "d": "Pushes how many twentieths of a second I've been intending to Strafe Right, or -1 if I am not. Can be differentiated from Dodge Reflection because e comes to the right of d.",
+    "i": "-",
+    "o": "number"
+  },
+  "jumping": {
+    "n": "Leaping Reflection",
+    "c": "utilities",
+    "d": "Pushes how many twentieths of a second I've been intending to Jump, or -1 if I am not.",
+    "i": "-",
+    "o": "number"
+  },
+  "sneaking": {
+    "n": "Stealthy Reflection",
+    "c": "utilities",
+    "d": "Pushes how many twentieths of a second I've been intending to Sneak, or -1 if I am not.",
+    "i": "-",
+    "o": "number"
+  },
+  "scroll": {
+    "n": "Rolling Reflection",
+    "c": "utilities",
+    "d": "Pushes the change in scrolling I have performed since I have invoked Telepathy.",
+    "i": "-",
+    "o": "number"
+  },
+  "key_shelf": {
+    "n": "Librarian's Purification",
+    "c": "utilities",
+    "d": "Reads the pattern key of an Akashic Bookshelf.",
+    "i": "vector",
+    "o": "pattern/null"
+  },
+  "read_shelf": {
+    "n": "Librarian's Purification II",
+    "c": "utilities",
+    "d": "Reads the iota from an Akashic Bookshelf.",
+    "i": "vector",
+    "o": "any"
+  },
+  "write_shelf": {
+    "n": "Librarian's Gambit",
+    "c": "utilities",
+    "d": "Writes an iota under a pattern key to an Akashic Bookshelf.",
+    "i": "vector, pattern, any",
+    "o": "-"
+  },
+  "clear_shelf": {
+    "n": "Librarian's Gambit II",
+    "c": "utilities",
+    "d": "Clears an Akashic Bookshelf.",
+    "i": "vector",
+    "o": "-"
+  },
+  "conjure_mage_block": {
+    "n": "Conjure Mage Block",
+    "c": "utilities",
+    "d": "Conjures a Mage Blocks at the location. Costs about three Amethyst Dust.\n*I can create a city out of nothing, or I can cover it in volcanic rock.*",
+    "i": "vector",
+    "o": "-"
+  },
+  "reset_mage_block": {
+    "n": "Reset Mage Block",
+    "c": "utilities",
+    "d": "Conjures a Mage Blocks at the location. Costs about three Amethyst Dust.\n*I can create a city out of nothing, or I can cover it in volcanic rock.*",
+    "i": "vector",
+    "o": "-"
+  },
+  "disguise_mage_block": {
+    "n": "hexcasting.action.hexical:disguise_mage_block",
+    "c": "utilities",
+    "d": "-",
+    "i": "-",
+    "o": "-"
+  },
+  "tweak_mage_block": {
+    "n": "hexcasting.action.hexical:tweak_mage_block",
+    "c": "utilities",
+    "d": "-",
+    "i": "-",
+    "o": "-"
+  },
+  "modify_block_bouncy": {
+    "n": "Modify Block: Bouncy",
+    "c": "utilities",
+    "d": "Makes the block bouncy, like a Slime Block. Bounces me regardless of whether I am sneaking. Delightfully fun!",
+    "i": "vector",
+    "o": "-"
+  },
+  "modify_block_ephemeral": {
+    "n": "Modify Block: Ephemeral",
+    "c": "utilities",
+    "d": "Sets the duration after which a Mage Block will spontaneously disappear.",
+    "i": "vector, number",
+    "o": "-"
+  },
+  "modify_block_energized": {
+    "n": "Modify Block: Energized",
+    "c": "utilities",
+    "d": "Sets the Redstone power outputted by this Mage Block.",
+    "i": "vector, number",
+    "o": "-"
+  },
+  "modify_block_volatile": {
+    "n": "Modify Block: Volatile",
+    "c": "utilities",
+    "d": "Breaking volatile Mage Blocks shatters others it is touching. This can cascade until every connected volatile block shatters.",
+    "i": "vector",
+    "o": "-"
+  },
+  "autograph": {
+    "n": "Autograph",
+    "c": "utilities",
+    "d": "Autographs the item in my offhand with my name and Pigment. Autographing an item with my name already on it moves my name to the top of the list.",
+    "i": "-",
+    "o": "-"
+  },
+  "unautograph": {
+    "n": "Unautograph",
+    "c": "utilities",
+    "d": "A more destructive form of Erase Item, capable of burning off autographs. Costs about one Amethyst Dust similar to Erase Item.",
+    "i": "-",
+    "o": "-"
+  },
+  "has_autograph": {
+    "n": "Authenticator's Distillation",
+    "c": "utilities",
+    "d": "Pushes whether a given player has signed a given item stack.",
+    "i": "item stack, entity",
+    "o": "boolean"
+  },
+  "get_dye": {
+    "n": "Chromatic Purification",
+    "c": "utilities",
+    "d": "Gets the dye of a block, entity, or block/item identifier.",
+    "i": "id/vector/entity",
+    "o": "dye/null"
+  },
+  "to_pigment": {
+    "n": "Pigment Purification",
+    "c": "utilities",
+    "d": "Takes a colored dye iota and transforms it into a pigment, takes a player and returns their pigment, or takes an item containing a pigment and returns its pigment.",
+    "i": "dye/entity",
+    "o": "pigment"
+  },
+  "sample_pigment": {
+    "n": "Pigment Exaltation",
+    "c": "utilities",
+    "d": "Samples the pigment at a certain place and time as a vector, where each component is from 0 to 1 and represents the red, green, and blueness respectively.",
+    "i": "pigment, vec, num",
+    "o": "vec"
+  },
+  "take_on_pigment": {
+    "n": "Internalize Pigment II",
+    "c": "utilities",
+    "d": "Internalizes a pigment iota.",
+    "i": "pigment",
+    "o": "-"
+  },
+  "prestidigitation": {
+    "n": "Prestidigitation",
+    "c": "utilities",
+    "d": "Causes a small magical effect, not too distinct from the original nature or function of the target. Costs about a tenth of one Amethyst Dust.",
+    "i": "entity/vector",
+    "o": "-"
+  },
+  "wristpocket": {
+    "n": "Wristpocket",
+    "c": "utilities",
+    "d": "This spell vanishes the stack of items in my other hand, or conjures it back, swapping if my other hand is holding something. Costs about a eighth of one Amethyst Dust.",
+    "i": "-",
+    "o": "-"
+  },
+  "wristpocket_item": {
+    "n": "Wristpocket Reflection",
+    "c": "utilities",
+    "d": "Returns the item in my wristpocket, or Null if it is empty.",
+    "i": "-",
+    "o": "item"
+  },
+  "sleight": {
+    "n": "Sleight",
+    "c": "utilities",
+    "d": "Performs an act of magical sleight of hand to steal items into my wristpocket or expel my wristpocket back into the world. Costs about a fourth of one Amethyst Dust.",
+    "i": "item entity/vector",
+    "o": "-"
+  },
+  "mage_hand": {
+    "n": "Mage Hand",
+    "c": "utilities",
+    "d": "Projects my mind's hand forward to use my wristpocketed item and interact with the world. If my wristpocket is empty, acts as though a plain hand had reached out. Costs about one Amethyst Dust.",
+    "i": "entity/vector",
+    "o": "-"
+  },
+  "mage_mouth": {
+    "n": "Mage Mouth",
+    "c": "utilities",
+    "d": "Makes me eat my wristpocketed item, nourishing me or applying potions to me. Costs about one Amethyst Dust and mishaps if the item is not edible.",
+    "i": "-",
+    "o": "-"
+  },
+  "pigment_specklike": {
+    "n": "Paint Speck",
+    "c": "utilities",
+    "d": "Splashes a pigment iota onto the speck, changing its color after creation.",
+    "i": "speck entity, pigment",
+    "o": "-"
+  },
+  "zone_specklike": {
+    "n": "Zone Distillation: Speck",
+    "c": "utilities",
+    "d": "Returns specks similarly to other zone distillation patterns.",
+    "i": "vector, number",
+    "o": "list of entities"
+  },
+  "ghast_fireball": {
+    "n": "Conjure Fireball",
+    "c": "utilities",
+    "d": "Conjures an explosive fireball that can be *percussively propelled*. Costs about three Amethyst Dust.",
+    "i": "vector",
+    "o": "entity"
+  },
+  "confetti": {
+    "n": "Confetti",
+    "c": "utilities",
+    "d": "Creates a loud bang similar to that of Fireworks and a burst of colorful particles, either in a direction or in a radial blast. Costs about half of one Amethyst Dust.",
+    "i": "vector, number/vector",
+    "o": "-"
+  },
+  "vibration": {
+    "n": "Vibrate",
+    "c": "utilities",
+    "d": "Causes a visible pulse of vibration from a vector to an entity or vector over a number of seconds. Costs about a sixteenth of one Amethyst Dust.",
+    "i": "vector, entity/vector, number",
+    "o": "-"
+  },
+  "sparkle": {
+    "n": "Sparkle",
+    "c": "utilities",
+    "d": "Produces a small sparkling particle of my desired position, color, and lifespan. Costs a negligible amount of media.",
+    "i": "vector, vector, number",
+    "o": "-"
+  },
+  "jailbreak": {
+    "n": "Crack Device",
+    "c": "utilities",
+    "d": "Cracks the unprogrammed casting device or Curio in my offhand. Cracked casting devices proudly display their Hexes. Costs about one Charged Amethyst.",
+    "i": "-",
+    "o": "-"
+  },
+  "flower": {
+    "n": "Conjure Flower",
+    "c": "utilities",
+    "d": "Conjures a flower of my choosing at a location. I must have identified this flower at some point before. Costs about a quarter of an Amethyst Dust.",
+    "i": "vector, identifer",
+    "o": "-"
+  },
+  "light": {
+    "n": "Illuminate",
+    "c": "utilities",
+    "d": "Conjures a completely invisible light with illumination strength of my choosing at a location. Costs about a quarter of an Amethyst Dust.",
+    "i": "vector, number",
+    "o": "-"
+  },
+  "gasp": {
+    "n": "Gasp",
+    "c": "utilities",
+    "d": "Instantly replenishes a creature's air bubbles. Costs about one Amethyst Dust.",
+    "i": "entity",
+    "o": "-"
+  },
+  "parrot": {
+    "n": "Squawk",
+    "c": "utilities",
+    "d": "Emits a sound associated with a mob near a location, as though a parrot had imitated that mob. Costs about a half of an Amethyst Dust.",
+    "i": "vector, identifier",
+    "o": "-"
+  },
+  "break_fortune": {
+    "n": "Extract Block",
+    "c": "utilities",
+    "d": "Targets structural faults in a block, resulting in a higher yield. Costs about one, three, and five Amethyst Dust when power input is 0, 1, and 2 respectively.",
+    "i": "vector, number",
+    "o": "-"
+  },
+  "conjure_gummy": {
+    "n": "Hex Gummy",
+    "c": "utilities",
+    "d": "Conjures a Hex Gummy: a delightful light snack that also provides about a tenth of an Amethyst Dust's worth of media. Costs about one Amethyst Dust.",
+    "i": "vector",
+    "o": "-"
+  },
+  "conjure_hexburst": {
+    "n": "Conjure Hexburst",
+    "c": "utilities",
+    "d": "Conjures a Hexburst of the given iota at the location. Costs about one Amethyst Dust and is subject to the Transgress Others mishap.",
+    "i": "vector, any",
+    "o": "-"
+  },
+  "conjure_hextito": {
+    "n": "Conjure Hextito",
+    "c": "utilities",
+    "d": "Conjures a Hextito of the given Hex at the location. Costs about two Amethyst Dust and is subject to the Transgress Others mishap.",
+    "i": "vector, list of patterns",
+    "o": "-"
+  },
+  "spike": {
+    "n": "Conjure Spike",
+    "c": "utilities",
+    "d": "Takes a non-air position, an axis vector, and a delay in seconds up to ten seconds long and conjures a spike at that location. Costs about one Amethyst Dust.",
+    "i": "vector, vector, number",
+    "o": "-"
+  },
+  "piston": {
+    "n": "Push",
+    "c": "utilities",
+    "d": "Takes a block position and an axis vector and pushes the block along that vector. Costs an eighth of an Amethyst Dust.",
+    "i": "vector, vector",
+    "o": "-"
+  },
+  "dispense": {
+    "n": "Dispense",
+    "c": "utilities",
+    "d": "Takes an item entity, a position, and an axis vector and dispenses the item. For most applications, costs about half of one Amethyst Dust.",
+    "i": "item entity, vector, vector",
+    "o": "-"
+  },
+  "hexical:smelt": {
+    "n": "Cook",
+    "c": "utilities",
+    "d": "Takes an item entity and cooks it as if in a Furnace. Costs about one Amethyst Dust for every ten seconds that the Furnace would need to have been active.",
+    "i": "item entity",
+    "o": "-"
+  },
+  "roast": {
+    "n": "Roast",
+    "c": "utilities",
+    "d": "A specialized variant of Cook that simulates a Campfire instead. This has a much more limited set of possibilities; I am unsure why I would ever use this.",
+    "i": "item entity",
+    "o": "-"
+  },
+  "smoke": {
+    "n": "Smoke",
+    "c": "utilities",
+    "d": "A specialized variant of Cook that simulates a Smoker instead, making it unable to process anything but foods but at a faster rate, making the spell cheaper.",
+    "i": "item entity",
+    "o": "-"
+  },
+  "blast": {
+    "n": "Blast",
+    "c": "utilities",
+    "d": "A specialized variant of Cook that simulates a Blast Furnace instead, making it unable to process anything but ores but at a faster rate, making the spell cheaper.",
+    "i": "item entity",
+    "o": "-"
+  },
+  "stonecut": {
+    "n": "Cut Stone",
+    "c": "utilities",
+    "d": "Takes an item entity and cuts the item into the shape of an item identifier. Costs about an eighth of one Amethyst Dust.",
+    "i": "item entity, identifier",
+    "o": "-"
+  },
+  "displace": {
+    "n": "Displace",
+    "c": "utilities",
+    "d": "Teleports an entity within the circle to another point within the same circle. Unlike Greater Teleport, this spell takes in world coordinates rather than an offset. Costs about half of an Amethyst Dust.",
+    "i": "entity, vector",
+    "o": "-"
+  },
+  "absorb_arm": {
+    "n": "Appendage",
+    "c": "utilities",
+    "d": "Allows a circle to hook onto a Pedestal within ambit to use as its *other arm*. Useful for certain spells that demand an item held in my other hand. It also works as a Wristpocket.",
+    "i": "vector",
+    "o": "-"
+  },
+  "create_dust": {
+    "n": "Export Media",
+    "c": "utilities",
+    "d": "Exports media out of an Impetus at a rate of about eleven Amethyst Dust spent per ten Amethyst Dust created. Takes a location and a number of up to a stack of Amethyst Dust.",
+    "i": "vector, number",
+    "o": "-"
+  },
+  "get_evocation": {
+    "n": "Evocation Reflection",
+    "c": "utilities",
+    "d": "Pushes the Hex etched into my mind.",
+    "i": "-",
+    "o": "list of patterns"
+  },
+  "set_evocation": {
+    "n": "Inculcate",
+    "c": "utilities",
+    "d": "Etches a Hex, allowing me to cast it by holding Evoke for one second. Costs about one Charged Amethyst.\n*Anthony thought at it, and it turned a flip-flop on the grass, and lay trembling, its eyes gleaming in small black terror.*",
+    "i": "list of patterns",
+    "o": "-"
+  },
+  "is_evoking": {
+    "n": "Evoker Reflection",
+    "c": "utilities",
+    "d": "Pushes how long since a player has been evoking. Is -1 if they are not currently evoking.",
+    "i": "-",
+    "o": "number"
+  },
+  "conjure_firework": {
+    "n": "Conjure Firework",
+    "c": "utilities",
+    "d": "Conjures a firework of my *exact* specifications. It may be one of the most complex spells in existence. Costs equivalently to the other firework spell.",
+    "i": "vec, vec, num, num, list of vec, list of vec, bool, bool",
+    "o": "-"
+  },
+  "simulate_firework": {
+    "n": "Simulate Firework",
+    "c": "utilities",
+    "d": "Analyzes the Firework Star in my other hand and conjures a firework of that star, with the position, velocity, and gunpowder amount specified. Costs about one Amethyst Shard.",
+    "i": "vector, vector, number",
+    "o": "-"
+  },
+  "get_hotbar": {
+    "n": "Handy Reflection",
+    "c": "utilities",
+    "d": "Pushes a number relating to which of my current items I am currently holding.",
+    "i": "-",
+    "o": "number"
+  },
+  "set_hotbar": {
+    "n": "Switch",
+    "c": "utilities",
+    "d": "Takes a number 0 to 8 and switches my current item to it.\n*Remember, switching to your pistol is always faster than reloading.*",
+    "i": "number",
+    "o": "-"
+  },
+  "shader_clear": {
+    "n": "Clear Vision",
+    "c": "utilities",
+    "d": "Breaks any shader spell currently applied to me. Useful for \"bleaching\" my eyes after too much experimentation.",
+    "i": "-",
+    "o": "-"
+  },
+  "shader_owl": {
+    "n": "Pierce Darkness",
+    "c": "utilities",
+    "d": "Greatly augments my ability to see in the dark, although the light resultingly becomes extremely blinding.",
+    "i": "-",
+    "o": "-"
+  },
+  "shader_lines": {
+    "n": "Visualize Forms",
+    "c": "utilities",
+    "d": "Transforms the world into a thin outline of black and white. Possibly useful for identifying subtle contrasts.",
+    "i": "-",
+    "o": "-"
+  },
+  "shader_tv": {
+    "n": "Broadcast Vision",
+    "c": "utilities",
+    "d": "Alters my vision to contain strange lines and make objects towards the center of my vision bulge \"towards\" me. Seems to be in reference to something...",
+    "i": "-",
+    "o": "-"
+  },
+  "shader_media": {
+    "n": "Identify Importance",
+    "c": "utilities",
+    "d": "Transforms my vision to perceive only the most important things...",
+    "i": "-",
+    "o": "-"
+  },
+  "shader_spider": {
+    "n": "Split Vision",
+    "c": "utilities",
+    "d": "Splits my vision into multiple sections, similar to what a spider might see. I am unsure whether it actually grants me more vision...",
+    "i": "-",
+    "o": "-"
+  },
+  "hopper": {
+    "n": "Hopper",
+    "c": "utilities",
+    "d": "Instantly transports all items from source to destination. Cost scales based on the amount of mass transferred - a stack of 64 items will cost about three Amethyst Dust. Numbers are optional; details later.",
+    "i": "source, num?, dest., num?",
+    "o": "-"
+  },
+  "read_charmed": {
+    "n": "Charmed Reflection",
+    "c": "utilities",
+    "d": "Pushes the stored iota from the charmed item’s internal storage.",
+    "i": "-",
+    "o": "any"
+  },
+  "write_charmed_proxy": {
+    "n": "Charmed Gambit II",
+    "c": "utilities",
+    "d": "If the item charged features an iota storage by default, such as a Focus, writes an iota into it.",
+    "i": "any",
+    "o": "-"
+  },
+  "read_charmed_proxy": {
+    "n": "Charmed Reflection II",
+    "c": "utilities",
+    "d": "If the item charged features an iota storage by default, such as a Focus, reads an iota from it.",
+    "i": "-",
+    "o": "any"
+  },
+  "discharm": {
+    "n": "Discharm",
+    "c": "utilities",
+    "d": "Removes a charm from an item without affecting any other property. Costs about one Amethyst Dust.",
+    "i": "entity",
+    "o": "-"
+  },
+  "entity_name": {
+    "n": "Name Purification",
+    "c": "utilities",
+    "d": "-",
+    "i": "-",
+    "o": "-"
+  },
+  "env_staff": {
+    "n": "Staff Reflection",
+    "c": "utilities",
+    "d": "Pushes whether a Staff is being used to cast this pattern.",
+    "i": "-",
+    "o": "boolean"
+  },
+  "env_offhand": {
+    "n": "Dexterity Reflection",
+    "c": "utilities",
+    "d": "Pushes whether the dominant hand of the caster is being used to cast this pattern. May return strange results for casters without hands.",
+    "i": "-",
+    "o": "boolean"
+  },
+  "identify": {
+    "n": "Detective's Purification",
+    "c": "utilities",
+    "d": "Pushes the identifier of an entity or block at a vector.",
+    "i": "identifiable",
+    "o": "identifier"
+  },
+  "classify": {
+    "n": "Modicum Purification",
+    "c": "utilities",
+    "d": "Pushes the identifier of an iota's type. Can be used to determine whether two iota are the same type.",
+    "i": "any",
+    "o": "identifier"
+  },
+  "set_insert_ret": {
+    "n": "Insertion Gambit",
+    "c": "utilities",
+    "d": "Remove the iota at the top of the stack, then add it to the set. Return True if it wasn't already in the set, otherwise return False. The iota's type must match the set's type.",
+    "i": "set, (num|vec|entity)",
+    "o": "set, bool"
+  },
+  "set_remove_ret": {
+    "n": "Removal Gambit",
+    "c": "utilities",
+    "d": "Remove the iota from top of the stack, then remove it set. Return True if it was previously in the set, otherwise return False. The iota's type must match the set's type.",
+    "i": "set, (num|vec|entity)",
+    "o": "set, bool"
+  },
+  "nocon/bool_coerce": {
+    "n": "Retention Gambit: Augur's",
+    "c": "utilities",
+    "d": "Convert an argument to a boolean. The number 0, Null, False, the vector (0, 0, 0), and the empty list become False; everything else becomes True.",
+    "i": "A",
+    "o": "A, bool"
+  },
+  "nocon/greater": {
+    "n": "Retention Gambit: Maximus",
+    "c": "utilities",
+    "d": "If the first argument is greater than the second, return True. Otherwise, return False.",
+    "i": "A, B",
+    "o": "A, B, bool"
+  },
+  "nocon/less": {
+    "n": "Retention Gambit: Minimus",
+    "c": "utilities",
+    "d": "If the first argument is less than the second, return True. Otherwise, return False.",
+    "i": "A, B",
+    "o": "A, B, bool"
+  },
+  "nocon/greater_eq": {
+    "n": "Retention Gambit: Maximus II",
+    "c": "utilities",
+    "d": "If the first argument is greater than or equal to the second, return True. Otherwise, return False.",
+    "i": "A, B",
+    "o": "A, B, bool"
+  },
+  "nocon/less_eq": {
+    "n": "Retention Gambit: Minimus II",
+    "c": "utilities",
+    "d": "If the first argument is less than or equal to the second, return True. Otherwise, return False.",
+    "i": "A, B",
+    "o": "A, B, bool"
+  },
+  "nocon/len_eq": {
+    "n": "Retention Gambit: Length Equality",
+    "c": "utilities",
+    "d": "If the two vectors are the same length (within small tolerance), return True. Otherwise, return False.",
+    "i": "A, B",
+    "o": "A, B, bool"
+  },
+  "nocon/len_neq": {
+    "n": "Retention Gambit: Length Inequality",
+    "c": "utilities",
+    "d": "If the two vectors are not the same length (outside small tolerance), return True. Otherwise, return False.",
+    "i": "A, B",
+    "o": "A, B, bool"
+  },
+  "nocon/eq": {
+    "n": "Retention Gambit: Equality",
+    "c": "utilities",
+    "d": "If the first argument equals the second (within a small tolerance), return True. Otherwise, return False.",
+    "i": "A, B",
+    "o": "A, B, bool"
+  },
+  "nocon/neq": {
+    "n": "Retention Gambit: Inequality",
+    "c": "utilities",
+    "d": "If the first argument does not equal the second (outside a small tolerance), return True. Otherwise, return False.",
+    "i": "A, B",
+    "o": "A, B, bool"
+  },
+  "true_halt": {
+    "n": "Acheron's Gambit",
+    "c": "utilities",
+    "d": "Forcibly halts a Hex like Charon's Gambit if the iota at the top of the stack is considered True by Nature.",
+    "i": "any",
+    "o": "-"
+  },
+  "false_halt": {
+    "n": "Styx's Gambit",
+    "c": "utilities",
+    "d": "Forcibly halts a Hex like Charon's Gambit if the iota at the top of the stack is considered False by Nature.",
+    "i": "any",
+    "o": "-"
+  },
+  "nulls/coalesce": {
+    "n": "Coalescing Distillation",
+    "c": "utilities",
+    "d": "If the first argument is not Null, returns it. Otherwise, returns the second argument.",
+    "i": "any, any",
+    "o": "any"
+  },
+  "capsizing": {
+    "n": "Capsizing Gambit",
+    "c": "utilities",
+    "d": "Sends the iota on the top of the stack to the bottom of the stack.",
+    "i": "any",
+    "o": "any"
+  },
+  "capsizing/copy": {
+    "n": "Capsizing Gambit II",
+    "c": "utilities",
+    "d": "Like Capsizing Gambit, but copies the iota instead of moving it.",
+    "i": "any",
+    "o": "any"
+  },
+  "dredging": {
+    "n": "Dredging Gambit",
+    "c": "utilities",
+    "d": "Pulls the iota at the bottom of the stack to the top of the stack.",
+    "i": "any",
+    "o": "any"
+  },
+  "dredging/copy": {
+    "n": "Dredging Gambit II",
+    "c": "utilities",
+    "d": "Like Dredging Gambit, but copies the iota instead of moving it.",
+    "i": "any",
+    "o": "any"
+  },
+  "get_plane": {
+    "n": "Planar Reflection",
+    "c": "utilities",
+    "d": "Retrieves an iota representing my hexplane.",
+    "i": "-",
+    "o": "plane"
+  },
+  "exit_reveal": {
+    "n": "Reveal Mark",
+    "c": "utilities",
+    "d": "Displays my hexplane exit to me.",
+    "i": "-",
+    "o": "-"
+  },
+  "get_mind_trigger": {
+    "n": "Trigger Purification",
+    "c": "utilities",
+    "d": "Pushes the trigger stored in the provided mind, or Null if there isn't one.",
+    "i": "mind",
+    "o": "trigger | null"
+  },
+  "set_mind_trigger": {
+    "n": "Trigger Gambit",
+    "c": "utilities",
+    "d": "Stores the provided trigger into the mind. If the mind already has a trigger, it will be overwritten. Costs one Amethyst Shard.",
+    "i": "mind, trigger | null",
+    "o": "-"
+  },
+  "mute_mind": {
+    "n": "Mute Mind",
+    "c": "utilities",
+    "d": "Suppresses sound and particles from the provided mind's casting, based on the state of the bool. If true, the mind will be muted; if false, it will be unmuted.",
+    "i": "mind, bool",
+    "o": "-"
+  },
+  "free_mind": {
+    "n": "Free Mind",
+    "c": "utilities",
+    "d": "Permanently removes an embedded mind from my own consciousness.\nI wonder what happens to them when they go?",
+    "i": "mind",
+    "o": "-"
+  },
+  "imbue_lap": {
+    "n": "Imbue Lapis",
+    "c": "utilities",
+    "d": "Transform all the Lapis Lazuli in my other hand into Amethyst Lazuli, or Amel for short. Costs one Amethyst Shards in media and in item form (taken from my inventory) each, per Lapis.",
+    "i": "-",
+    "o": "-"
+  },
+  "reclaim_ameth": {
+    "n": "Reclaim Amethyst",
+    "c": "utilities",
+    "d": "Transform all the Amethyst Lazuli in my other hand into twice as many Amethyst Shards. The Lapis turns into a fine mist which spreads quickly in the air. Excess shards spill onto the ground. Costs one shard.",
+    "i": "-",
+    "o": "-"
+  },
+  "swap_amel": {
+    "n": "Mold Amel",
+    "c": "utilities",
+    "d": "Cycle through the appearances I've designed of the Amel or Amel-infused Construct (such as an Amel Ring) in my other hand. (e.g. Amel has four forms.)",
+    "i": "-",
+    "o": "-"
+  },
+  "moar_health": {
+    "n": "Enchant Skin",
+    "c": "utilities",
+    "d": "Pass in an entity and a number of half-hearts, and it enchants that entity's skin thus increasing their health. The Amel cost is the number given and the cost in media is twice the expended Amel.",
+    "i": "entity, num",
+    "o": "-"
+  },
+  "moar_attack": {
+    "n": "Enchant Fists",
+    "c": "utilities",
+    "d": "Pass in an entity and a number of half-hearts, and it enchants their fists to increase their damage per hit. One Amel and five Amethyst Shards per half-heart. Limit is 4x the norm so just 4 for me.",
+    "i": "entity, num",
+    "o": "-"
+  },
+  "moar_speed": {
+    "n": "Enchant Feet",
+    "c": "utilities",
+    "d": "Enchants the given entity's feet to increase their movement speed. Costs 1x Amel and 5x Amethyst Shards. Limit is 3x the norm. The norm for me is about 1.",
+    "i": "entity, num",
+    "o": "-"
+  },
+  "gib_reach": {
+    "n": "Enchant Arms",
+    "c": "utilities",
+    "d": "Enchants the given *player's* arms (or disenchants if given false), increasing their reach by 3 blocks and their attack range by 1. Costs 16 Amel (or 0 if disenchanting) and four shards in media to change that player. There is no customizability here.",
+    "i": "entity, bool",
+    "o": "-"
+  },
+  "check_attr": {
+    "n": "Enhancement Purification",
+    "c": "utilities",
+    "d": "Gives me the amount the given entity has been enhanced in the given area (specified by number). The patterns before were sorted such that 0 gives max health, 1 gives attack damage and so on. Negligible media cost.",
+    "i": "entity, num",
+    "o": "-"
+  },
+  "fireyfists": {
+    "n": "Enchant with FireyFists",
+    "c": "utilities",
+    "d": "Like Fire Aspect but for my hands. Costs 10 Charged Amethyst 48 Amel. Has one level. ID = 0.",
+    "i": "entity",
+    "o": "-"
+  },
+  "lightningbending": {
+    "n": "Enchant with Lightningbending",
+    "c": "utilities",
+    "d": "20 Charged Amethyst and a stack of Amel per level to bend the heavens to my will with my strikes. Three levels. ID = 1.",
+    "i": "entity",
+    "o": "-"
+  },
+  "falldmgres": {
+    "n": "Envelop Feet in Amel",
+    "c": "utilities",
+    "d": "Cushions up to 20 blocks of fall damage per level, costing 5 Charged Amethyst and 20 Amel per level. Three levels. ID = 2.",
+    "i": "entity",
+    "o": "-"
+  },
+  "longbreath": {
+    "n": "Grant Amel Air Sacs",
+    "c": "utilities",
+    "d": "Enchant my lungs themselves to achieve the Respiration enchantment, but twice as strong. Two levels. 1 Charged Amethyst, 10 Amel. ID = 3.",
+    "i": "entity",
+    "o": "-"
+  },
+  "fireresist": {
+    "n": "Make Fire-born",
+    "c": "utilities",
+    "d": "Wield the energy of an entire stack of Amel and 10 Charged Amethyst to make me hell-borne, essentially impervious to all heat. One level. ID = 4.",
+    "i": "entity",
+    "o": "-"
+  },
+  "checkenchant": {
+    "n": "Enchantment Purification",
+    "c": "utilities",
+    "d": "Gives the level of the specified (with ID) enchantment on the given entity for little cost and no Amel.",
+    "i": "entity, num",
+    "o": "num"
+  },
+  "imbue_amel": {
+    "n": "Imbue with Amel",
+    "c": "utilities",
+    "d": "The ancient \"Lapisworkers\" would use this often. Imbue the item in my hand with the specified amount of Amel, with no waste like the Enchant X spells. Costs 2x the amount of Amel being infused, in dust.",
+    "i": "num",
+    "o": "-"
+  },
+  "disimbue_amel": {
+    "n": "Disenchant",
+    "c": "utilities",
+    "d": "For one dust, tries to disimbue the item in my hand. If the item has multiple methods to make it then it the Amel has corroded it's original essence, resulting in disintegration into the least required Amel to make the item.",
+    "i": "-",
+    "o": "-"
+  },
+  "conjure_color": {
+    "n": "Conjure Solid Color",
+    "c": "utilities",
+    "d": "Conjures a fragile but solid block of the specified color at the provided position (which must be within range) for two amethyst dust. More explanation on the next page.",
+    "i": "vec, num",
+    "o": "-"
+  },
+  "erase_color": {
+    "n": "Dispel Conjureable",
+    "c": "utilities",
+    "d": "Annihilates a block in range that would be cheap to break with Break Block for negligible cost, leaving no breaking or hex particles at all.",
+    "i": "vec",
+    "o": "-"
+  },
+  "spherical_dstl": {
+    "n": "Spherical Exaltation",
+    "c": "utilities",
+    "d": "Evaluates (exactly like Thoth's Gambit) the given pattern list over a hollow sphere with the given radius (non-decimal, at least 1, at most 64) around the given position.",
+    "i": "[pattern], vec, num",
+    "o": "[any]"
+  },
+  "spherical_dstl_filled": {
+    "n": "Spherical Exaltation II",
+    "c": "utilities",
+    "d": "Like its Spherical Exaltation but for *filled* spheres.",
+    "i": "[pattern], vec, num",
+    "o": "[any]"
+  },
+  "cubic_exalt": {
+    "n": "Cubic Exaltation",
+    "c": "utilities",
+    "d": "Evaluates (exactly like Thoth's Gambit) the given pattern list over a (hollow if given True) cube-ish area from the given points A to B.",
+    "i": "[pattern], vec, vec, bool",
+    "o": "[any]"
+  },
+  "readable_spechand": {
+    "n": "Reviewer's Purification",
+    "c": "utilities",
+    "d": "Specific hand version of Auditor's Reflection. Pushes whether the item in the specified hand can be read from or not.",
+    "i": "num",
+    "o": "bool"
+  },
+  "write_spechand": {
+    "n": "Amanuensis' Gambit",
+    "c": "utilities",
+    "d": "Specific hand version of Scribe's Gambit. Writes the given Iota to the Iota holder in the specified hand.",
+    "i": "any, num",
+    "o": "-"
+  },
+  "writable_spechand": {
+    "n": "Sanctioner's Purification",
+    "c": "utilities",
+    "d": "Specific hand version of Assessor's Reflection. Pusher whether the item in the specified hand can be written to or not.",
+    "i": "num",
+    "o": "bool"
+  },
+  "the_cooler_halt": {
+    "n": "Erebus' Gambit",
+    "c": "utilities",
+    "d": "Charon's Gambit, if it could break through more than one layer. This pattern is useful in cases where Charon's Gambit is insufficient, however I wish not to delve into the complicated beast that is Iris' Gambit.",
+    "i": "positive num",
+    "o": "-"
+  },
+  "for_n_in_range": {
+    "n": "Mintiest Gambit",
+    "c": "utilities",
+    "d": "*A oney and a twoey and a you-know-what-to-doey!*\nExecutes the given pattern list over a list of in(or de)crementing numbers, ranging from the first argument (inclusive) to the second (exclusive) as if Thoth's Gambit were used.",
+    "i": "num, num, [pattern]",
+    "o": "[any]"
+  },
+  "execute_many_times": {
+    "n": "Kitkat's Gambit",
+    "c": "utilities",
+    "d": "*Do you know the definition of insanity?*\nExecutes the given pattern list the specified number of times. The stack on start behaves like it does for Thoth's Gambit.",
+    "i": "num, [pattern]",
+    "o": "-"
+  },
+  "hadamard": {
+    "n": "Hadamard Distillation",
+    "c": "utilities",
+    "d": "Based off the Hadamard Product, this pattern multiplies the respective elements of two vectors.",
+    "i": "vec, vec",
+    "o": "vec"
+  },
+  "thewhattropy": {
+    "n": "Dealer's Purification",
+    "c": "utilities",
+    "d": "Pops a list and pushes a random element of that list onto the stack.",
+    "i": "[any]",
+    "o": "any"
+  },
+  "min": {
+    "n": "Minimum Distillation",
+    "c": "utilities",
+    "d": "Returns the smaller of the two numbers.",
+    "i": "num, num",
+    "o": "num"
+  },
+  "max": {
+    "n": "Maximum Distillation",
+    "c": "utilities",
+    "d": "Returns the larger of the two numbers.",
+    "i": "num, num",
+    "o": "num"
+  },
+  "pull": {
+    "n": "Pull",
+    "c": "utilities",
+    "d": "Accelerates the given entity by the provided vector (like Impulse) for the specified amount of time (in twentieths of a second). Can be used to achieve drift/curve-shot-like effects. Costs the same as Impulse (including the subsequent cost per entity per cast) but multiplied by the time.",
+    "i": "entity, vec, num",
+    "o": "-"
+  },
+  "robbie_exalt": {
+    "n": "Robbie's Exaltation",
+    "c": "utilities",
+    "d": "Inserts the given iota into the given list before the specified index. An input of [a, b, c], 1, d would return [a, d, b, c].\n*Arf, arf!*",
+    "i": "[any], int, any",
+    "o": "[any]"
+  },
+  "get_datum": {
+    "n": "Queue Reflection",
+    "c": "utilities",
+    "d": "Pushes a list of the datum left to iterate over by the current Thoth's-like.",
+    "i": "-",
+    "o": "[any]"
+  },
+  "set_datum": {
+    "n": "Queue Gambit",
+    "c": "utilities",
+    "d": "Pops a list of iotas and sets the datum left to execute by the current Thoth's-like to that list.",
+    "i": "[any]",
+    "o": "-"
+  },
+  "get_thoth_hex": {
+    "n": "Executioner's Reflection",
+    "c": "utilities",
+    "d": "Pushes the instruction list the current Thoth's-like is executing.",
+    "i": "-",
+    "o": "[pattern]"
+  },
+  "set_thoth_hex": {
+    "n": "Judge's Gambit",
+    "c": "utilities",
+    "d": "Pops a list of iotas and sets the instruction list of the current Thoth's-like to that list.",
+    "i": "[pattern]",
+    "o": "-"
+  },
+  "is_conjureable": {
+    "n": "Cleaner's Purification",
+    "c": "utilities",
+    "d": "Returns whether or not the block at the given coordinates within range is cheap to break with Break Block or not, for negligible cost.",
+    "i": "vec, vec",
+    "o": "bool"
+  },
+  "thought_sieve": {
+    "n": "Sieve Thoughts",
+    "c": "utilities",
+    "d": "Sieves the torrent of information using the (full) artificial mind at the given position. 3/5 chance of replacing the pattern in my other hand with one of the correct stroke order.",
+    "i": "vec",
+    "o": "-"
+  },
+  "absorb_mind": {
+    "n": "Mind Liquefaction",
+    "c": "utilities",
+    "d": "Absorbs the entirety of the mind within the container into the rechargeable item in my other hand. If there is any extra, it is discarded. A full container yields one Charged Amethyst.",
+    "i": "vec",
+    "o": "-"
+  },
+  "check_mind": {
+    "n": "Cognition Purification",
+    "c": "utilities",
+    "d": "Pushes the percentage filled of the mind container at the given position to the stack.",
+    "i": "-",
+    "o": "vec"
+  },
+  "teach_song": {
+    "n": "Teach Song",
+    "c": "utilities",
+    "d": "Teach the Live Jukebox at that location (which must be within ambit) these notes (a list of nums 0-24) at this frequency (0-20) for a shard of media. After being hit via Use, it plays the notes like an automatic Note Block.",
+    "i": "vec, [0-24], 0-20",
+    "o": "-"
+  },
+  "song_purification": {
+    "n": "Singer's Purification",
+    "c": "utilities",
+    "d": "Divines from the specified Live Jukebox (within ambit) it's properties, and then returns a list of two elements. The first being the notes it plays, and the second being the frequency it plays them at. Free.",
+    "i": "vec",
+    "o": "([0-24], 0-20)"
+  },
+  "teach_simp": {
+    "n": "Teach Simple Impetus",
+    "c": "utilities",
+    "d": "Teach the Simple Impetus at the provided coordinates (which must be within ambit) the provided pattern for two dust. The Simple Impetus will not remember this pattern when broken.",
+    "i": "vec, pattern",
+    "o": "-"
+  },
+  "ask_simp": {
+    "n": "Interviewer's Prfn.",
+    "c": "utilities",
+    "d": "Simple Impeti are pretty gullible. Returns the pattern the Simple Impetus at the given location (which must be within ambit) is listening for, or null if it's not listening for any particular pattern. Free.",
+    "i": "vec",
+    "o": "pattern|null"
+  },
+  "write_necklace": {
+    "n": "Jeweller's Gambit",
+    "c": "utilities",
+    "d": "Writes the iota to the necklace I'm wearing. Mishaps if there is no writable one available. (Drawing aid: a line into almost a triangle, then a clockwise circle much like Scribe's Gambit.)",
+    "i": "any",
+    "o": "-"
+  },
+  "readable_necklace": {
+    "n": "Gemologist's Reflection",
+    "c": "utilities",
+    "d": "Pushes if attempting to read from my necklace will succeed.",
+    "i": "-",
+    "o": "bool"
+  },
+  "writeable_necklace": {
+    "n": "Epigrapher's Reflection",
+    "c": "utilities",
+    "d": "Pushes if attempting to write to my necklace will succeed.",
+    "i": "-",
+    "o": "bool"
+  },
+  "deposit": {
+    "n": "Deposit Media",
+    "c": "utilities",
+    "d": "Deposits as much of the specified amount (in dust) as possible. Costs the media deposited, plus a tax of 10% of it. Can never consume my health (or any \"Bottomless Phials/Trinkets\") for media.",
+    "i": "M.T.I, num",
+    "o": "-"
+  },
+  "withdraw": {
+    "n": "Withdraw Media",
+    "c": "utilities",
+    "d": "Withdraws, from the given Media Transfer Interface, into the Media-containing item in my other hand, as much of the dust specified as possible. Costs 10% of the media withdrawn.",
+    "i": "M.T.I, num",
+    "o": "-"
+  },
+  "get_mdia": {
+    "n": "Inner Media Purification",
+    "c": "utilities",
+    "d": "Fetches the amount of media (in units of Amethyst Dust) contained in the given Media Transfer Interface.",
+    "i": "M.T.I",
+    "o": "num"
+  },
+  "phiangle": {
+    "n": "Phiangle",
+    "c": "utilities",
+    "d": "Phiangles two phiangleables. Costs a flat three Charged Amethyst, and a scalable one Amel per 32 blocks of distance, with a minimum of one.",
+    "i": "vec, vec",
+    "o": "-"
+  },
+  "dephiangle": {
+    "n": "Dephiangle",
+    "c": "utilities",
+    "d": "Dephiangles two phiangleables, erasing the link between them. Costs three Charged Amethyst. I can cast this when I wish not to break the block, due to having other links for example.",
+    "i": "vec, vec",
+    "o": "-"
+  },
+  "get_linkable_links": {
+    "n": "Phianglement Purification",
+    "c": "utilities",
+    "d": "Returns the positions the phiangleable at the specified position (within ambit) is phiangled to. Free.",
+    "i": "vec",
+    "o": "[vec]"
+  },
+  "get_amethyst_tuning": {
+    "n": "Lapidarist's Purification",
+    "c": "utilities",
+    "d": "Returns the iota the Tuneable Amethyst at the specified position (within range) is tuned to.",
+    "i": "vec",
+    "o": "any"
+  },
+  "tune_amethyst": {
+    "n": "Tune Amethyst",
+    "c": "utilities",
+    "d": "Tunes the Tuneable Amethyst at the specified position (within range) to the specified iota. Costs a piece of Charged Amethyst and one Amel.",
+    "i": "vec, any",
+    "o": "-"
+  },
+  "stop_be_me": {
+    "n": "Sever Connection",
+    "c": "utilities",
+    "d": "The current One-time Ritual will no longer cast as it's starter.",
+    "i": "-",
+    "o": "-"
+  },
+  "be_me": {
+    "n": "Reestablish Connection",
+    "c": "utilities",
+    "d": "The current One-time Ritual will cast as it's starter.",
+    "i": "-",
+    "o": "-"
+  },
+  "get_ritual_tuning": {
+    "n": "Dowser's Reflection",
+    "c": "utilities",
+    "d": "Fetches the frequency the current One-time Ritual is tuned to.",
+    "i": "-",
+    "o": "any"
+  },
+  "tune_ritual": {
+    "n": "Tune Ritual",
+    "c": "utilities",
+    "d": "Tunes the current One-time Ritual to the specified iota.",
+    "i": "any",
+    "o": "-"
+  },
+  "create_enchsent0": {
+    "n": "Summon Enchanted Sentinel",
+    "c": "utilities",
+    "d": "-",
+    "i": "-",
+    "o": "-"
+  },
+  "create_enchsent1": {
+    "n": "Summon Enchanted Sentinel",
+    "c": "utilities",
+    "d": "-",
+    "i": "-",
+    "o": "-"
+  },
+  "create_enchsent2": {
+    "n": "Summon Enchanted Sentinel",
+    "c": "utilities",
+    "d": "-",
+    "i": "-",
+    "o": "-"
+  },
+  "create_enchsent3": {
+    "n": "Summon Enchanted Sentinel",
+    "c": "utilities",
+    "d": "-",
+    "i": "-",
+    "o": "-"
+  },
+  "create_enchsent4": {
+    "n": "Summon Enchanted Sentinel",
+    "c": "utilities",
+    "d": "-",
+    "i": "-",
+    "o": "-"
+  },
+  "create_enchsent5": {
+    "n": "Summon Enchanted Sentinel",
+    "c": "utilities",
+    "d": "-",
+    "i": "-",
+    "o": "-"
+  },
+  "banish_my_enchsent": {
+    "n": "Banish Own Enchanted Sentinel",
+    "c": "utilities",
+    "d": "Peacefully put my Enchanted Sentinel to rest for a negligible amount of media, letting it rest for a time. Perhaps the ethical option, considering \"falling apart\" may not be the most painless.",
+    "i": "-",
+    "o": "-"
+  },
+  "banish_other_enchsent": {
+    "n": "Banish Other's Enchanted Sentinel",
+    "c": "utilities",
+    "d": "Banish another's Enchanted Sentinel if it's at that block for 5 dust.",
+    "i": "vec",
+    "o": "-"
+  },
+  "find_my_enchsent": {
+    "n": "Locator's Reflection",
+    "c": "utilities",
+    "d": "Returns the location of my Enchanted Sentinel or null if I do not have one summoned.",
+    "i": "-",
+    "o": "vec|null"
+  },
+  "flay_artmind0": {
+    "n": "Imbue Mind",
+    "c": "utilities",
+    "d": "-",
+    "i": "-",
+    "o": "-"
+  },
+  "flay_artmind1": {
+    "n": "Imbue Mind",
+    "c": "utilities",
+    "d": "-",
+    "i": "-",
+    "o": "-"
+  },
+  "flay_artmind2": {
+    "n": "Imbue Mind",
+    "c": "utilities",
+    "d": "-",
+    "i": "-",
+    "o": "-"
+  },
+  "flay_artmind3": {
+    "n": "Imbue Mind",
+    "c": "utilities",
+    "d": "-",
+    "i": "-",
+    "o": "-"
+  },
+  "flay_artmind4": {
+    "n": "Imbue Mind",
+    "c": "utilities",
+    "d": "-",
+    "i": "-",
+    "o": "-"
+  },
+  "hastenature0": {
+    "n": "Hastenature",
+    "c": "utilities",
+    "d": "-",
+    "i": "-",
+    "o": "-"
+  },
+  "hastenature1": {
+    "n": "Hastenature",
+    "c": "utilities",
+    "d": "-",
+    "i": "-",
+    "o": "-"
+  },
+  "hastenature2": {
+    "n": "Hastenature",
+    "c": "utilities",
+    "d": "-",
+    "i": "-",
+    "o": "-"
+  },
+  "hastenature3": {
+    "n": "Hastenature",
+    "c": "utilities",
+    "d": "-",
+    "i": "-",
+    "o": "-"
+  },
+  "hastenature4": {
+    "n": "Hastenature",
+    "c": "utilities",
+    "d": "-",
+    "i": "-",
+    "o": "-"
+  },
+  "hastenature5": {
+    "n": "Hastenature",
+    "c": "utilities",
+    "d": "-",
+    "i": "-",
+    "o": "-"
+  },
+  "quenched_indigo0": {
+    "n": "Indigan Lapidary",
+    "c": "utilities",
+    "d": "-",
+    "i": "-",
+    "o": "-"
+  },
+  "quenched_indigo1": {
+    "n": "Indigan Lapidary",
+    "c": "utilities",
+    "d": "-",
+    "i": "-",
+    "o": "-"
+  },
+  "quenched_indigo2": {
+    "n": "Indigan Lapidary",
+    "c": "utilities",
+    "d": "-",
+    "i": "-",
+    "o": "-"
+  },
+  "quenched_indigo3": {
+    "n": "Indigan Lapidary",
+    "c": "utilities",
+    "d": "-",
+    "i": "-",
+    "o": "-"
+  },
+  "quenched_indigo4": {
+    "n": "Indigan Lapidary",
+    "c": "utilities",
+    "d": "-",
+    "i": "-",
+    "o": "-"
+  },
+  "quenched_indigo5": {
+    "n": "Indigan Lapidary",
+    "c": "utilities",
+    "d": "-",
+    "i": "-",
+    "o": "-"
+  },
+  "gib_wisp_item": {
+    "n": "Allocate Item",
+    "c": "utilities",
+    "d": "Swaps the item the provided wisp (that I must own) is holding and the provided item. Costs two and a half dust.",
+    "i": "wisp, item entity",
+    "o": "-"
+  },
+  "take_away_poor_baby_wisp_candy_like_evil_monster": {
+    "n": "Command Drop",
+    "c": "utilities",
+    "d": "Takes the item in the provided wisp (that I must own)'s offhand and lets it go into the world at the wisp's position. Costs two and a half dust.",
+    "i": "wisp",
+    "o": "-"
+  },
+  "get_amalgamation": {
+    "n": "Amalgamation Purification",
+    "c": "utilities",
+    "d": "Returns the Amalgamation in the container at the specified position (within range). Any changes to it are reflected in the block it came from.",
+    "i": "vec",
+    "o": "amalgam"
+  },
+  "get_amalgam_notiflevel": {
+    "n": "Loudener's Decomposition",
+    "c": "utilities",
+    "d": "Returns the Amalgamation in the container at the specified position (within range). Any changes to it are reflected in the block it came from.",
+    "i": "amalgam",
+    "o": "amalgam, int"
+  },
+  "set_amalgam_notiflevel": {
+    "n": "Loudener's Distillation",
+    "c": "utilities",
+    "d": "Sets the provided amalgamation's loudness to the specified number (which must be positive and below 4).",
+    "i": "amalgam, num",
+    "o": "amalgam"
+  },
+  "get_amalgam_range": {
+    "n": "Fisherman's Decomposition",
+    "c": "utilities",
+    "d": "Pushes the range of the provided amalgamation.",
+    "i": "amalgam",
+    "o": "amalgam, num"
+  },
+  "set_amalgam_range": {
+    "n": "Fisherman's Distillation",
+    "c": "utilities",
+    "d": "Sets the provided amalgamation's range to the specified number, mishapping if negative or out of bounds.",
+    "i": "amalgam, num",
+    "o": "amalgam"
+  },
+  "get_amalgam_greater": {
+    "n": "The Mind's Decomp.",
+    "c": "utilities",
+    "d": "Pushes whether the provided amalgamation is Complex (true) or Simple (false).",
+    "i": "amalgam",
+    "o": "amalgam, bool"
+  },
+  "get_self_amalgams_num": {
+    "n": "My Mind's Decomposition",
+    "c": "utilities",
+    "d": "Pushes the number of amalgamations on my person.",
+    "i": "-",
+    "o": "num"
+  },
+  "remove_self_amalgam": {
+    "n": "Amalgamation Gambit",
+    "c": "utilities",
+    "d": "Removes the amalgamation on my person with that index.",
+    "i": "num",
+    "o": "-"
+  },
+  "get_amalgam_err": {
+    "n": "Mistake Decomposition",
+    "c": "utilities",
+    "d": "Pushes the error of the provided amalgamation.",
+    "i": "amalgam",
+    "o": "amalgam, num"
+  },
+  "get_amalgam_hex": {
+    "n": "Etched Decomposition",
+    "c": "utilities",
+    "d": "Pushes the hex that the amalgamation at the top of the stack would execute upon a successful trigger.",
+    "i": "amalgam",
+    "o": "amalgam, [pattern]"
+  },
+  "set_amalgam_hex": {
+    "n": "Etched Distillation",
+    "c": "utilities",
+    "d": "Sets the hex that the provided amalgamation would execute upon a successful trigger.",
+    "i": "amalgam, [pattern]",
+    "o": "amalgam"
+  },
+  "type/to_item": {
+    "n": "Sorter's Purification",
+    "c": "utilities",
+    "d": "Transforms the Item Stack at the top of the stack into its Item. | Accepts a mote and returns an Item Stack representing the items in the record referenced by that mote.",
+    "i": "item stack | mote",
+    "o": "itemtype | item stack"
+  },
+  "type/entity": {
+    "n": "Physician's Purification",
+    "c": "utilities",
+    "d": "-",
+    "i": "-",
+    "o": "-"
+  },
+  "type/iota": {
+    "n": "Classifier's Purification",
+    "c": "utilities",
+    "d": "-",
+    "i": "-",
+    "o": "-"
+  },
+  "type/item_held": {
+    "n": "Sorter's Reflection",
+    "c": "utilities",
+    "d": "-",
+    "i": "-",
+    "o": "-"
+  },
+  "unquote": {
+    "n": "Introjection",
+    "c": "utilities",
+    "d": "This pattern can be used to place raw iota directly into an Introspection-Restrospection pair. After drawing this pattern, all subsequent patterns are \"unescaped\", allowing them to be executed as normal until a Retrojection is encountered.",
+    "i": "-",
+    "o": "-"
+  }
+}

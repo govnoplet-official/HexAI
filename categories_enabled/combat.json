@@ -1,0 +1,102 @@
+{
+  "_description": {
+    "summary": "Combat and projectiles: explosions and fireballs, magic missiles and projectile conjures (egg, spit, snowball), lesser sentinel deployment and lookup, sentinel banishing, damage triggers, Wisp embark and disembark, Close Transmit.",
+    "use_cases": [
+      "Dealing damage or creating explosions and fireballs",
+      "Spawning projectiles",
+      "Managing lesser sentinels",
+      "Reacting to the caster taking damage (triggers)"
+    ]
+  },
+  "explode": {
+    "n": "Explosion",
+    "c": "combat",
+    "d": "Remove a number and vector from the stack, then create an explosion at the given location with the given power.",
+    "i": "vector, number",
+    "o": "-"
+  },
+  "explode/fire": {
+    "n": "Fireball",
+    "c": "combat",
+    "d": "Remove a number and vector from the stack, then create a fiery explosion at the given location with the given power.",
+    "i": "vector, number",
+    "o": "-"
+  },
+  "sentinel/destroy": {
+    "n": "Banish Sentinel",
+    "c": "combat",
+    "d": "Banish my sentinel, and remove it from the world. Costs a negligible amount of media.",
+    "i": "-",
+    "o": "-"
+  },
+  "link/comm/close_transmit": {
+    "n": "Close Transmit",
+    "c": "combat",
+    "d": "When drawn after Open Transmit I stop transmitting drawn patterns. If either Open Transmit or Close Transmit are executed by an intermediary caster such as a wisp, they will mishap.",
+    "i": "-",
+    "o": "-"
+  },
+  "magic_missile": {
+    "n": "Magic Missile",
+    "c": "combat",
+    "d": "Conjures a small silver of amethyst that always deals a full heart of damage and forces the target backwards. Costs about one Amethyst Dust.",
+    "i": "vector, vector",
+    "o": "-"
+  },
+  "egg": {
+    "n": "Conjure Egg",
+    "c": "combat",
+    "d": "Conjures an egg. May be fertile. Costs about two Amethyst Dust.",
+    "i": "vector",
+    "o": "entity"
+  },
+  "llama_spit": {
+    "n": "Conjure Spit",
+    "c": "combat",
+    "d": "Conjures a sticky low-damaging projectile. Costs about a fourth of one Amethyst Dust.",
+    "i": "vector",
+    "o": "entity"
+  },
+  "snowball": {
+    "n": "Conjure Snowball",
+    "c": "combat",
+    "d": "Conjures a harmless snowball. Costs about half of an Amethyst Dust.",
+    "i": "vector",
+    "o": "entity"
+  },
+  "set_lesser_sentinels": {
+    "n": "Deploy Sentinels",
+    "c": "combat",
+    "d": "Dismisses any existing Lesser Sentinels and deploys a Lesser Sentinel at every position in the list.",
+    "i": "list of vectors",
+    "o": "-"
+  },
+  "get_lesser_sentinels": {
+    "n": "Infiltration Reflection",
+    "c": "combat",
+    "d": "Returns a list of vectors corresponding to the positions of all my Lesser Sentinels.",
+    "i": "-",
+    "o": "list of vectors"
+  },
+  "horrible": {
+    "n": "Horrible",
+    "c": "combat",
+    "d": "Judging by the pattern signature, I can only imagine that it summons something.",
+    "i": "vector",
+    "o": "entity"
+  },
+  "make_damage_trigger": {
+    "n": "Trigger Reflection: Damage",
+    "c": "combat",
+    "d": "Creates a trigger that activates whenever I take damage. To prevent a lethal chain-reaction, does not activate if the damage was caused by overcasting.",
+    "i": "-",
+    "o": "trigger"
+  },
+  "make_damage_type_trigger": {
+    "n": "Trigger Reflection: Damage Type",
+    "c": "combat",
+    "d": "Creates a trigger that activates whenever I take damage, but only if the damage was of a specific type. The trigger will be attuned to whatever type of damage I last received.",
+    "i": "-",
+    "o": "trigger"
+  }
+}

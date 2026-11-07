@@ -1,0 +1,73 @@
+{
+  "_description": {
+    "summary": "World and casting environment: light level, ambit checks, device, circle and staff environment reflections, current dimension, Media Wave position and speed, Compass and Clock behaviour in the dimension.",
+    "use_cases": [
+      "Checking light level or whether a location is in ambit",
+      "Checking how the hex is being cast (device, staff, circle)",
+      "Reading the current dimension or wave state"
+    ]
+  },
+  "hexal:light_level": {
+    "n": "Lamplighter's Purification",
+    "c": "world",
+    "d": "Removes a position vector from the stack and returns the light level at that position.",
+    "i": "vec",
+    "o": "num"
+  },
+  "hexpose:env_ambit": {
+    "n": "Ambit Purification",
+    "c": "world",
+    "d": "Pushes whether a location or entity is in ambit.",
+    "i": "entity/vector",
+    "o": "boolean"
+  },
+  "hexpose:env_packaged_hex": {
+    "n": "Device Reflection",
+    "c": "world",
+    "d": "Pushes whether any form of casting device is being used to cast this pattern.",
+    "i": "-",
+    "o": "boolean"
+  },
+  "hexpose:env_circle": {
+    "n": "Constructed Reflection",
+    "c": "world",
+    "d": "Pushes whether some form of *grand work* is being used to cast this pattern.",
+    "i": "-",
+    "o": "boolean"
+  },
+  "hexpose:get_dimension": {
+    "n": "Plane Reflection",
+    "c": "world",
+    "d": "Pushes the identifier of the dimension the Hex is being cast in.",
+    "i": "-",
+    "o": "identifier"
+  },
+  "hexpose:get_einstein": {
+    "n": "Distortion Reflection",
+    "c": "world",
+    "d": "Pushes whether Compasses and Clocks will work in this dimension.",
+    "i": "-",
+    "o": "boolean"
+  },
+  "slate_work:wave_position": {
+    "n": "Wave Location Rfln.",
+    "c": "world",
+    "d": "Adds the current position of the Media Wave to the top of the stack.",
+    "i": "-",
+    "o": "vector"
+  },
+  "slate_work:wave_normal": {
+    "n": "Wave Facing Rfln.",
+    "c": "world",
+    "d": "Adds the current facing of the Media Wave to the top of the stack. If the current block does not have a facing, it returns a vector of [0,0,0].",
+    "i": "-",
+    "o": "vector"
+  },
+  "slate_work:wave_speed": {
+    "n": "Wave Speed Rfln.",
+    "c": "world",
+    "d": "Adds the current speed of the Media Wave to the top of the stack. This is measured in how many 20ths of a second the Media Wave waits until going to the next Slate.",
+    "i": "-",
+    "o": "number"
+  }
+}

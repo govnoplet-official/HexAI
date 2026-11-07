@@ -1,0 +1,52 @@
+{
+  "_description": {
+    "summary": "World and casting environment: light level, ambit checks, device, circle and staff environment reflections, current dimension, Media Wave position and speed, Compass and Clock behaviour in the dimension.",
+    "use_cases": [
+      "Checking light level or whether a location is in ambit",
+      "Checking how the hex is being cast (device, staff, circle)",
+      "Reading the current dimension or wave state"
+    ]
+  },
+  "light_level": {
+    "n": "Lamplighter's Purification",
+    "c": "world",
+    "d": "Removes a position vector from the stack and returns the light level at that position.",
+    "i": "vec",
+    "o": "num"
+  },
+  "env_ambit": {
+    "n": "Ambit Purification",
+    "c": "world",
+    "d": "Pushes whether a location or entity is in ambit.",
+    "i": "entity/vector",
+    "o": "boolean"
+  },
+  "env_packaged_hex": {
+    "n": "Device Reflection",
+    "c": "world",
+    "d": "Pushes whether any form of casting device is being used to cast this pattern.",
+    "i": "-",
+    "o": "boolean"
+  },
+  "env_circle": {
+    "n": "Constructed Reflection",
+    "c": "world",
+    "d": "Pushes whether some form of *grand work* is being used to cast this pattern.",
+    "i": "-",
+    "o": "boolean"
+  },
+  "get_dimension": {
+    "n": "Plane Reflection",
+    "c": "world",
+    "d": "Pushes the identifier of the dimension the Hex is being cast in.",
+    "i": "-",
+    "o": "identifier"
+  },
+  "get_einstein": {
+    "n": "Distortion Reflection",
+    "c": "world",
+    "d": "Pushes whether Compasses and Clocks will work in this dimension.",
+    "i": "-",
+    "o": "boolean"
+  }
+}

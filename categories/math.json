@@ -1,0 +1,823 @@
+{
+  "_description": {
+    "summary": "Numeric computation: arithmetic (add, sub, mul, div, pow, modulo, min, max, floor, ceil), trigonometry, logarithms, comparisons (greater, less), rounding, random numbers, complex and quaternion numbers, matrices (make, inverse, determinant, concat, split, rotation), BIT transforms, time, day and moon readings, factorial and running sums, symbolic expressions (substitute, equals, piecewise, matrix).",
+    "use_cases": [
+      "Any numeric calculation, including modulo and rounding",
+      "Comparisons and min or max",
+      "Matrix or quaternion operations",
+      "Reading time, day, moon or media values as numbers"
+    ]
+  },
+  "hexcasting:get_media": {
+    "n": "Media Reflection",
+    "c": "math",
+    "d": "Pushes the amount of media available to the current cast, in units of Amethyst Dust.",
+    "i": "-",
+    "o": "num"
+  },
+  "hexcasting:stack_len": {
+    "n": "Flock's Reflection",
+    "c": "math",
+    "d": "Pushes the size of the stack as a number to the top of the stack. (For example, a stack of [0, 1] will become [0, 1, 2].)",
+    "i": "-",
+    "o": "number"
+  },
+  "hexcasting:duplicate_n": {
+    "n": "Gemini Gambit",
+    "c": "math",
+    "d": "Removes the number at the top of the stack, then copies the top iota of the stack that number of times. (A count of 2 results in two of the iota on the stack, not three.)",
+    "i": "any, number",
+    "o": "many"
+  },
+  "hexcasting:fisherman": {
+    "n": "Fisherman's Gambit",
+    "c": "math",
+    "d": "Grabs the element in the stack indexed by the number and brings it to the top. If the number is negative, instead moves the top element of the stack down that many elements.",
+    "i": "number",
+    "o": "any"
+  },
+  "hexcasting:fisherman/copy": {
+    "n": "Fisherman's Gambit II",
+    "c": "math",
+    "d": "Like Fisherman's Gambit, but instead of moving the iota, copies it.",
+    "i": "number",
+    "o": "any"
+  },
+  "hexcasting:add": {
+    "n": "Additive Distillation",
+    "c": "math",
+    "d": "Remove the list at the top of the stack, then add all its elements to the end of the list at the top of the stack. | Perform addition. | Performs Addition, num will be treated as num + 0i. | Remove the Jump iota at the top of the stack, then add all its frames to the bottom of the Jump iota at the top of the stack. | Perform Addition | Adds two matrices together; they must have the same number of columns and rows. | Combines two motes into one, merging the mote records they point to. Any pointers to the second mote will become null, any pointers to the first will remain. This can make motes holding many more items than I could carry in a stack naturally! | Performs Addition | Remove the set at the top of the stack, then add all its elements to the set at the top of the stack. The two sets must be of matching type. | Removes the top two strings from the stack and combines them together. | Pushes a text iota of the first followed immediately by the second.",
+    "i": "list, list | num|vec, num|vec | complex, complex/num | jump, jump | long, long | mat, mat | mote, mote | qtrn, qtrn | set, set | str, str | text, text",
+    "o": "list | num|vec | complex | jump | long | mat | mote | quaternion | set | str | text"
+  },
+  "hexcasting:sub": {
+    "n": "Subtractive Distillation",
+    "c": "math",
+    "d": "Perform subtraction. | Performs Subtraction, num will be treated as num + 0i. | Perform Subtraction | Performs Subtraction | Remove the set at the top of the stack, then remove all its elements from the set at the top of the stack. The two sets must be of matching type.",
+    "i": "num|vec, num|vec | complex, complex/num | long, long | qrtn, qtrn | set, set",
+    "o": "num|vec | complex | long | quaternion | set"
+  },
+  "hexcasting:mul": {
+    "n": "Multiplicative Distillation",
+    "c": "math",
+    "d": "Perform multiplication or the dot product. | Calculates the outer product of two lists. The resulting list has an entry for every possible pairing between the input lists. | Performs Multiplication | Pushes a list containing every combination of elements between the two lists. | Perform Multiplication | Multiplies the first n by m by with an m by p matrix to get an n by p matrix. | Performs Multiplication, Scalar if a num & quat are given, Hamiltonian if 2 quaternions are given.",
+    "i": "num|vec, num|vec | [a], [b] | complex, num | list, list | long, long | mat, mat | quaternion, num",
+    "o": "num|vec | [[a, b]] | complex | list | long | mat | quaternion"
+  },
+  "hexcasting:div": {
+    "n": "Division Distillation",
+    "c": "math",
+    "d": "Perform division or the cross product. | Calculates the inner product of two lists. If the two lists were arranged side-by-side, the resulting list has one entry for every row (unpaired elements are skipped). | Performs Scalar Division. | Pushes a list containing pairs of values corresponding to the values at that index in each list. | Perform Floored Division | Divides the first n by m matrix with an m by m matrix to get an n by m matrix. | Performs Scalar Division.",
+    "i": "num|vec, num|vec | [a], [b] | complex, num | list, list | long, long | mat, mat | quaternion, num",
+    "o": "num|vec | [[a, b]] | complex | list | long | mat | quaternion"
+  },
+  "hexcasting:abs": {
+    "n": "Length Purification",
+    "c": "math",
+    "d": "Convert a boolean to a number; True becomes 1, and False becomes 0. | Remove the list at the top of the stack, then push the number of elements in the list to the stack. | Compute the absolute value or length. | Pushes the Argument (the length). | Pushes the number of entries in the Dictionary | Consumes a gate iota, returns how many entities are marked by that gate. | Transforms the Item Stack at the top of the stack into its size. | Remove the Jump iota at the top of the stack, then push the number of frames within it to the stack. | Accepts a mote and returns the number of items in the record referenced by that mote. | Pushes the Argument (the length). | Remove the set at the top of the stack, then push the number of elements in the set to the stack. | Removes a string and returns its length. | Pushes the length of the text iota.",
+    "i": "bool | list | num|vec | complex | dict | gate | item stack | jump | mote | quaternion | set | str | text",
+    "o": "number | num | number | num | num | num | int | num | int | num | num | num | number"
+  },
+  "hexcasting:pow": {
+    "n": "Power Distillation",
+    "c": "math",
+    "d": "Perform exponentiation or vector projection. | Accepts a square matrix and an integer, and raises the matrix to the power of the integer. | Performs Exponentiation.",
+    "i": "num|vec, num|vec | mat, int | num, complex",
+    "o": "num|vec | mat | complex"
+  },
+  "hexcasting:floor": {
+    "n": "Floor Purification",
+    "c": "math",
+    "d": "\"Floors\" a number, cutting off the fractional component and leaving an integer value. If passed a vector, instead floors each of its components.",
+    "i": "num|vec",
+    "o": "num|vec"
+  },
+  "hexcasting:ceil": {
+    "n": "Ceiling Purification",
+    "c": "math",
+    "d": "\"Ceilings\" a number, raising it to the next integer value if it has a fractional component. If passed a vector, instead ceils each of its components.",
+    "i": "num|vec",
+    "o": "num|vec"
+  },
+  "hexcasting:greater": {
+    "n": "Maximus Distillation",
+    "c": "math",
+    "d": "If the first argument is greater than the second, return True. Otherwise, return False. | If the first vector is longer than the second, return True. Otherwise, return False.",
+    "i": "number, number | vec, vec",
+    "o": "bool | bool"
+  },
+  "hexcasting:less": {
+    "n": "Minimus Distillation",
+    "c": "math",
+    "d": "If the first argument is less than the second, return True. Otherwise, return False. | If the first vector is shorter than the second, return True. Otherwise, return False.",
+    "i": "number, number | vec, vec",
+    "o": "bool | bool"
+  },
+  "hexcasting:random": {
+    "n": "Entropy Reflection",
+    "c": "math",
+    "d": "Creates a random number between 0 and 1.",
+    "i": "-",
+    "o": "num"
+  },
+  "hexcasting:sin": {
+    "n": "Sine Purification",
+    "c": "math",
+    "d": "Takes the sine of an angle in radians, yielding the vertical component of that angle drawn on a unit circle. Related to the values of π and τ.",
+    "i": "num",
+    "o": "num"
+  },
+  "hexcasting:cos": {
+    "n": "Cosine Purification",
+    "c": "math",
+    "d": "Takes the cosine of an angle in radians, yielding the horizontal component of that angle drawn on a unit circle. Related to the values of π and τ.",
+    "i": "num",
+    "o": "num"
+  },
+  "hexcasting:tan": {
+    "n": "Tangent Purification",
+    "c": "math",
+    "d": "Takes the tangent of an angle in radians, yielding the slope of that angle drawn on a circle. Related to the values of π and τ.",
+    "i": "num",
+    "o": "num"
+  },
+  "hexcasting:arcsin": {
+    "n": "Inverse Sine Purification",
+    "c": "math",
+    "d": "Takes the inverse sine of a value with absolute value 1 or less, yielding the angle whose sine is that value. Related to the values of π and τ.",
+    "i": "num",
+    "o": "num"
+  },
+  "hexcasting:arccos": {
+    "n": "Inverse Cosine Purification",
+    "c": "math",
+    "d": "Takes the inverse cosine of a value with absolute value 1 or less, yielding the angle whose cosine is that value. Related to the values of π and τ.",
+    "i": "num",
+    "o": "num"
+  },
+  "hexcasting:arctan": {
+    "n": "Inverse Tangent Purification",
+    "c": "math",
+    "d": "Takes the inverse tangent of a value, yielding the angle whose tangent is that value. Related to the values of π and τ.",
+    "i": "num",
+    "o": "num"
+  },
+  "hexcasting:arctan2": {
+    "n": "Inverse Tangent Distillation",
+    "c": "math",
+    "d": "Takes the inverse tangent of a Y and X value, yielding the angle between the X-axis and a line from the origin to that point.",
+    "i": "num, num",
+    "o": "num"
+  },
+  "hexcasting:logarithm": {
+    "n": "Logarithmic Distillation",
+    "c": "math",
+    "d": "Removes the number at the top of the stack, then takes the logarithm of the number at the top using the other number as its base. Related to the value of *e*.",
+    "i": "num, num",
+    "o": "num"
+  },
+  "hexcasting:modulo": {
+    "n": "Modulus Distillation",
+    "c": "math",
+    "d": "Takes the modulus of two numbers. This is the amount *remaining* after division - for example, 5 % 2 is 1, and 5 % 3 is 2. When applied on vectors, performs the above operation elementwise.",
+    "i": "num|vec, num|vec",
+    "o": "num|vec"
+  },
+  "hexcasting:const/double/pi": {
+    "n": "Arc's Reflection",
+    "c": "math",
+    "d": "Adds π, the radial representation of half a circle, to the stack.",
+    "i": "-",
+    "o": "num"
+  },
+  "hexcasting:const/double/tau": {
+    "n": "Circle's Reflection",
+    "c": "math",
+    "d": "Adds τ, the radial representation of a complete circle, to the stack.",
+    "i": "-",
+    "o": "num"
+  },
+  "hexcasting:const/double/e": {
+    "n": "Euler's Reflection",
+    "c": "math",
+    "d": "Adds *e*, the base of natural logarithms, to the stack.",
+    "i": "-",
+    "o": "num"
+  },
+  "hexcasting:const/double/phi": {
+    "n": "Harmony Reflection",
+    "c": "math",
+    "d": "Adds φ, the golden ratio, to the stack. This is the ratio between two values such that (A+B)/A = A/B.",
+    "i": "-",
+    "o": "num"
+  },
+  "complexhex:real": {
+    "n": "Realising Complexities",
+    "c": "math",
+    "d": "Pushes the real coefficient.",
+    "i": "complex",
+    "o": "num"
+  },
+  "complexhex:imaginary": {
+    "n": "Imagining Complexities",
+    "c": "math",
+    "d": "Pushes the imaginary coefficient.",
+    "i": "complex",
+    "o": "num"
+  },
+  "complexhex:qw": {
+    "n": "Quaterionic Prfn.: 1",
+    "c": "math",
+    "d": "Pushes the coefficient of 1.",
+    "i": "quaternion",
+    "o": "num"
+  },
+  "complexhex:qx": {
+    "n": "Quaterionic Prfn.: i",
+    "c": "math",
+    "d": "Pushes the coefficient of i.",
+    "i": "quaternion",
+    "o": "num"
+  },
+  "complexhex:qy": {
+    "n": "Quaterionic Prfn.: j",
+    "c": "math",
+    "d": "Pushes the coefficient of j.",
+    "i": "quaternion",
+    "o": "num"
+  },
+  "complexhex:qz": {
+    "n": "Quaterionic Prfn: k",
+    "c": "math",
+    "d": "Pushes the coefficient of k.",
+    "i": "quaternion",
+    "o": "num"
+  },
+  "complexhex:quattomat": {
+    "n": "Matrixification",
+    "c": "math",
+    "d": "Pushes a matrix that (should) represent the same rotation as the quaternion",
+    "i": "quaternion",
+    "o": "matrix"
+  },
+  "complexhex:mattoquat": {
+    "n": "Quaterniation",
+    "c": "math",
+    "d": "Pushes a quaternion that (should) reperesent the same rotation as the matrix",
+    "i": "matrix",
+    "o": "quaternion"
+  },
+  "complexhex:get_bit_4x4": {
+    "n": "Get BIT 4x4",
+    "c": "math",
+    "d": "Pushes a 4x4 matrix representing the Bit's Transformation.",
+    "i": "BIT",
+    "o": "matrix"
+  },
+  "complexhex:set_bit_4x4": {
+    "n": "Set BIT 4x4",
+    "c": "math",
+    "d": "Sets the Transformation of a BIT to the given 4x4 matrix.",
+    "i": "BIT, matrix",
+    "o": "-"
+  },
+  "complexhex:long/convert": {
+    "n": "Long Purification",
+    "c": "math",
+    "d": "Converts between doubles and longs\nAlways truncates the value when converting to long",
+    "i": "num/long",
+    "o": "long/num"
+  },
+  "complexhex:shift/left": {
+    "n": "Left Shift Distillation",
+    "c": "math",
+    "d": "Shifts all the bits to the left num times",
+    "i": "long, num",
+    "o": "long"
+  },
+  "complexhex:shift/right/logical": {
+    "n": "Logical Right Shift Dstl.",
+    "c": "math",
+    "d": "Shifts all the bits to the right num times",
+    "i": "long, num",
+    "o": "long"
+  },
+  "complexhex:shift/right/arithmetic": {
+    "n": "Arithmetic R. Shift Dstl.",
+    "c": "math",
+    "d": "Shifts all the bits to the right num times while preserving the sign",
+    "i": "long, num",
+    "o": "long"
+  },
+  "complexhex:substitute": {
+    "n": "Substitution Exaltation",
+    "c": "math",
+    "d": "Substitutes the third expression/number in place of the second expression within the first.",
+    "i": "expr, expr, expr | num",
+    "o": "expr"
+  },
+  "complexhex:equals": {
+    "n": "Equality Purification",
+    "c": "math",
+    "d": "Creates an expression that equals 1 if the two expressions are equal, and 0 otherwise.",
+    "i": "expr, expr | num",
+    "o": "expr"
+  },
+  "complexhex:piecewise": {
+    "n": "Piecewise Exaltation",
+    "c": "math",
+    "d": "Creates a piecewise expression that simplifies to the second argument if the first simplifies to 1.0, otherwise simplifies to the third argument.",
+    "i": "expr, expr|num, expr|num",
+    "o": "expr"
+  },
+  "complexhex:matrix": {
+    "n": "Neo's Exaltation",
+    "c": "math",
+    "d": "Takes in a width, height and expression and creates a matrix by substituting i & j-values into the expression corresponding to a position in the matrix and putting the result in the matrix.",
+    "i": "num, num, expr",
+    "o": "matrix"
+  },
+  "complexhex:sinh": {
+    "n": "Hyp. Sine Prfn.",
+    "c": "math",
+    "d": "Evaluates the hyperbolic sine of the argument",
+    "i": "num",
+    "o": "num"
+  },
+  "complexhex:cosh": {
+    "n": "Hyp. Cosine Prfn.",
+    "c": "math",
+    "d": "Evaluates the hyperbolic sine of the argument",
+    "i": "num",
+    "o": "num"
+  },
+  "complexhex:tanh": {
+    "n": "Hyp. Tangent Prfn.",
+    "c": "math",
+    "d": "Evaluates the hyperbolic sine of the argument",
+    "i": "num",
+    "o": "num"
+  },
+  "complexhex:asinh": {
+    "n": "Inv. Hyp. Sine Prfn.",
+    "c": "math",
+    "d": "Evaluates the hyperbolic sine of the argument",
+    "i": "num",
+    "o": "num"
+  },
+  "complexhex:acosh": {
+    "n": "Inv. Hyp. Cosine Prfn.",
+    "c": "math",
+    "d": "Evaluates the hyperbolic sine of the argument",
+    "i": "num",
+    "o": "num"
+  },
+  "complexhex:atanh": {
+    "n": "Inv. Hyp. Tangent Prfn.",
+    "c": "math",
+    "d": "Evaluates the hyperbolic sine of the argument",
+    "i": "num",
+    "o": "num"
+  },
+  "hexoverpowered:get_personal_media": {
+    "n": "Mana Reflection",
+    "c": "math",
+    "d": "Gets how much media exists in my personal media bar (in **0.0001** dust).",
+    "i": "-",
+    "o": "num"
+  },
+  "hexoverpowered:get_personal_media_max": {
+    "n": "Arcane Reflection",
+    "c": "math",
+    "d": "Gets how much media I could hold in my personal media bar at most (in **0.0001** dust).",
+    "i": "-",
+    "o": "num"
+  },
+  "hexoverpowered:mind_stack/size": {
+    "n": "Brain Depth's Reflection",
+    "c": "math",
+    "d": "Gets the size of the staff casting stack.",
+    "i": "-",
+    "o": "num"
+  },
+  "hexparse:donate": {
+    "n": "Donation",
+    "c": "math",
+    "d": "Donate a certain amount of media (in dusts) to the Nature.",
+    "i": "num",
+    "o": "-"
+  },
+  "hexal:factorial": {
+    "n": "Factorial Purification",
+    "c": "math",
+    "d": "Takes a number from the stack and computes its factorial, for example inputting 4 would return 4\\*3\\*2\\*1=24.",
+    "i": "num",
+    "o": "num"
+  },
+  "hexal:running/sum": {
+    "n": "Running Sum Purification",
+    "c": "math",
+    "d": "Takes a list from the stack and computes its running sum, for example inputting [1,2,5] would return [1,3,8].",
+    "i": "[num]",
+    "o": "[num]"
+  },
+  "hexal:running/mul": {
+    "n": "Running Product Purification",
+    "c": "math",
+    "d": "Takes a list from the stack and computes its running product, for example inputting [1,2,5] would return [1,2,10].",
+    "i": "[num]",
+    "o": "[num]"
+  },
+  "hexal:link/num": {
+    "n": "Popularity Reflection",
+    "c": "math",
+    "d": "Adds the number of links to the wisp to the stack.",
+    "i": "-",
+    "o": "num"
+  },
+  "hexal:link/comm/num": {
+    "n": "Postmaster's Reflection",
+    "c": "math",
+    "d": "Adds to the stack the number of unread iota in the caster's received iota queue.",
+    "i": "-",
+    "o": "num"
+  },
+  "hexal:mote/return": {
+    "n": "Return Item",
+    "c": "math",
+    "d": "Returns all the items from a mote to the world at the location of your choosing. If passed a number returns at most that many items. Costs a tenth of an Amethyst Dust.",
+    "i": "mote, vec | mote, vec, num",
+    "o": "-"
+  },
+  "hexal:mote/split": {
+    "n": "Splitting Gambit",
+    "c": "math",
+    "d": "Splits the specified number of items off of the passed mote, creating a new mote pointing to a new mote record.",
+    "i": "mote, int",
+    "o": "mote, mote"
+  },
+  "hexcassettes:specs": {
+    "n": "Threading Reflection",
+    "c": "math",
+    "d": "Pushes the total number of cassettes slots that I currently have.",
+    "i": "-",
+    "o": "number"
+  },
+  "hexcassettes:free": {
+    "n": "Threading Reflection II",
+    "c": "math",
+    "d": "Pushes the number of non-busy cassette slots that I currently have.",
+    "i": "-",
+    "o": "number"
+  },
+  "hexcassettes:foretell": {
+    "n": "Program Purification II",
+    "c": "math",
+    "d": "Pushes null if I do not have an active cassette with that label, or how many twentieths of a second until that cassette fires if I do.",
+    "i": "any",
+    "o": "null/number"
+  },
+  "hexodus:change_gravity": {
+    "n": "Gravitate",
+    "c": "math",
+    "d": "Takes an entity, an axial vector for new gravity, and a strength scalar relative to standard pull. Specifics are detailed on the next page. | Takes a Ship, an axial vector for new gravity, and a strength scalar relative to standard pull. Costs one dust per kg of mass.",
+    "i": "entity, vector, number | ship, axis_angle, num",
+    "o": "- | -"
+  },
+  "hexodus:get_duration": {
+    "n": "Grasp Purification",
+    "c": "math",
+    "d": "Pushes the remaining twentieths of a second that Gravitate will affect an entity. Zero if the entity is not under the effects of Gravitate. | Pushes the remaining twentieths of a second that Gravitate will affect a Ship. Zero if the Ship is not under the effects of Gravitate.",
+    "i": "entity | ship",
+    "o": "number | num"
+  },
+  "hexodus:get_strength": {
+    "n": "Impact Purification",
+    "c": "math",
+    "d": "Pushes the scaling factor of Gravitate's gravity compared to baseline, or Null if the entity is not under the effects of Gravitate. | Pushes the scaling factor of Gravitate's gravity compared to baseline, or Null if the Ship is not under the effects of Gravitate.",
+    "i": "entity | ship",
+    "o": "number | num"
+  },
+  "hexodus:get_true_strength": {
+    "n": "Impact Purification II",
+    "c": "math",
+    "d": "Pushes strength of Gravity acting on an entity compared to baseline. | Pushes strength of Gravity acting on a Ship compared to baseline.",
+    "i": "entity | ship",
+    "o": "number | num"
+  },
+  "hexpose:get_message": {
+    "n": "News Reflection",
+    "c": "math",
+    "d": "Pushes a text iota of the last person to use chat, a text iota of the message, and a number of twenieths of a second since that message sent.",
+    "i": "-",
+    "o": "text, text, number"
+  },
+  "hexpose:get_enchantment_strength": {
+    "n": "Charm Distillation",
+    "c": "math",
+    "d": "Gets the strength of the specific enchantment on the item.",
+    "i": "item, identifier",
+    "o": "number"
+  },
+  "hexpose:book_sources": {
+    "n": "Bibliography Purification",
+    "c": "math",
+    "d": "Pushes the author of a book and its generation number.",
+    "i": "item",
+    "o": "text, number"
+  },
+  "hexpose:media_max_stack": {
+    "n": "Potential Purification",
+    "c": "math",
+    "d": "Takes in an item and pushes either Null if the item does not have any media-holding potential, or the amount of media it is capable of holding at its peak.",
+    "i": "item",
+    "o": "number/null"
+  },
+  "hexpose:get_weather": {
+    "n": "Meterologist's Reflection",
+    "c": "math",
+    "d": "Pushes a number corresponding to the weather. 0 for clear, 1 for rain, and 2 for thundering.",
+    "i": "-",
+    "o": "number"
+  },
+  "hexpose:get_day": {
+    "n": "Circadian Reflection",
+    "c": "math",
+    "d": "Pushes the progress of the day as a number between 0 (start) and 1 (end) of the day.",
+    "i": "-",
+    "o": "number"
+  },
+  "hexpose:get_time": {
+    "n": "Temporal Reflection",
+    "c": "math",
+    "d": "Pushes the twentieths of a second since the creation of the world, unaffected by events such as sleeping.",
+    "i": "-",
+    "o": "number"
+  },
+  "hexpose:get_moon": {
+    "n": "Lunar Reflection",
+    "c": "math",
+    "d": "Pushes the current phase of the Moon as a fraction of its size.",
+    "i": "-",
+    "o": "number"
+  },
+  "hextrapats:deg_to_rad": {
+    "n": "Radian Purification",
+    "c": "math",
+    "d": "Converts an angle in degrees to an angle in radians. Essentially multiplies by pi then divides by 180.",
+    "i": "num",
+    "o": "num"
+  },
+  "hextrapats:rad_to_deg": {
+    "n": "Degree Purification",
+    "c": "math",
+    "d": "Converts an angle in radians to an angle in degrees. Essentially multiplies by 180 then divides by pi.",
+    "i": "num",
+    "o": "num"
+  },
+  "hextrapats:rand_zero": {
+    "n": "Entropy Purification",
+    "c": "math",
+    "d": "Returns a random number between 0 (inclusive) and the number (exclusive).",
+    "i": "num",
+    "o": "num"
+  },
+  "hextrapats:rand_range": {
+    "n": "Entropy Distillation",
+    "c": "math",
+    "d": "Returns a random number between the first number (inclusive) and the second (exclusive).",
+    "i": "num, num",
+    "o": "num"
+  },
+  "hextrapats:empty_set/num": {
+    "n": "Vacant Reflection: Number Set",
+    "c": "math",
+    "d": "Push an empty set that can hold numbers to the top of the stack.",
+    "i": "-",
+    "o": "num set"
+  },
+  "hextrapats:last_n_set": {
+    "n": "Bucketing Gambit",
+    "c": "math",
+    "d": "Remove *num* iota from the top of the stack, then add them to a set at the top of the stack. Must be either all numbers, all vectors, or all entities.",
+    "i": "many, num",
+    "o": "set"
+  },
+  "hexdim:dim/time": {
+    "n": "Everett's Timing Prfn.",
+    "c": "math",
+    "d": "How much longer must I wait",
+    "i": "room",
+    "o": "num"
+  },
+  "hexxyskies:scale/set": {
+    "n": "Nature's Amusement",
+    "c": "math",
+    "d": "Scales the given Ship to the given size. The size must be between 1/16th and 16. Cost is one Shard times the size difference.",
+    "i": "ship, num",
+    "o": "-"
+  },
+  "hexxyskies:matrix/world_ship": {
+    "n": "Windward Purification",
+    "c": "math",
+    "d": "Returns the Ship's World-to-Ship 4x4 transformation matrix.",
+    "i": "ship",
+    "o": "matrix"
+  },
+  "hexxyskies:matrix/ship_world": {
+    "n": "Leeward Purification",
+    "c": "math",
+    "d": "Returns the Ship's Ship-to-World 4x4 transformation matrix.",
+    "i": "ship",
+    "o": "matrix"
+  },
+  "hexxyskies:matrix/moment_of_inertia_tensor": {
+    "n": "Inertia Purification",
+    "c": "math",
+    "d": "Returns the Ship's moment of inertia tensor as a 3x3 matrix.",
+    "i": "ship",
+    "o": "matrix"
+  },
+  "hierophantics:make_health_trigger": {
+    "n": "Trigger Purification: Health",
+    "c": "math",
+    "d": "Creates a trigger that activates when my health drops below the specified value. A full, standard healthbar has a value of 20.",
+    "i": "num",
+    "o": "trigger"
+  },
+  "hierophantics:make_breath_trigger": {
+    "n": "Trigger Purification: Breath",
+    "c": "math",
+    "d": "Creates a trigger that activates when my breath drops below the specified value. A full bar of bubbles has a value of 10.",
+    "i": "num",
+    "o": "trigger"
+  },
+  "hierophantics:make_hunger_trigger": {
+    "n": "Trigger Purification: Hunger",
+    "c": "math",
+    "d": "Creates a trigger that activates when my hunger drops below the specified value. A full hunger bar has a value of 20.",
+    "i": "num",
+    "o": "trigger"
+  },
+  "hierophantics:make_fall_trigger": {
+    "n": "Trigger Purification: Fall",
+    "c": "math",
+    "d": "Creates a trigger that activates when I fall further than the specified number of blocks.",
+    "i": "num",
+    "o": "trigger"
+  },
+  "moreiotas:altadd": {
+    "n": "Additive Distillation II",
+    "c": "math",
+    "d": "-",
+    "i": "-",
+    "o": "-"
+  },
+  "moreiotas:altmul": {
+    "n": "Multiplicative Distillation II",
+    "c": "math",
+    "d": "Multiplies the first n by m matrix elementwise with another n by m matrix.",
+    "i": "mat, mat",
+    "o": "mat"
+  },
+  "moreiotas:altdiv": {
+    "n": "Division Distillation II",
+    "c": "math",
+    "d": "Divides the first n by m matrix elementwise by another n by m matrix.",
+    "i": "mat, mat",
+    "o": "mat"
+  },
+  "moreiotas:altpow": {
+    "n": "Power Distillation II",
+    "c": "math",
+    "d": "Raises the first n by m matrix elementwise to the power of another n by m matrix.",
+    "i": "mat, mat",
+    "o": "mat"
+  },
+  "moreiotas:matrix/make": {
+    "n": "Transformation Purification",
+    "c": "math",
+    "d": "Converts the iota on top of the stack into a matrix. This iota can be a number, vector, or list.",
+    "i": "num | vec | list",
+    "o": "mat"
+  },
+  "moreiotas:matrix/unmake": {
+    "n": "Restoration Purification",
+    "c": "math",
+    "d": "Converts the iota on top of the stack back from a matrix into a number, vector, or list depending on the vector's size.",
+    "i": "mat",
+    "o": "num | vec | list"
+  },
+  "moreiotas:matrix/unmake/direct": {
+    "n": "Restoration Purification II",
+    "c": "math",
+    "d": "As Restoration Purification, except it always returns a list of lists of numbers.",
+    "i": "mat",
+    "o": "[[num]]"
+  },
+  "moreiotas:matrix/identity": {
+    "n": "Identity Purification",
+    "c": "math",
+    "d": "Accepts a positive integer n, and returns an n by n matrix with 1 along the diagonal and 0 elsewhere.",
+    "i": "int ≥ 0",
+    "o": "mat"
+  },
+  "moreiotas:matrix/zero": {
+    "n": "Zero Distillation",
+    "c": "math",
+    "d": "Accepts positive integers n and m, and returns an n by m matrix of zeros.",
+    "i": "int ≥ 0, int ≥ 0",
+    "o": "mat"
+  },
+  "moreiotas:matrix/rotation": {
+    "n": "Rotation Distillation",
+    "c": "math",
+    "d": "Accepts a vec v and number θ, and returns a matrix representing rotating by θ radians around v.",
+    "i": "vec, num",
+    "o": "mat"
+  },
+  "moreiotas:matrix/inverse": {
+    "n": "Inverse Purification",
+    "c": "math",
+    "d": "Accepts a matrix of any shappe and returns its inverse. For square matrices with a nonzero determinant, the inverse is the matrix such that in\\*out = identity.",
+    "i": "mat",
+    "o": "mat"
+  },
+  "moreiotas:matrix/determinant": {
+    "n": "Determinant Purification",
+    "c": "math",
+    "d": "Accepts a square matrix and returns the determinant of that matrix.",
+    "i": "mat",
+    "o": "num"
+  },
+  "moreiotas:matrix/concat/vert": {
+    "n": "Tower Distillation",
+    "c": "math",
+    "d": "Accepts an n by m matrix and a p by m matrix and produces a (n+p) by m matrix by putting the first matrix on top of the second.",
+    "i": "mat, mat",
+    "o": "mat"
+  },
+  "moreiotas:matrix/concat/hori": {
+    "n": "Sprawling Distillation",
+    "c": "math",
+    "d": "Accepts an n by m matrix and an n by p matrix and produces an n by (m+p) matrix by putting the first matrix to the left of the second.",
+    "i": "mat, mat",
+    "o": "mat"
+  },
+  "moreiotas:matrix/split/vert": {
+    "n": "Toppling Gambit",
+    "c": "math",
+    "d": "Accepts an n by m matrix and an int from 0 to n, and returns two matrices created by splitting the input matrix vertically at the inputted int.",
+    "i": "mat, num",
+    "o": "mat, mat"
+  },
+  "moreiotas:matrix/split/hori": {
+    "n": "Mitosis Gambit",
+    "c": "math",
+    "d": "Accepts an n by m matrix and an int from 0 to m, and returns two matrices created by splitting the input matrix horizontally at the inputted int.",
+    "i": "mat, num",
+    "o": "mat, mat"
+  },
+  "movesthemind:move/hotbar": {
+    "n": "Bid: Select Toolbar",
+    "c": "math",
+    "d": "Takes a number from 1 to 9 inclusive, and instructs to select that slot in its toolbar. Works on myself, but may interrupt things like drawing patterns.",
+    "i": "player, num",
+    "o": "-"
+  },
+  "overevaluate:dup_many": {
+    "n": "Dioscuri Gambit II",
+    "c": "math",
+    "d": "Takes a number and duplicates that many elements of the stack while preserving order.",
+    "i": "many, number",
+    "o": "many"
+  },
+  "overevaluate:soroban_increment": {
+    "n": "Soroban Reflection",
+    "c": "math",
+    "d": "Pushes soroban's current value and then increases it. Starts at 0.",
+    "i": "-",
+    "o": "number"
+  },
+  "overevaluate:soroban_set": {
+    "n": "Soroban Gambit II",
+    "c": "math",
+    "d": "Pops a number from the stack and sets the soroban to it.",
+    "i": "number",
+    "o": "-"
+  },
+  "mediatransport:check_queue": {
+    "n": "Semaphore's Reflection",
+    "c": "math",
+    "d": "Queries the number of iotas in the queue.",
+    "i": "-",
+    "o": "number"
+  },
+  "mediatransport:check_rate_limit": {
+    "n": "Quota's Reflection",
+    "c": "math",
+    "d": "Queries the amount of 'sending power' remaining.",
+    "i": "-",
+    "o": "number"
+  }
+}

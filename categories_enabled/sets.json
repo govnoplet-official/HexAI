@@ -1,0 +1,30 @@
+{
+  "_description": {
+    "summary": "Sets: spilling a set into the stack, converting between sets and lists, set insert and remove.",
+    "use_cases": [
+      "Converting a list to a set or back",
+      "Unpacking the contents of a set"
+    ]
+  },
+  "splat_set": {
+    "n": "Spilling Disintegration",
+    "c": "sets",
+    "d": "Remove the set at the top of the stack, then push its contents to the stack. The order is up to Nature's whims.",
+    "i": "set",
+    "o": "many"
+  },
+  "set_to_list": {
+    "n": "Ordering Purification",
+    "c": "sets",
+    "d": "Converts the set at the top of the stack to a list. The order is up to Nature's whims.",
+    "i": "set",
+    "o": "list"
+  },
+  "list_to_set": {
+    "n": "Disordering Purification",
+    "c": "sets",
+    "d": "Converts the list at the top of the stack to a set. The list must be non-empty and entirely numbers, vectors, or entities.",
+    "i": "[num]|[vec]|[entity]",
+    "o": "set"
+  }
+}

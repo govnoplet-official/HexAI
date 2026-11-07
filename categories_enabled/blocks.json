@@ -1,0 +1,144 @@
+{
+  "_description": {
+    "summary": "World block interaction: raycasts to blocks and entities, breaking, collecting, placing and freezing blocks, block properties (hardness, blast resistance, blockstates, facets, map color), dyeing, meshes, falling blocks, fluid raycasts, armor stand control, paper planes and time bombs.",
+    "use_cases": [
+      "Finding which block or entity is at a position or in the line of sight",
+      "Breaking, collecting, placing or freezing blocks",
+      "Reading block properties or blockstates",
+      "Dyeing blocks and entities"
+    ]
+  },
+  "raycast": {
+    "n": "Archer's Distillation",
+    "c": "blocks",
+    "d": "Combines two vectors (a position and a direction) into the answer to the question: If I stood at the position and looked in the direction, what block would I be looking at? Costs a negligible amount of media.",
+    "i": "vector, vector",
+    "o": "vector | null"
+  },
+  "raycast/axis": {
+    "n": "Architect's Distillation",
+    "c": "blocks",
+    "d": "Like Archer's Distillation, but instead returns a vector representing the answer to the question: Which *side* of the block am I looking at? Costs a negligible amount of media.",
+    "i": "vector, vector",
+    "o": "vector | null"
+  },
+  "break_block": {
+    "n": "Break Block",
+    "c": "blocks",
+    "d": "Remove a location from the stack, then break the block at the given location. This spell can break nearly anything a Diamond Pickaxe can break.\nCosts about an eighth of one Amethyst Dust, or a negligible amount if breaking a Conjured Block or Conjured Light.",
+    "i": "vector",
+    "o": "-"
+  },
+  "dye": {
+    "n": "Dye",
+    "c": "blocks",
+    "d": "Dyes a dyeable block or entity. Costs about an eighth of one Amethyst Dust.",
+    "i": "vector/entity, dye",
+    "o": "-"
+  },
+  "translate_dye": {
+    "n": "Vision Purification",
+    "c": "blocks",
+    "d": "Translates a dye color into a vector, where each component is from 0 to 1 and represents the red, green, and blueness of the dye respectively.",
+    "i": "dye",
+    "o": "vector"
+  },
+  "break_silk": {
+    "n": "Collect Block",
+    "c": "blocks",
+    "d": "Breaks a block gently, perserving the block better than standard mining. Costs about half of an Amethyst Dust.",
+    "i": "vector",
+    "o": "-"
+  },
+  "weave_mesh": {
+    "n": "Weave Mesh",
+    "c": "blocks",
+    "d": "Takes a list of vectors, with constraints defined on the prior page, and weaves the mesh into that shape. Free.",
+    "i": "entity, list of vectors",
+    "o": "-"
+  },
+  "read_mesh": {
+    "n": "Tangle Purification",
+    "c": "blocks",
+    "d": "Pushes the shape of a mesh as a list of vectors.",
+    "i": "entity",
+    "o": "list of vectors"
+  },
+  "block_hardness": {
+    "n": "Miner's Purification",
+    "c": "blocks",
+    "d": "Pushes how difficult blocks of this type are to mine.",
+    "i": "identifier",
+    "o": "number"
+  },
+  "block_blast_resistance": {
+    "n": "Demoman's Purification",
+    "c": "blocks",
+    "d": "Pushes how resistant blocks of this type are to explosions.",
+    "i": "identifier",
+    "o": "number"
+  },
+  "blockstate_rotation": {
+    "n": "Orientation Purification",
+    "c": "blocks",
+    "d": "Pushes the vector of the block's facing direction, or Null if blocks of its type do not have an orientation.",
+    "i": "vector",
+    "o": "vector/null"
+  },
+  "blockstate_crop": {
+    "n": "Farmer's Purification",
+    "c": "blocks",
+    "d": "Pushes a number 0 to 1 corresponding to the growth progress of that block. Works for crops, Beehives, Composters, Cauldrons, and strangely Cakes too.",
+    "i": "vector",
+    "o": "number/null"
+  },
+  "get_blockstates": {
+    "n": "Facet Purification",
+    "c": "blocks",
+    "d": "Pushes a list of all facets of that block.",
+    "i": "vector",
+    "o": "list of identifiers"
+  },
+  "query_blockstate": {
+    "n": "Facet Distillation",
+    "c": "blocks",
+    "d": "Takes a block and a facet and pushes that facet's value.",
+    "i": "vector, identifier",
+    "o": "any"
+  },
+  "block_map_color": {
+    "n": "Cartographer's Purification",
+    "c": "blocks",
+    "d": "Pushes the color blocks of this type appear as on a map.",
+    "i": "identifier",
+    "o": "vector"
+  },
+  "make_break_trigger": {
+    "n": "Trigger Reflection: Break",
+    "c": "blocks",
+    "d": "Creates a trigger that activates whenever I break a block.",
+    "i": "-",
+    "o": "trigger"
+  },
+  "empty_prfn": {
+    "n": "Empty Purification",
+    "c": "blocks",
+    "d": "Answers the question, \"is there only air there?\" for negligible media cost. Vector must be in my ambit.",
+    "i": "vec",
+    "o": "bool"
+  },
+  "empty_dstl": {
+    "n": "Empty Distillation",
+    "c": "blocks",
+    "d": "Negligible cost. Answers the question, \"are there no opaque blocks between these points?\". Both vectors must be in my ambit.",
+    "i": "vec, vec",
+    "o": "bool"
+  },
+  "visible_dstl": {
+    "n": "Visible Distillation",
+    "c": "blocks",
+    "d": "Negligible cost. Pushes whether or not the specified entity (within ambit) is able to see the specified block (also within ambit).",
+    "i": "entity, vec",
+    "o": "bool"
+  }
+}

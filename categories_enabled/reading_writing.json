@@ -1,0 +1,333 @@
+{
+  "_description": {
+    "summary": "Reading and writing iotas: scribe read and write for held items, entities, ravenmind (local memory), Ewer marks and jump tags, spellbook pages, debuggers and breakpoints, splicing tables, Klein events, Reactive Focus, charmed items, necklaces, specific-hand read and write.",
+    "use_cases": [
+      "Saving or loading an iota to an item, entity or local memory",
+      "Checking whether an item or entity is readable or writable",
+      "Debugging hexes with breakpoints and debuggers",
+      "Reading or flipping spellbook pages"
+    ]
+  },
+  "read": {
+    "n": "Scribe's Reflection",
+    "c": "reading_writing",
+    "d": "Copy the iota stored in the item in my other hand and add it to the stack.",
+    "i": "-",
+    "o": "any"
+  },
+  "read/entity": {
+    "n": "Chronicler's Purification",
+    "c": "reading_writing",
+    "d": "Like Scribe's Reflection, but the iota is read out of an entity instead of my other hand. | Like Scribe's Reflection, but the iota is read out of a block instead of my other hand.",
+    "i": "entity | vec",
+    "o": "any | any"
+  },
+  "write": {
+    "n": "Scribe's Gambit",
+    "c": "reading_writing",
+    "d": "Remove the top iota from the stack, and save it into the item in my other hand.",
+    "i": "any",
+    "o": "-"
+  },
+  "write/entity": {
+    "n": "Chronicler's Gambit",
+    "c": "reading_writing",
+    "d": "Like Scribe's Gambit, but the iota is written to an entity instead of my other hand.\nInterestingly enough, it looks like I cannot write my own Name using this spell. I get a sense that I might be endangered if I could. | Like Scribe's Gambit, but the iota is written to a block instead of my other hand.\nInterestingly enough, it looks like I cannot write my own Name using this spell. I get a sense that I might be endangered if I could.",
+    "i": "entity, any | vec, any",
+    "o": "- | -"
+  },
+  "readable": {
+    "n": "Auditor's Reflection",
+    "c": "reading_writing",
+    "d": "If the item in my other hand holds an iota I can read, returns True. Otherwise, returns False.",
+    "i": "-",
+    "o": "bool"
+  },
+  "readable/entity": {
+    "n": "Auditor's Purification",
+    "c": "reading_writing",
+    "d": "Like Auditor's Reflection, but the readability of an entity is checked instead of my other hand. | Like Auditor's Reflection, but the readability of a block is checked instead of my other hand.",
+    "i": "entity | vec",
+    "o": "bool | bool"
+  },
+  "writable": {
+    "n": "Assessor's Reflection",
+    "c": "reading_writing",
+    "d": "If I could save an iota into the item in my other hand, returns True. Otherwise, returns False.",
+    "i": "-",
+    "o": "bool"
+  },
+  "writable/entity": {
+    "n": "Assessor's Purification",
+    "c": "reading_writing",
+    "d": "Like Assessor's Reflection, but the writability of an entity is checked instead of my other hand. | Like Assessor's Reflection, but the writability of a block is checked instead of my other hand.",
+    "i": "entity | vec",
+    "o": "bool | bool"
+  },
+  "read/local": {
+    "n": "Muninn's Reflection",
+    "c": "reading_writing",
+    "d": "Copy the iota out of my ravenmind, which I likely just wrote with Huginn's Gambit.",
+    "i": "-",
+    "o": "any"
+  },
+  "write/local": {
+    "n": "Huginn's Gambit",
+    "c": "reading_writing",
+    "d": "Removes the top iota from the stack, and saves it to my ravenmind, storing it there until I stop casting the Hex.",
+    "i": "any",
+    "o": "-"
+  },
+  "read/mark/iota": {
+    "n": "Ewer's Purification",
+    "c": "reading_writing",
+    "d": "Like Ewer's Reflection, but the iota is read out of the jump tag of the top frame in a Jump iota.",
+    "i": "jump",
+    "o": "any"
+  },
+  "read/mark/local": {
+    "n": "Ewer's Reflection",
+    "c": "reading_writing",
+    "d": "Copy the iota stored in the jump tag of the current evaluation and add it to the stack.",
+    "i": "-",
+    "o": "any"
+  },
+  "write/mark/local": {
+    "n": "Ewer's Gambit",
+    "c": "reading_writing",
+    "d": "Remove the top iota from the stack, and write it to the jump tag of the current evaluation.\nAs with Chronicler's Gambit, I cannot write my own Name using this spell.",
+    "i": "any",
+    "o": "-"
+  },
+  "const/cognitohazard": {
+    "n": "Cognitohazard Reflection",
+    "c": "reading_writing",
+    "d": "Add a Cognitohazard to the top of the stack.",
+    "i": "-",
+    "o": "cognitohazard"
+  },
+  "const/debugging": {
+    "n": "Debugger's Reflection",
+    "c": "reading_writing",
+    "d": "Add True to the top of the stack if executed by a Debugger or Evaluator, or False otherwise.",
+    "i": "-",
+    "o": "bool"
+  },
+  "breakpoint/before": {
+    "n": "Set Breakpoint Before",
+    "c": "reading_writing",
+    "d": "Pause the Debugger before executing this pattern.",
+    "i": "-",
+    "o": "-"
+  },
+  "breakpoint/after": {
+    "n": "Set Breakpoint After",
+    "c": "reading_writing",
+    "d": "Pause the Debugger after executing this pattern (ie. before executing the next pattern).",
+    "i": "-",
+    "o": "-"
+  },
+  "craft/debugger": {
+    "n": "Craft Debugger",
+    "c": "reading_writing",
+    "d": "Create a Debugger that casts a Hex, similar to certain other patterns I've used in the past.\nCosts about ten Charged Amethyst.",
+    "i": "entity, [pattern]",
+    "o": "-"
+  },
+  "craft/quenched_debugger": {
+    "n": "Craft Quenched Debugger",
+    "c": "reading_writing",
+    "d": "Create a Quenched Debugger that casts a Hex, similar to certain other patterns I've used in the past.\nCosts about ten Charged Amethyst.",
+    "i": "entity, [pattern]",
+    "o": "-"
+  },
+  "splicing/selection/read": {
+    "n": "Splicer's Decomposition",
+    "c": "reading_writing",
+    "d": "Remove a vector from the stack, then push two values representing the current selection in the Splicing Table at that position.",
+    "i": "vec",
+    "o": "num | null, num | null"
+  },
+  "splicing/selection/write": {
+    "n": "Splicer's Gambit",
+    "c": "reading_writing",
+    "d": "Remove a vector and two values from the stack, then set the selection of the Splicing Table at that position as previously described.",
+    "i": "vec, num | null, num | null",
+    "o": "-"
+  },
+  "splicing/view_index/read": {
+    "n": "Sprocket's Purification",
+    "c": "reading_writing",
+    "d": "Remove a vector from the stack, then push the index of the leftmost iota currently visible in the Splicing Table at that position.",
+    "i": "vec",
+    "o": "num"
+  },
+  "splicing/view_index/write": {
+    "n": "Sprocket's Gambit",
+    "c": "reading_writing",
+    "d": "Remove a vector and number from the stack, then move the view of the Splicing Table at that position so that the given index is the leftmost one visible.",
+    "i": "vec, num",
+    "o": "-"
+  },
+  "splicing/list/spellbook_index/read": {
+    "n": "Projectionist's Purification",
+    "c": "reading_writing",
+    "d": "Remove a vector from the stack, then push the current page number (starting at 1) of the Spellbook in the main slot of the Splicing Table or Focal Frame at that position.",
+    "i": "vec",
+    "o": "num"
+  },
+  "splicing/list/spellbook_index/write": {
+    "n": "Projectionist's Gambit",
+    "c": "reading_writing",
+    "d": "Remove a vector and number from the stack, then flip the Spellbook in the main slot of the Splicing Table or Focal Frame at that position to the given page number.",
+    "i": "vec, num",
+    "o": "-"
+  },
+  "splicing/list/spellbook_index/readable": {
+    "n": "Shutter's Purification",
+    "c": "reading_writing",
+    "d": "Replace the vector at the top of the stack with True if there is a Splicing Table or Focal Frame at that position with a Spellbook in its main slot that contains at least one page, or False otherwise.",
+    "i": "vec",
+    "o": "bool"
+  },
+  "splicing/clipboard/read": {
+    "n": "Compositor's Purification",
+    "c": "reading_writing",
+    "d": "Remove a vector from the stack, then copy the contents of the secondary item in the Splicing Table at that position and push it to the stack.",
+    "i": "vec",
+    "o": "any"
+  },
+  "splicing/clipboard/write": {
+    "n": "Compositor's Gambit",
+    "c": "reading_writing",
+    "d": "Remove a vector and iota from the stack, then save the iota into the secondary item in the Splicing Table at that position.\nAs with Chronicler's Gambit, I cannot write my own Name using this spell.",
+    "i": "vec, any",
+    "o": "-"
+  },
+  "splicing/clipboard/readable": {
+    "n": "Producer's Purification",
+    "c": "reading_writing",
+    "d": "Replace the vector at the top of the stack with True if there is a Splicing Table at that position containing a secondary item that I could read, or False otherwise.",
+    "i": "vec",
+    "o": "bool"
+  },
+  "splicing/clipboard/writable": {
+    "n": "Director's Purification",
+    "c": "reading_writing",
+    "d": "Replace the vector at the top of the stack with True if there is a Splicing Table at that position containing a secondary item that I could save an iota into, or False otherwise.",
+    "i": "vec",
+    "o": "bool"
+  },
+  "splicing/clipboard/spellbook_index/read": {
+    "n": "Projectionist's Purification II",
+    "c": "reading_writing",
+    "d": "Like Projectionist's Purification, but the page number of the Spellbook in the secondary slot is read instead of the main slot.",
+    "i": "vec",
+    "o": "num"
+  },
+  "splicing/clipboard/spellbook_index/write": {
+    "n": "Projectionist's Gambit II",
+    "c": "reading_writing",
+    "d": "Like Projectionist's Gambit, but the page number of the Spellbook in the secondary slot is written instead of the main slot.",
+    "i": "vec, num",
+    "o": "-"
+  },
+  "splicing/clipboard/spellbook_index/readable": {
+    "n": "Shutter's Purification II",
+    "c": "reading_writing",
+    "d": "Like Shutter's Purification, but the Spellbook in the secondary slot is checked instead of the main slot.",
+    "i": "vec",
+    "o": "bool"
+  },
+  "splicing/enlightened/hex/read": {
+    "n": "Mindsplice Purification",
+    "c": "reading_writing",
+    "d": "Remove a vector from the stack, then push the Hex currently imbued to the Mindsplice Table at that position, or Null if it has not yet been imbued.",
+    "i": "vec",
+    "o": "list | null"
+  },
+  "splicing/enlightened/hex/write": {
+    "n": "Imbue Mindsplice Table",
+    "c": "reading_writing",
+    "d": "Remove a vector and list of patterns from the stack, then imbue the list of patterns into the Mindsplice Table at that position.\nCosts about five Charged Amethyst.",
+    "i": "vec, list",
+    "o": "-"
+  },
+  "link/comm/read": {
+    "n": "Recitation Reflection",
+    "c": "reading_writing",
+    "d": "When something receives an iota along a link it is added to a queue. This pattern adds the first iota in the queue to the stack, removing it from the queue.",
+    "i": "-",
+    "o": "any"
+  },
+  "readonly_property": {
+    "n": "Schrödinger's Purification",
+    "c": "reading_writing",
+    "d": "Creates a read-only property iota that refers to the same Property as the given property iota.",
+    "i": "property",
+    "o": "property"
+  },
+  "write_grimoire": {
+    "n": "Write Grimoire",
+    "c": "reading_writing",
+    "d": "Associates a pattern to a list of patterns in the Grimoire in my offhand.",
+    "i": "pattern, list",
+    "o": "-"
+  },
+  "erase_grimoire": {
+    "n": "Erase Grimoire",
+    "c": "reading_writing",
+    "d": "Erases any associations for a pattern that may exist in the Grimoire in my offhand.",
+    "i": "pattern",
+    "o": "-"
+  },
+  "index_grimoire": {
+    "n": "Archivist Reflection",
+    "c": "reading_writing",
+    "d": "Gets a list of all patterns modified by the Grimoire in my offhand.",
+    "i": "-",
+    "o": "list of patterns"
+  },
+  "write_charmed": {
+    "n": "Charmed Gambit",
+    "c": "reading_writing",
+    "d": "Writes an iota to the charmed item’s internal storage. Subject to the Transgress Others mishap.",
+    "i": "any",
+    "o": "-"
+  },
+  "read/index": {
+    "n": "Tachygrapher's Distillation",
+    "c": "reading_writing",
+    "d": "Read a list iota out of an entity or block, then push the iota at the specified index to the stack.\nIt seems this and the next pattern may be useful for handling large amounts of data without causing a Too Many Iotas mishap.",
+    "i": "entity | vec, num",
+    "o": "any"
+  },
+  "write/index": {
+    "n": "Tachygrapher's Gambit",
+    "c": "reading_writing",
+    "d": "Read a list iota out of an entity or block, then set the element at the specified index of that list to the given iota, then write the resulting list back to the entity or block.",
+    "i": "entity | vec, num, any",
+    "o": "-"
+  },
+  "read_spechand": {
+    "n": "Secretary's Purification",
+    "c": "reading_writing",
+    "d": "Specific hand version of Scribe's Reflection. Pushes the Iota stored in the Iota holder in the specified hand to the stack.",
+    "i": "num",
+    "o": "any"
+  },
+  "read_necklace": {
+    "n": "Jeweller's Reflection",
+    "c": "reading_writing",
+    "d": "Reads the iota from the necklace I'm wearing. Mishaps if there is no readable one available. (Drawing aid: a line into almost a triangle, then a counterclockwise circle much like Scribe's Reflection.)",
+    "i": "-",
+    "o": "any"
+  },
+  "string/block/set": {
+    "n": "Write",
+    "c": "reading_writing",
+    "d": "Removes a vector and a string from the stack. If that vector is pointing at a sign or lectern, it writes that string to that sign or lectern. Costs a hundredth of an Amethyst Dust.",
+    "i": "vec, str | [str]",
+    "o": "-"
+  }
+}

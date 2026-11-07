@@ -1,0 +1,10 @@
+{
+  "mask": {
+    "n": "Bookkeeper's Gambit",
+    "c": "hexcasting",
+    "d": "An infinite family of actions that keep or remove elements at the top of the stack based on the sequence of dips and lines.",
+    "i": "many",
+    "o": "many",
+    "u": "This pattern accepts arguments. Use it like this: hexcasting:mask(1100100), where 1 represents a line (keep the element) and 0 represents a dip (remove the element). For example if the stack is [1, 2, 3, 4, 5] and you use hexcasting:mask(11010) the stack will become [1, 2, 4]"
+  }
+}

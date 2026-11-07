@@ -1,0 +1,164 @@
+{
+  "_description": {
+    "summary": "Stack manipulation: swap, rotate, duplicate, over, tuck, 2dup, swizzle, bubbling, capsizing and dredging, copy and reorder operations, drawing parentheses (Introspection, Retrospection, Consideration, Meditation), Evanition (undo), clear stack, Jester's and Reflecting gambits, Quantum Swap.",
+    "use_cases": [
+      "Reordering or copying iotas on the stack",
+      "Grouping drawn patterns with Introspection",
+      "Clearing or undoing stack changes"
+    ]
+  },
+  "hexcasting:swap": {
+    "n": "Jester's Gambit",
+    "c": "stack_manipulation",
+    "d": "Swaps the top two iotas of the stack.",
+    "i": "any, any",
+    "o": "any, any"
+  },
+  "hexcasting:rotate": {
+    "n": "Rotation Gambit",
+    "c": "stack_manipulation",
+    "d": "Yanks the iota third from the top of the stack to the top. [0, 1, 2] becomes [1, 2, 0].",
+    "i": "any, any, any",
+    "o": "any, any, any"
+  },
+  "hexcasting:rotate_reverse": {
+    "n": "Rotation Gambit II",
+    "c": "stack_manipulation",
+    "d": "Yanks the top iota to the third position. [0, 1, 2] becomes [2, 0, 1].",
+    "i": "any, any, any",
+    "o": "any, any, any"
+  },
+  "hexcasting:duplicate": {
+    "n": "Gemini Decomposition",
+    "c": "stack_manipulation",
+    "d": "Duplicates the top iota of the stack.",
+    "i": "any",
+    "o": "any, any"
+  },
+  "hexcasting:over": {
+    "n": "Prospector's Gambit",
+    "c": "stack_manipulation",
+    "d": "Copy the second-to-last iota of the stack to the top. [0, 1] becomes [0, 1, 0].",
+    "i": "any, any",
+    "o": "any, any, any"
+  },
+  "hexcasting:tuck": {
+    "n": "Undertaker's Gambit",
+    "c": "stack_manipulation",
+    "d": "Copy the top iota of the stack, then put it under the second iota. [0, 1] becomes [1, 0, 1].",
+    "i": "any, any",
+    "o": "any, any, any"
+  },
+  "hexcasting:2dup": {
+    "n": "Dioscuri Gambit",
+    "c": "stack_manipulation",
+    "d": "Copy the top two iotas of the stack. [0, 1] becomes [0, 1, 0, 1].",
+    "i": "any, any",
+    "o": "any, any, any, any"
+  },
+  "hexcasting:swizzle": {
+    "n": "Swindler's Gambit",
+    "c": "stack_manipulation",
+    "d": "Rearranges the top elements of the stack based on the given numerical code, which is the index of the permutation wanted.",
+    "i": "many, number",
+    "o": "many"
+  },
+  "hexcasting:escape": {
+    "n": "Consideration",
+    "c": "stack_manipulation",
+    "d": "Similar to Contemplation, but acts even when drawn between Intro- and Retrospection. This can \"escape\" other patterns that work between Intro- and Retrospection, putting them into the list without any other effects.",
+    "i": "-",
+    "o": "-"
+  },
+  "hexcasting:open_paren": {
+    "n": "Introspection",
+    "c": "stack_manipulation",
+    "d": "Drawing Introspection makes my drawing of patterns act differently, for a time. Until I draw Retrospection, the patterns I draw are saved. Then, when I draw Retrospection, they are added to the stack as a list iota.",
+    "i": "-",
+    "o": "-"
+  },
+  "hexcasting:close_paren": {
+    "n": "Retrospection",
+    "c": "stack_manipulation",
+    "d": "If I draw another Introspection, it'll still be saved to the list, but I'll then have to draw *two* Retrospections to get back to normal casting.",
+    "i": "-",
+    "o": "-"
+  },
+  "hexcasting:open_n_parens": {
+    "n": "Meditation",
+    "c": "stack_manipulation",
+    "d": "Removes a number from the stack, then acts as though I'd drawn that many Introspections. Treated as a normal pattern while introspecting, so nesting this may require tricks to draw extra Retrospections.",
+    "i": "num",
+    "o": "-"
+  },
+  "hexcasting:close_all_parens": {
+    "n": "Recollection",
+    "c": "stack_manipulation",
+    "d": "Works like Retrospection, but closes *all* open Introspections at once. The number of layers closed, along with the list of saved patterns, are then added to the stack.",
+    "i": "-",
+    "o": "num, list"
+  },
+  "hexcasting:read_into_parens": {
+    "n": "Interjection",
+    "c": "stack_manipulation",
+    "d": "Only works while introspecting. Reads an iota from my offhand, and adds it to the in-progress list. For iotas other than patterns, I may need to take steps to avoid a mishap when executing the list.",
+    "i": "-",
+    "o": "-"
+  },
+  "hexcasting:undo": {
+    "n": "Evanition",
+    "c": "stack_manipulation",
+    "d": "Finally, if I make a mistake while drawing patterns inside Intro- and Retrospection, I can draw Evanition to remove the last pattern that I drew from the pattern list that is being constructed.",
+    "i": "-",
+    "o": "-"
+  },
+  "hexautomata:quantum_swap": {
+    "n": "Quantum Swap",
+    "c": "stack_manipulation",
+    "d": "Swaps me and the triggering entity spatially, at cost of half of a dust. Takes no effect if there's no such entity (for example, hurt event triggered by environmental damage).",
+    "i": "-",
+    "o": "-"
+  },
+  "manifestation:clear_stack": {
+    "n": "Clear Stack",
+    "c": "stack_manipulation",
+    "d": "Clears the caster's persisted staff stack (the shift, right-click stack). Must be cast by a person.",
+    "i": "none",
+    "o": "none"
+  },
+  "hexal:link/comm/open_transmit": {
+    "n": "Open Transmit",
+    "c": "stack_manipulation",
+    "d": "Similar to Introspection, until drawing a Close Transmit all patterns I draw are sent along the link whose index is at the top of the stack.",
+    "i": "num",
+    "o": "-"
+  },
+  "hierophantics:make_drop_trigger": {
+    "n": "Trigger Reflection: Drop",
+    "c": "stack_manipulation",
+    "d": "Creates a trigger that activates whenever I drop an item. This does **not** include involuntary dropping, such as on death or when using Greater Teleport.",
+    "i": "-",
+    "o": "trigger"
+  },
+  "overevaluate:swap_two_three": {
+    "n": "Bubbling Gambit",
+    "c": "stack_manipulation",
+    "d": "Causes the third-from-the-top iota to bubble up over the second-from-the-top iota, essentially swapping them.",
+    "i": "any, any, any",
+    "o": "any, any, any"
+  },
+  "overevaluate:sisyphus": {
+    "n": "Sisyphus' Gambit",
+    "c": "stack_manipulation",
+    "d": "Takes a pattern list and casts it over and over forever until it encounters either a Charon's Gambit or a Janus' Gambit.",
+    "i": "list",
+    "o": "-"
+  },
+  "efhexs:play_dust_transition_particle": {
+    "n": "Conjure Sparkly Dust",
+    "c": "stack_manipulation",
+    "d": "Conjures a gradient-like mote of dust, which smoothly transitions between the two colors given over the given number of seconds.",
+    "i": "..., vector, vector, number",
+    "o": "-"
+  }
+}

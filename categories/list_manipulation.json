@@ -1,0 +1,424 @@
+{
+  "_description": {
+    "summary": "Lists, linking and containers: list operations (append, index, slice, splat, construct, reverse, unique, range), Uiua-style list ops (take, drop, rotate, where), linked-entity communication (send and receive iotas, link and unlink), splicing tables, grimoire, Tachygrapher read and write of containers, noetic bookshelves, mana queries, staff casting canvas, learning great patterns, structure transformations.",
+    "use_cases": [
+      "Adding, removing, indexing, slicing or reversing lists",
+      "Sending or receiving data between linked entities",
+      "Reading or writing list data in containers or splicing tables",
+      "Querying mana or the staff casting canvas"
+    ]
+  },
+  "hexcasting:unique": {
+    "n": "Uniqueness Purification",
+    "c": "list_manipulation",
+    "d": "Removes duplicate entries from a list. | Keeps only the first instance of any glyph in the text. Styling is enough to distinguish a glyph.",
+    "i": "list | text",
+    "o": "list | text"
+  },
+  "hexcasting:append": {
+    "n": "Integration Distillation",
+    "c": "list_manipulation",
+    "d": "Remove the top of the stack, then add it to the end of the list at the top of the stack. | Remove the iota at the top of the stack, then add it to the set. The iota's type must match the set's type.",
+    "i": "list, any | set, (num|vec|entity)",
+    "o": "list | set"
+  },
+  "hexcasting:unappend": {
+    "n": "Derivation Decomposition",
+    "c": "list_manipulation",
+    "d": "Remove the iota on the end of the list at the top of the stack, and add it to the top of the stack.",
+    "i": "list",
+    "o": "list, any"
+  },
+  "hexcasting:index": {
+    "n": "Selection Distillation",
+    "c": "list_manipulation",
+    "d": "Remove the number at the top of the stack, then replace the list at the top with the nth element of that list (where n is the number you removed). Replaces the list with Null if the number is out of bounds. | Pushes the nth glyph in the text.",
+    "i": "list, number | text, number",
+    "o": "any | text"
+  },
+  "hexcasting:singleton": {
+    "n": "Single's Purification",
+    "c": "list_manipulation",
+    "d": "Remove the top of the stack, then push a list containing only that element.",
+    "i": "any",
+    "o": "list"
+  },
+  "hexcasting:empty_list": {
+    "n": "Vacant Reflection",
+    "c": "list_manipulation",
+    "d": "Push an empty list to the top of the stack.",
+    "i": "-",
+    "o": "list"
+  },
+  "hexcasting:reverse": {
+    "n": "Retrograde Purification",
+    "c": "list_manipulation",
+    "d": "Reverse the list at the top of the stack. | Accepts an n by m matrix and returns an m by n matrix where every entry has been flipped along the diagonal. | Reverses the text.",
+    "i": "list | mat | text",
+    "o": "list | mat | text"
+  },
+  "hexcasting:last_n_list": {
+    "n": "Flock's Gambit",
+    "c": "list_manipulation",
+    "d": "Remove *num* elements from the stack, then add them to a list at the top of the stack.",
+    "i": "many, num",
+    "o": "list"
+  },
+  "hexcasting:splat": {
+    "n": "Flock's Disintegration",
+    "c": "list_manipulation",
+    "d": "Remove the list at the top of the stack, then push its contents to the stack. | Remove the Jump iota at the top of the stack, then, for each of its frames, push a new Jump iota containing only that frame to the stack.",
+    "i": "list | jump",
+    "o": "many | many"
+  },
+  "hexcasting:remove_from": {
+    "n": "Excisor's Distillation",
+    "c": "list_manipulation",
+    "d": "Remove the number at the top of the stack, then remove the nth element of the list at the top of the stack (where n is the number you removed). | Removes the key-value pair from the Dictionary, pushing the previous value, or Null if no value was present. | Remove the iota from top of the stack, then remove it set. The iota's type must match the set's type. | Removes the nth glyph in the text.",
+    "i": "list, num | dict, key | set, (num|vec|entity) | text, number",
+    "o": "list | dict, any | set | text"
+  },
+  "hexcasting:slice": {
+    "n": "Selection Exaltation",
+    "c": "list_manipulation",
+    "d": "Remove the two numbers at the top of the stack, then take a sublist of the list at the top of the stack between those indices, lower bound inclusive, upper bound exclusive. For example, the 0, 2 sublist of [0, 1, 2, 3, 4] would be [0, 1]. | Removes a string and two positive integers from the top of the stack, and returns the substring from the first to the second (inclusive first, exclusive second). | Pushes the specified slice of the text.",
+    "i": "list, num, num | str, num, num | text, number, number",
+    "o": "list | str | text"
+  },
+  "hexcasting:replace": {
+    "n": "Surgeon's Exaltation",
+    "c": "list_manipulation",
+    "d": "Remove the top iota of the stack and the number at the top, then set the nth element of the list at the top of the stack to that iota (where n is the number you removed). Does nothing if the number is out of bounds. | Places the iota in the Dictionary at the specified key. Not every iota type is allowed to be used as a key, with notable the exceptions being Garbage and Jump iota. Attempting to set the value of a key to Null will remove the key the same way using Excisor's Distillation would. | Replaces the glyph at the nth position in the text with another segment of text. Replacement can be longer than one glyph.",
+    "i": "list, num, any | dict, key, any | text, number, text",
+    "o": "list | dict | text"
+  },
+  "hexcasting:construct": {
+    "n": "Speaker's Distillation",
+    "c": "list_manipulation",
+    "d": "Remove the top iota, then add it as the first element to the list at the top of the stack. | Remove the Jump iota at the top of the stack, then add its top frame to the top of the Jump iota at the top of the stack.",
+    "i": "list, any | jump, jump",
+    "o": "list | jump"
+  },
+  "hexcasting:deconstruct": {
+    "n": "Speaker's Decomposition",
+    "c": "list_manipulation",
+    "d": "Remove the first iota from the list at the top of the stack, then push that iota to the stack. | Remove the top frame from the Jump iota at the top of the stack, then push a new Jump iota containing only that frame to the stack.",
+    "i": "list | jump",
+    "o": "list, any | jump, jump"
+  },
+  "hexkeys:read_noetic_bookshelf": {
+    "n": "Mnemosyne’s Purification",
+    "c": "list_manipulation",
+    "d": "Read the content of a noetic shelf onto the stack.",
+    "i": "vec|noetic shelf",
+    "o": "list"
+  },
+  "hex_ars_link:get_callback": {
+    "n": "Get Current Callback",
+    "c": "list_manipulation",
+    "d": "Read the callback spell list registered.",
+    "i": "-",
+    "o": "list"
+  },
+  "hex_ars_link:query_mana": {
+    "n": "Ars Mana Reflection",
+    "c": "list_manipulation",
+    "d": "Gets how many points of current mana I have.",
+    "i": "-",
+    "o": "list"
+  },
+  "hex_ars_link:query_mana_max": {
+    "n": "Ars Arcane Reflection",
+    "c": "list_manipulation",
+    "d": "Gets how many points of mana I could have at most.",
+    "i": "-",
+    "o": "list"
+  },
+  "hexoverpowered:mind_patterns": {
+    "n": "Snapshot Reflection",
+    "c": "list_manipulation",
+    "d": "Gets the list of all pattern iotas in the current staff canvas, returned in the order they were drawn.",
+    "i": "-",
+    "o": "list"
+  },
+  "hexoverpowered:mind_env/running_code": {
+    "n": "Delay's Reflection",
+    "c": "list_manipulation",
+    "d": "Gets the list of patterns executed last time in the current casting environment.",
+    "i": "-",
+    "o": "list/null"
+  },
+  "hexparse:remove_comments": {
+    "n": "No-Comment Purification",
+    "c": "list_manipulation",
+    "d": "Clears all comment iotas in a list, returns processed list.",
+    "i": "list",
+    "o": "list"
+  },
+  "hexparse:learn_patterns": {
+    "n": "Learn Great Patterns",
+    "c": "list_manipulation",
+    "d": "Extract great patterns from handheld items (ancient scrolls, focuses, compiled casting items, etc.), and returns a list of newly learned ones by the parser.",
+    "i": "-",
+    "o": "list"
+  },
+  "hexstruction:transformations": {
+    "n": "Structure Transformation Purification",
+    "c": "list_manipulation",
+    "d": "Removes a Structure from the stack, returning its transformations as a list in the format [mirror, vertical mirror, rotationX, rotationY, rotationZ].",
+    "i": "structure",
+    "o": "[number]"
+  },
+  "hexthings:uiua_take": {
+    "n": "Retention Distillation",
+    "c": "list_manipulation",
+    "d": "Keeps elements of the list based on the second argument. If it's a number and positive, it keeps the first *n* elements of the list, if negative; the last *n*. If given a list, then its elements are treated as indices to keep.",
+    "i": "list, (num | [num])",
+    "o": "list"
+  },
+  "hexthings:uiua_drop": {
+    "n": "Rejection Distillation",
+    "c": "list_manipulation",
+    "d": "The exact inverse of Retention Distillation, dropping the specified elements instead of dropping the rest.",
+    "i": "list, (num | [num])",
+    "o": "list"
+  },
+  "hexthings:uiua_rotate": {
+    "n": "Ferris Distillation",
+    "c": "list_manipulation",
+    "d": "Shifts the contents of the list by the specified amount, wrapping elements that go \"outside\" the list.",
+    "i": "list, num",
+    "o": "list"
+  },
+  "hexthings:uiua_where": {
+    "n": "Deduction Purification",
+    "c": "list_manipulation",
+    "d": "Pushes a list containing the indices of values that are considered true by Nature.",
+    "i": "list",
+    "o": "list"
+  },
+  "hexthings:make_range": {
+    "n": "Ranger's Exaltation",
+    "c": "list_manipulation",
+    "d": "Creates a list from num #1 to num #2, with a step size of num #3 (or 1 if passed null). For example, A stack of [1, 2, 0.5] would result in a list of [1, 1.5].",
+    "i": "num, num, (num | null)",
+    "o": "list"
+  },
+  "hexal:link/unlink": {
+    "n": "Unlink",
+    "c": "list_manipulation",
+    "d": "Removes the link at the given index from the caster's links. This costs two Amethyst Dust.",
+    "i": "num",
+    "o": "-"
+  },
+  "hexal:link/get": {
+    "n": "Phonebook Purification",
+    "c": "list_manipulation",
+    "d": "Removes an index from the stack, and adds the entity connected to the link at that index to the stack.",
+    "i": "num",
+    "o": "linkable"
+  },
+  "hexal:link/comm/send": {
+    "n": "Send Iota",
+    "c": "list_manipulation",
+    "d": "Removes an iota from the stack, then removes an index from the stack and sends the iota along the link at the given index. This costs one hundredth of an Amethyst Dust.",
+    "i": "num, any",
+    "o": "-"
+  },
+  "hexcassettes:enqueue": {
+    "n": "Enqueue",
+    "c": "list_manipulation",
+    "d": "Enqueues a Hex to cast after that many twentieths of a second. It takes an iota to use as the label for the cassette.",
+    "i": "list, number, any",
+    "o": "-"
+  },
+  "hexcassettes:inspect": {
+    "n": "Program Purification",
+    "c": "list_manipulation",
+    "d": "Pushes null if I do not have an active cassette with that label, or the cassette's Hex if I do. I hear rumors of this being used for iota storage and passing information between Hexes.",
+    "i": "any",
+    "o": "null/list of patterns"
+  },
+  "hexic:where": {
+    "n": "Deductive Purification",
+    "c": "list_manipulation",
+    "d": "Creates a list of the indices for which True is present. For example, [True, False, True] becomes [0, 2]. I can also mix bools and ints in the input list. | Adds each index to the list based on the value. For example, [1, 2, 3] becomes [0, 1, 1, 2, 2, 2]. Zero or negative numbers do not appear at all.",
+    "i": "[bool] | [num]",
+    "o": "[int] | [int]"
+  },
+  "hexpose:split_text": {
+    "n": "Glyph Purification",
+    "c": "list_manipulation",
+    "d": "Splits a text iota into a list of individual glyphs.",
+    "i": "text",
+    "o": "list"
+  },
+  "hexpose:combine_text": {
+    "n": "Collage Purification",
+    "c": "list_manipulation",
+    "d": "Transforms all the elements of a list into text (or keeps them if they were) and pastes it all together.",
+    "i": "list",
+    "o": "text"
+  },
+  "hexpose:get_enchantments": {
+    "n": "Thaumaturgist's Purification",
+    "c": "list_manipulation",
+    "d": "Gets a list of enchantments the item has.",
+    "i": "item",
+    "o": "list of identifiers"
+  },
+  "hexpose:entity_passengers": {
+    "n": "Jockey Purification",
+    "c": "list_manipulation",
+    "d": "Pushes a list of entities that are riding the given entity.",
+    "i": "entity",
+    "o": "list of entities"
+  },
+  "hexpose:get_armor": {
+    "n": "Aegis Purification",
+    "c": "list_manipulation",
+    "d": "Returns a list of all items the entity is wearing, from feet up.",
+    "i": "entity",
+    "o": "list of items"
+  },
+  "hexpose:get_ender_chest": {
+    "n": "Pocket Reflection",
+    "c": "list_manipulation",
+    "d": "Returns a list of all items in my ender chest.",
+    "i": "-",
+    "o": "list of items"
+  },
+  "hexpose:get_inventory": {
+    "n": "Cart Purification",
+    "c": "list_manipulation",
+    "d": "Returns a list of all items the entity is carrying, or Null if the entity can not hold items. Trying to access another Player's inventory will incur a mishap.",
+    "i": "entity",
+    "o": "list of items | null"
+  },
+  "hexpose:get_block_inventory": {
+    "n": "Chest Purification",
+    "c": "list_manipulation",
+    "d": "Returns a list of all items in the container, or Null if the block can not contain items.",
+    "i": "vector",
+    "o": "list of items | null"
+  },
+  "hexpose:read_book": {
+    "n": "Reading Purification (book)",
+    "c": "list_manipulation",
+    "d": "Pushes a list of text iotas contained inside a book or Null if it isn't a book.",
+    "i": "item",
+    "o": "list of text"
+  },
+  "hextrapats:peek/front": {
+    "n": "Speaker's Decomposition II",
+    "c": "list_manipulation",
+    "d": "Gets the iota at the front of the list without removing it from the list.",
+    "i": "list",
+    "o": "list, any"
+  },
+  "hextrapats:peek/back": {
+    "n": "Derivation Decomposition II",
+    "c": "list_manipulation",
+    "d": "Gets the iota at the end of the list without removing it from the list.",
+    "i": "list",
+    "o": "list, any"
+  },
+  "hextrapats:peek/index": {
+    "n": "Viewer's Gambit",
+    "c": "list_manipulation",
+    "d": "Gets the Nth iota of the list without removing it from the list. Returns Null if the number is out of bounds.",
+    "i": "list, num",
+    "o": "list, any"
+  },
+  "hextrapats:split_list": {
+    "n": "Separation Gambit",
+    "c": "list_manipulation",
+    "d": "Splits a list at the given index. [a, b, c, d, e], 2 will return [a, b], [c, d, e].",
+    "i": "list, num",
+    "o": "list, list"
+  },
+  "hextrapats:del_element/first": {
+    "n": "Elimination Gambit",
+    "c": "list_manipulation",
+    "d": "Remove the iota at the top of the stack, then remove the first instance of it from the list. If that iota was in the list, return True. Otherwise, return False.",
+    "i": "list, any",
+    "o": "list, bool"
+  },
+  "hextrapats:del_element/all": {
+    "n": "Elimination Gambit II",
+    "c": "list_manipulation",
+    "d": "Remove the iota at the top of the stack, then remove *all* instances of it from the list. Returns the number of removed occurrences.",
+    "i": "list, any",
+    "o": "list, num"
+  },
+  "hextrapats:swindle_list": {
+    "n": "Swindler's Distillation",
+    "c": "list_manipulation",
+    "d": "Reorders the elements of a list the same way Swindler's Gambit reorders the stack. Inputting a negative code will reorder the elements at the start instead of the end.",
+    "i": "list, num",
+    "o": "list"
+  },
+  "hextrapats:scronglwfijspoivjqwofklcrvewb": {
+    "n": "Shuffling Purification",
+    "c": "list_manipulation",
+    "d": "Shuffles the order of elements in the list.",
+    "i": "list",
+    "o": "list"
+  },
+  "hextrapats:index_for_each": {
+    "n": "Djehuty's Gambit",
+    "c": "list_manipulation",
+    "d": "Casts like Thoth's Gambit, however the new stack for each element additionally has the index of that element added to the top.",
+    "i": "[pattern], list",
+    "o": "list"
+  },
+  "hierophantics:get_minds": {
+    "n": "Hierophant's Reflection",
+    "c": "list_manipulation",
+    "d": "Pushes a list of iotas representing all my embedded minds.",
+    "i": "-",
+    "o": "[mind]"
+  },
+  "hyperhexcast:range": {
+    "n": "Inclining Purification",
+    "c": "list_manipulation",
+    "d": "Returns a list of nonnegative integers below the input. Mishaps if the input is less than 0.",
+    "i": "int",
+    "o": "[int]"
+  },
+  "overevaluate:create_jumble": {
+    "n": "Jumbling Gambit",
+    "c": "list_manipulation",
+    "d": "Creates a jumble iota corresponding to the argument count and the list of numbers.",
+    "i": "number, list",
+    "o": "jumble"
+  },
+  "overevaluate:dissolve_jumble": {
+    "n": "Jumbling Decomposition",
+    "c": "list_manipulation",
+    "d": "Dissolves a jumble iota back into a number and a list of numbers.",
+    "i": "jumble",
+    "o": "number, list"
+  },
+  "efhexs:set_target": {
+    "n": "Haunt",
+    "c": "list_manipulation",
+    "d": "Sets a list of players to be exclusively influenced by my special effects. If Null, all can see my effects again.",
+    "i": "null | list of entities",
+    "o": "-"
+  },
+  "efhexs:get_sounds": {
+    "n": "Audio Reflection",
+    "c": "list_manipulation",
+    "d": "Pushes the last sixteen unique sounds that I have heard.",
+    "i": "-",
+    "o": "list of identifiers"
+  },
+  "efhexs:get_particles": {
+    "n": "Particulate Reflection",
+    "c": "list_manipulation",
+    "d": "Pushes the last sixteen unique particles that have happened around me.",
+    "i": "-",
+    "o": "list of identifiers"
+  }
+}
