@@ -38,6 +38,7 @@ from vector_to_pattern import vector_pattern  # noqa: E402
 
 from hex_renderer_py import (  # noqa: E402
     Color,
+    CollisionOption,
     GridOptions,
     GridPatternOptions,
     HexGrid,
@@ -46,6 +47,7 @@ from hex_renderer_py import (  # noqa: E402
     Marker,
     PatternVariant,
     Point,
+    Triangle,
 )
 
 DIRECTIONS = {
@@ -63,8 +65,11 @@ PATTERN_LINE_RE = re.compile(r"^([A-Z_]+)\s+([wasdqe]+)$")
 IMAGE_SIZE = (1024, 1024)
 LINE_THICKNESS = 0.08
 MARKER_RADIUS = 0.08
-LINE_COLOR = Color(168, 30, 227, 255)
+LINE_COLORS = [Color(168, 30, 227, 255), Color(40, 200, 255, 255)]
 MARKER_COLOR = Color(255, 255, 255, 255)
+ARROW_COLOR = Color(0, 0, 0, 255)
+ARROW_RADIUS = 0.2
+ARROW_BORDER_RADIUS = 0.1
 
 
 def load_patterns():
@@ -168,7 +173,14 @@ def render_png(patterns, output_path):
                     marker=Marker(color=MARKER_COLOR, radius=MARKER_RADIUS)
                 )
             ),
-            lines=Lines.Monocolor(color=LINE_COLOR, bent=False),
+            lines=Lines.SegmentColors(
+                colors=LINE_COLORS,
+                triangles=Triangle.BorderStartMatch(
+                    ARROW_RADIUS,
+                    Marker(color=ARROW_COLOR, radius=ARROW_BORDER_RADIUS),
+                ),
+                collisions=CollisionOption.ParallelLines(),
+            ),
         ),
         center_dot=Point.None_(),
     )
