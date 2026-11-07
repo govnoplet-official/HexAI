@@ -26,7 +26,6 @@ sys.path.insert(0, os.path.join(BASE_DIR, "preparation"))
 from api_config import load_api_config
 
 CATEGORIES_DIR = os.path.join(BASE_DIR, "categories_enabled")
-MODEL_NAME = "gpt-4o-mini"
 TIMEOUT_SEC = 120
 
 TASK_TEXT = """\
@@ -120,10 +119,10 @@ def build_messages(user_request, descriptions):
     ]
 
 
-def call_api(messages, base_url, api_keys):
-    """Отправляет запрос; при ошибке авторизации или лимита переходит к следующему ключу."""
+def call_api(messages, base_url, api_keys, model):
+    """Отправляет запрос к указанной модели; при ошибке авторизации или лимита переходит к следующему ключу."""
     body = json.dumps({
-        "model": MODEL_NAME,
+        "model": model,
         "messages": messages,
         "temperature": 0,
     }).encode("utf-8")
@@ -203,7 +202,7 @@ def main():
         return
 
     cfg = load_api_config()
-    answer = call_api(messages, cfg["base_url"], cfg["api_keys"])
+    answer = call_api(messages, cfg["base_url"], cfg["api_keys"], cfg["model"])
     chosen = parse_categories(answer, {name for name, _ in descriptions})
 
     print(json.dumps(chosen, ensure_ascii=False, indent=2))

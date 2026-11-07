@@ -57,7 +57,7 @@ def stage_select_categories(user_request, cfg):
         sys.exit("Нет файлов категорий с полем _description в categories_enabled/.")
 
     messages = build_category_messages(user_request, descriptions)
-    answer = call_api(messages, cfg["base_url"], cfg["api_keys"])
+    answer = call_api(messages, cfg["base_url"], cfg["api_keys"], cfg["model"])
     chosen = parse_categories(answer, {name for name, _ in descriptions})
     if not chosen:
         sys.exit("ИИ1 не выбрал ни одной категории: запрос не выполним с имеющимися паттернами.")
@@ -73,7 +73,7 @@ def stage_build_chain(user_request, category_files, cfg):
         sys.exit("В выбранных категориях нет паттернов.")
 
     messages = build_chain_messages(user_request, catalog)
-    answer = call_api(messages, cfg["base_url"], cfg["api_keys"])
+    answer = call_api(messages, cfg["base_url"], cfg["api_keys"], cfg["model"])
     chain, errors = parse_chain(answer, catalog)
     if errors:
         print("Ошибки в цепочке, которую вернул ИИ2:", file=sys.stderr)

@@ -30,11 +30,23 @@ def load_api_config(path=None):
         cfg = json.load(f)
 
     base_url = cfg.get("base_url", "")
-    api_keys = [k for k in cfg.get("api_keys", []) if isinstance(k, str) and k.strip()]
+    # Ключи могут лежать в api_keys или api_key; значение - строка или список строк
+    raw_keys = cfg.get("api_keys")
+    if raw_keys is None:
+        raw_keys = cfg.get("api_key", [])
+    if isinstance(raw_keys, str):
+        raw_keys = [raw_keys]
+    elif not isinstance(raw_keys, list):
+        raw_keys = []
+    api_keys = [k for k in raw_keys if isinstance(k, str) and k.strip()]
 
     if not base_url or PLACEHOLDER_MARKER in base_url or "example.com" in base_url:
         sys.exit(f"В {path} не задан реальный base_url.")
     if not api_keys or any(k.startswith(PLACEHOLDER_MARKER) for k in api_keys):
         sys.exit(f"В {path} не заданы реальные api_keys (остались плейсхолдеры).")
 
-    return {"base_url": base_url.rstrip("/"), "api_keys": api_keys}
+    model = cfg.get("model", "")
+    if not isinstance(model, str) or not model.strip():
+        sys.exit(f"В {path} не задано поле model (имя модели API).")
+
+    return {"base_url": base_url.rstrip("/"), "api_keys": api_keys, "model": model.strip()}

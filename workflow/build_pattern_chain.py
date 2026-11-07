@@ -234,7 +234,7 @@ def main():
         return
 
     cfg = load_api_config()
-    answer = call_api(messages, cfg["base_url"], cfg["api_keys"])
+    answer = call_api(messages, cfg["base_url"], cfg["api_keys"], cfg["model"])
     chain, errors = parse_chain(answer, catalog)
 
     if errors:
