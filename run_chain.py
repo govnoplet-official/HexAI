@@ -1,4 +1,4 @@
-"""
+﻿"""
 Полный конвейер Hex Casting: запрос пользователя -> PNG.
 
 Этапы:
@@ -145,7 +145,14 @@ def stage_build_chain(user_request, category_files, cfg):
             answer = call_api(messages, cfg["base_url"], cfg["api_keys"], cfg["model"])
             break
         if attempt == MAX_SUPPLEMENTS:
-            sys.exit(f"ИИ2 всё ещё не хватает паттернов после {MAX_SUPPLEMENTS} дозапросов: {missing}")
+            print(f"ИИ2 всё ещё просит: {', '.join(missing)}. Финальная сборка без NEED...")
+            messages.append({"role": "assistant", "content": answer})
+            messages.append({
+                "role": "user",
+                "content": "Дозапросы исчерпаны. Собери цепочку из имеющихся паттернов, без NEED.",
+            })
+            answer = call_api(messages, cfg["base_url"], cfg["api_keys"], cfg["model"])
+            break
         print(f"ИИ2 просит паттерны для: {', '.join(missing)}. ИИ1 дополняет категории...")
         extra = stage_supplement_categories(user_request, category_files, missing, cfg)
         if not extra:
