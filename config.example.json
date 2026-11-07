@@ -1,0 +1,7 @@
+{
+  "base_url": "https://api.example.com/v1",
+  "api_keys": [
+    "YOUR_API_KEY_1",
+    "YOUR_API_KEY_2"
+  ]
+}
