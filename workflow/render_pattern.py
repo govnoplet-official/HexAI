@@ -2,7 +2,8 @@
 Рисует цепочку паттернов Hex Casting в одно PNG-изображение.
 
 Вход - строки цепочки, по одной на строку (формат выводит build_pattern_chain.py):
-- id паттерна из do_not_touch/registry.json, например hexcasting:add;
+- сокращённый id из категорий (как выводит stage 2), например runtime_escape;
+  полный id из intermediary/patterns.json тоже принимается;
 - number(N) - число, раскладывается через n_to_p;
 - vector(x, y, z) - вектор, раскладывается через vector_to_pattern;
 - готовая строка "НАПРАВЛЕНИЕ сигнатура", например "SOUTH_WEST aeaqaaq".
@@ -28,7 +29,7 @@ import sys
 
 WORKFLOW_DIR = os.path.dirname(os.path.abspath(__file__))
 BASE_DIR = os.path.dirname(WORKFLOW_DIR)
-REGISTRY_PATH = os.path.join(BASE_DIR, "do_not_touch", "registry.json")
+PATTERNS_PATH = os.path.join(BASE_DIR, "intermediary", "patterns.json")
 DEFAULT_OUTPUT = os.path.join(BASE_DIR, "renders", "chain.png")
 
 sys.path.insert(0, WORKFLOW_DIR)
@@ -66,13 +67,37 @@ LINE_COLOR = Color(168, 30, 227, 255)
 MARKER_COLOR = Color(255, 255, 255, 255)
 
 
-def load_registry_patterns():
-    """Возвращает словарь id -> запись паттерна из registry.json."""
-    with open(REGISTRY_PATH, "r", encoding="utf-8") as file:
-        return json.load(file)["patterns"]
+def load_patterns():
+    """Возвращает словарь полный id -> запись паттерна из intermediary/patterns.json."""
+    with open(PATTERNS_PATH, "r", encoding="utf-8") as file:
+        return json.load(file)
 
 
-def expand_line(line, registry):
+def resolve_pattern_id(short_id, patterns):
+    """Находит полный id в patterns.json по сокращённому id из категорий.
+
+    Порядок: точное совпадение, затем префикс hexcasting:, затем единственное
+    совпадение по части после двоеточия.
+
+    Raises:
+        ValueError: если id не найден или совпадений несколько.
+    """
+    if short_id in patterns:
+        return short_id
+    if "hexcasting:" + short_id in patterns:
+        return "hexcasting:" + short_id
+
+    matches = [key for key in patterns if key.split(":", 1)[-1] == short_id]
+    if len(matches) == 1:
+        return matches[0]
+    if not matches:
+        raise ValueError(f"Паттерн не найден в patterns.json: {short_id}")
+    raise ValueError(
+        f"Неоднозначный id {short_id}, кандидаты: {', '.join(sorted(matches))}"
+    )
+
+
+def expand_line(line, patterns):
     """Превращает одну строку цепочки в список (направление, сигнатура).
 
     Raises:
@@ -103,29 +128,28 @@ def expand_line(line, registry):
     if "(" in text:
         raise ValueError(f"Паттерны с аргументами не поддерживаются: {text}")
 
-    entry = registry.get(text)
-    if entry is None:
-        raise ValueError(f"Паттерн не найден в registry.json: {text}")
+    full_id = resolve_pattern_id(text, patterns)
+    entry = patterns[full_id]
     if entry.get("display_only") or not entry.get("signature"):
-        raise ValueError(f"У паттерна нет сигнатуры для рендера: {text}")
+        raise ValueError(f"У паттерна нет сигнатуры для рендера: {full_id}")
     return [(entry["direction"], entry["signature"])]
 
 
-def expand_chain(lines, registry):
+def expand_chain(lines, patterns):
     """Раскрывает все строки цепочки. Пустые строки пропускаются.
 
     Возвращает список (направление, сигнатура) и список ошибок.
     """
-    patterns = []
+    result = []
     errors = []
     for number, line in enumerate(lines, start=1):
         if not line.strip():
             continue
         try:
-            patterns.extend(expand_line(line, registry))
+            result.extend(expand_line(line, patterns))
         except ValueError as error:
             errors.append(f"строка {number}: {error}")
-    return patterns, errors
+    return result, errors
 
 
 def render_png(patterns, output_path):
@@ -188,8 +212,8 @@ def main():
         print("Нет ни одного паттерна для рисования.", file=sys.stderr)
         sys.exit(1)
 
-    registry = load_registry_patterns()
-    patterns, errors = expand_chain(lines, registry)
+    patterns = load_patterns()
+    chain, errors = expand_chain(lines, patterns)
 
     if errors:
         print("Ошибки в цепочке:", file=sys.stderr)
@@ -197,8 +221,8 @@ def main():
             print(f"  - {error}", file=sys.stderr)
         sys.exit(1)
 
-    render_png(patterns, args.output)
-    print(f"Сохранено: {args.output} ({len(patterns)} паттернов)")
+    render_png(chain, args.output)
+    print(f"Сохранено: {args.output} ({len(chain)} паттернов)")
 
 
 if __name__ == "__main__":
