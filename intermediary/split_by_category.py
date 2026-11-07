@@ -22,8 +22,8 @@ def safe_name(category):
 
 
 def main():
-    base_dir = os.path.dirname(os.path.abspath(__file__))
-    source = sys.argv[1] if len(sys.argv) > 1 else os.path.join(base_dir, "p_c_s.json")
+    base_dir = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+    source = sys.argv[1] if len(sys.argv) > 1 else os.path.join(base_dir, "intermediary", "p_c_s.json")
     out_dir = sys.argv[2] if len(sys.argv) > 2 else os.path.join(base_dir, "categories")
 
     with open(source, "r", encoding="utf-8") as f:

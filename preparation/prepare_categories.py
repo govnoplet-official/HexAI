@@ -28,7 +28,8 @@ def load_json(path):
 
 
 def main():
-    base_dir = os.path.dirname(os.path.abspath(__file__))
+    script_dir = os.path.dirname(os.path.abspath(__file__))
+    base_dir = os.path.dirname(script_dir)
     config_path = sys.argv[1] if len(sys.argv) > 1 else os.path.join(base_dir, "mods_config.json")
 
     config = load_json(config_path)
@@ -50,7 +51,7 @@ def main():
             descriptions[name] = raw["_description"]
         sources[name] = {k: v for k, v in raw.items() if not k.startswith("_")}
 
-    special_raw = load_json(os.path.join(base_dir, SPECIAL_FILE))
+    special_raw = load_json(os.path.join(base_dir, "intermediary", SPECIAL_FILE))
     special_filled = {
         key: entry for key, entry in special_raw.items()
         if isinstance(entry.get("u"), str) and entry["u"].strip()

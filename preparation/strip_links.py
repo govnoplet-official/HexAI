@@ -31,7 +31,7 @@ def clean(text):
 
 
 def main():
-    base_dir = os.path.dirname(os.path.abspath(__file__))
+    base_dir = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
     folder = sys.argv[1] if len(sys.argv) > 1 else os.path.join(base_dir, "categories")
 
     changed_files = 0

@@ -50,9 +50,9 @@ def convert_entry(key, handler, usage):
 
 
 def main():
-    base_dir = os.path.dirname(os.path.abspath(__file__))
-    source = sys.argv[1] if len(sys.argv) > 1 else os.path.join(base_dir, "special_handlers.json")
-    target = sys.argv[2] if len(sys.argv) > 2 else os.path.join(base_dir, "special_handlers_u.json")
+    base_dir = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+    source = sys.argv[1] if len(sys.argv) > 1 else os.path.join(base_dir, "intermediary", "special_handlers.json")
+    target = sys.argv[2] if len(sys.argv) > 2 else os.path.join(base_dir, "intermediary", "special_handlers_u.json")
 
     usage = load_existing_usage(target)
 

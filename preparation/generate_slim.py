@@ -38,9 +38,9 @@ def slim_entry(entry):
 
 
 def main():
-    base_dir = os.path.dirname(os.path.abspath(__file__))
-    source = sys.argv[1] if len(sys.argv) > 1 else os.path.join(base_dir, "patterns.json")
-    target = sys.argv[2] if len(sys.argv) > 2 else os.path.join(base_dir, "patterns_slim.json")
+    base_dir = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+    source = sys.argv[1] if len(sys.argv) > 1 else os.path.join(base_dir, "intermediary", "patterns.json")
+    target = sys.argv[2] if len(sys.argv) > 2 else os.path.join(base_dir, "intermediary", "patterns_slim.json")
 
     with open(source, "r", encoding="utf-8") as f:
         data = json.load(f)
